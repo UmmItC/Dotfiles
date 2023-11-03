@@ -4,7 +4,7 @@ This repository is dedicated to my Linux configuration files and browser extensi
 
 ```shell
 git clone https://gitlab.com/Genlicly/dotfiles
-cp Dotfiles/* ~/.config/
+cp dotfiles/* ~/.config/
 ```
 
 >This will replace all of your current .config files with the same file name. Please be aware of this.
