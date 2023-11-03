@@ -3,7 +3,7 @@
 This repository is dedicated to my Linux configuration files and browser extensions. To use it, enter the following command:
 
 ```shell
-git clone
+git clone https://gitlab.com/Genlicly/dotfiles
 cp Dotfiles/* ~/.config/
 ```
 
