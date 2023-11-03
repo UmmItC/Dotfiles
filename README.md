@@ -9,6 +9,8 @@ cp Dotfiles/* ~/.config/
 
 >This will replace all of your current .config files with the same file name. Please be aware of this.
 
+Thanks for using!
+
 ## Working
 
 currently, the repository contains the following configuration files:
@@ -17,7 +19,7 @@ currently, the repository contains the following configuration files:
 - powerlevel10k
 - oh my zsh
 
-Thanks for using!
+And the ublock just a txt file, just copy these contain on your ublock filter list.
 
 ## Todo
 
