@@ -15,9 +15,10 @@ Thanks for using!
 
 currently, the repository contains the following configuration files:
 
-- neofetch
-- powerlevel10k
-- oh my zsh
+- Neofetch
+- Powerlevel10k
+- Oh my zsh
+- Hyprland
 
 And the ublock just a txt file, just copy these contain on your ublock filter list.
 
