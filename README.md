@@ -23,9 +23,9 @@ currently, the repository contains the following configuration files:
 - wlogout (yay)
 - wezterm (pacman)
 - hyprshot (yay)
-- rofi (launcher)
+- rofi (pacman)
 
-Otherwise are optional, Please set `~/.config/hypr/hyprland.conf` by yourself. There should be many people who don't need to use fcitx5. As i need fcitx5 as my input method.
+Otherwise are optional, Please set `~/.config/hypr/hyprland.conf` by yourself. There should be many people who don't need to use `fcitx5`. As i need `fcitx5` as my input method.
 
 ```shell
 $terminal kgx #Default terminal
@@ -42,7 +42,7 @@ Please install the necessary packages first:
 ## pacman
 
 ```shell
-sudo pacman -S neofetch zsh hyprland waybar wezterm
+sudo pacman -S neofetch zsh hyprland waybar wezterm rofi
 ```
 
 ### For yay
@@ -50,3 +50,7 @@ sudo pacman -S neofetch zsh hyprland waybar wezterm
 ```shell
 yay -S wlogout hyprshot
 ```
+
+## Screenshot
+
+![hyprland](./hyprland.png)
