@@ -23,6 +23,15 @@ currently, the repository contains the following configuration files:
 - wlogout (yay)
 - wezterm (pacman)
 - hyprshot (yay)
+- rofi (launcher)
+
+Otherwise are optional, Please set `~/.config/hypr/hyprland.conf` by yourself. There should be many people who don't need to use fcitx5. As i need fcitx5 as my input method.
+
+```shell
+$terminal kgx #Default terminal
+$browser #Default browser
+exec-once = waybar & ... & ... # Launch hyprland when started
+```
 
 And the ublock just a txt file, just copy these contain on your ublock filter list.
 
