@@ -15,15 +15,28 @@ Thanks for using!
 
 currently, the repository contains the following configuration files:
 
-- Neofetch
-- Powerlevel10k
-- Oh my zsh
-- Hyprland
+- Neofetch (pacman)
+- Powerlevel10k (manually)
+- Oh my zsh (pacman)
+- Hyprland (pacman)
+- waybar (pacman)
+- wlogout (yay)
+- wezterm (pacman)
 
 And the ublock just a txt file, just copy these contain on your ublock filter list.
 
-## Todo
+## Install Pacakges
 
-I'm working on configuring my new Linux system on Hyprland DE, using Gentoo as my new distribution.
+Please install the necessary packages first:
 
-> btw i use arch/gentoo :3
+## pacman
+
+```shell
+sudo pacman -S neofetch zsh hyprland waybar wezterm
+```
+
+### For yay
+
+```shell
+yay -S wlogout
+```
