@@ -22,6 +22,7 @@ currently, the repository contains the following configuration files:
 - waybar (pacman)
 - wlogout (yay)
 - wezterm (pacman)
+- hyprshot (yay)
 
 And the ublock just a txt file, just copy these contain on your ublock filter list.
 
@@ -38,5 +39,5 @@ sudo pacman -S neofetch zsh hyprland waybar wezterm
 ### For yay
 
 ```shell
-yay -S wlogout
+yay -S wlogout hyprshot
 ```
