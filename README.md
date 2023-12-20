@@ -28,6 +28,9 @@ After copy, please set `~/.config/hypr/hyprland.conf` by yourself. For example, 
 $terminal kitty #Default terminal
 exec-once = waybar & ... & ... # Launch hyprland when started
 ```
+## Todo
+
+- Neovim (Lazyvim) - Say goodbye to VSCode based text editor, terminal for all things!
 
 ## Necessary Packages
 
@@ -49,3 +52,9 @@ yay -S wlogout hyprshot
 
 ![hyprland](./hyprland.png)
 ![hyprland-2](./hyprland-2.png)
+
+## Useful tools
+
+If you like to use the terminal for all things, i have some recommend pacakges for you!
+
+- viu (terminal view image) 
