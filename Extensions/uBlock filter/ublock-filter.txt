@@ -1,5 +1,0 @@
-ubuntu.com##.cookie-policy
-
-www.hostinger.com###gdpr-consent
-
-killerskins.com##.tarteaucitronAlertBigTop
