@@ -1,0 +1,87 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 0,
+    "modules-left": ["custom/launcher", "hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [
+        "tray",
+	"cpu",
+	"memory",
+	"clock",
+	"pulseaudio",
+	"custom/power"
+    ],
+
+         "cpu": {
+        "interval": 1,
+        "format": " {}%",
+        "max-length": 20
+    },
+    "memory": {
+        "interval": 1,
+        "format": " {}%",
+        "max-length": 20
+    },
+
+        "custom/launcher":{
+        "format": "",
+        "on-click": "rofi -show drun",
+        "on-click-right": "killall rofi"
+    },
+
+    "custom/power":{
+        "format": "⏻",
+        "on-click": "wlogout",
+    },
+
+
+    "hyprland/window": {
+        "format": "{}"
+    },
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        //"format": "{icon}",
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
+    },
+    "tray": {
+        "icon-size": 13,
+        "spacing": 10
+    },
+    "clock": {
+        "format": "{: %I:%M:%S %p   %Y.%m.%d}",
+	"interval": 1,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+"pulseaudio": {
+	"format": "{volume}% {icon}",
+	"format-bluetooth": "{volume}% {icon}",
+	"format-muted": "",
+	"format-icons": {
+		"alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+		"headphones": "",
+		"handsfree": "",
+		"headset": "",
+		"phone": "",
+		"portable": "",
+		"car": "",
+		"default": ["", ""]
+	},
+	"scroll-step": 1,
+	"on-click": "pavucontrol"
+}
+}
