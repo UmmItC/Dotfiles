@@ -1,17 +1,14 @@
 # Dotfiles
 
-This repository is dedicated to my Linux configuration files and browser extensions. To use it, enter the following command:
+This repository is dedicated to my Hyprland WM Arch Linux configuration files. To use it, enter the following command:
 
 ```shell
-git clone https://gitlab.com/Genlicly/dotfiles
-cp dotfiles/* ~/.config/
+git clone https://gitlab.com/Genlicly/dotfiles ~/.config/
 ```
 
 >This will replace all of your current .config files with the same file name. Please be aware of this.
 
-Thanks for using!
-
-## Working
+## Require Packages
 
 currently, the repository contains the following configuration files:
 
@@ -32,11 +29,11 @@ $terminal kitty #Default terminal
 exec-once = waybar & ... & ... # Launch hyprland when started
 ```
 
-## Install Pacakges
+## Necessary Packages
 
 Please install the necessary packages first:
 
-## pacman
+### pacman
 
 ```shell
 sudo pacman -S neofetch zsh hyprland hyprpaper waybar rofi ttf-jetbrains-mono kitty
