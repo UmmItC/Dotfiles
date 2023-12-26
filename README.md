@@ -3,10 +3,11 @@
 This repository is dedicated to my Hyprland WM Arch Linux configuration files. To use it, enter the following command:
 
 ```shell
-git clone https://gitlab.com/Genlicly/dotfiles ~/.config/
+chmod +x install.sh
+./install.sh
 ```
 
->This will replace all of your current .config files with the same file name. Please be aware of this.
+>This script will automatically installing all the Necessary packages. and Relace all of your current .config files with the same filename. Please be aware of this.
 
 ## Require Packages
 
@@ -21,16 +22,7 @@ currently, the repository contains the following configuration files:
 - hyprshot (yay) - Screenshot
 - rofi (pacman) - App launcher
 - hyprpaper (pacman) - Wallpaper
-
-After copy, please set `~/.config/hypr/hyprland.conf` by yourself. For example, that should be many people who don't need to use `fcitx5`. As i need `fcitx5` as my input method.
-
-```shell
-$terminal kitty #Default terminal
-exec-once = waybar & ... & ... # Launch hyprland when started
-```
-## Todo
-
-- Neovim (Lazyvim) - Say goodbye to VSCode based text editor, terminal for all things!
+- Neovim (NvChad) - text editor
 
 ## Necessary Packages
 
