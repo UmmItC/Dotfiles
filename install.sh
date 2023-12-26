@@ -46,26 +46,18 @@ fi
 
 # Step 4: Copy configuration files
 config_dir="$HOME/.config"
-config_paths=(
-    "$(pwd)/hypr"
-    "$(pwd)/kitty"
-    "$(pwd)/neofetch"
-    "$(pwd)/waybar"
-    "$(pwd)/.p10k.zsh"
-    "$(pwd)/.zshrc"
-)
 
 # Prompt for copying configurations
-case "$(prompt_yna "Copy configuration files?")" in
-    0 ) # Yes
-        for path in "${config_paths[@]}"; do
-            cp -r "$path" "$config_dir"
-        done
-        ;;
-    * ) # No
-        echo "$(tput setaf 3)Skipping configuration file copying.$(tput sgr0)"
-        ;;
-esac
+if prompt_yna "Copy configuration files?"; then
+    cp -v ./hypr "$config_dir/"
+    cp -v ./kitty "$config_dir/"
+    cp -v ./neofetch "$config_dir/"
+    cp -v ./waybar "$config_dir/"
+    cp -v .p10k.zsh "$config_dir/"
+    cp -v .zshrc "$config_dir/"
+else
+    echo "$(tput setaf 3)Skipping configuration file copying.$(tput sgr0)"
+fi
 
 echo "$(tput setaf 2)Installation completed successfully.$(tput sgr0)"
 
