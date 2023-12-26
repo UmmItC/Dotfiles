@@ -59,4 +59,13 @@ else
     echo "$(tput setaf 3)Skipping configuration file copying.$(tput sgr0)"
 fi
 
+# Prompt for cloning NvChad and running nvim
+if prompt_yna "Clone NvChad and run nvim?"; then
+    echo "$(tput setaf 6)Neovim using NvChad:$(tput sgr0)"
+    echo "NvChad will asking you the default configuration, please enter 'n'."
+    git clone https://github.com/NvChad/NvChad "$config_dir/nvim" --depth 1 && nvim
+else
+    echo "$(tput setaf 3)Skipping NvChad cloning and nvim execution.$(tput sgr0)"
+fi
+
 echo "$(tput setaf 2)Installation completed successfully.$(tput sgr0)"
