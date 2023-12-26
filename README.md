@@ -23,30 +23,9 @@ currently, the repository contains the following configuration files:
 - rofi (pacman) - App launcher
 - hyprpaper (pacman) - Wallpaper
 - Neovim (NvChad) - text editor
-
-## Necessary Packages
-
-Please install the necessary packages first:
-
-### pacman
-
-```shell
-sudo pacman -S neofetch zsh hyprland hyprpaper waybar rofi ttf-jetbrains-mono kitty
-```
-
-### For yay
-
-```shell
-yay -S wlogout hyprshot
-```
+- Viu - Simple Terminal Image Viewer
 
 ## Screenshot
 
 ![hyprland](./hyprland.png)
 ![hyprland-2](./hyprland-2.png)
-
-## Useful tools
-
-If you like to use the terminal for all things, i have some recommend pacakges for you!
-
-- viu (terminal view image) 
