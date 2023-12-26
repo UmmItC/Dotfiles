@@ -17,7 +17,7 @@ is_package_installed() {
     pacman -Qs "$1" &>/dev/null
 }
 
-# Step 1: List and install necessary pacman packages
+# List and install necessary pacman packages
 pacman_packages=("neofetch" "zsh" "hyprland" "hyprpaper" "waybar" "rofi" "ttf-jetbrains-mono" "kitty" "git")
 
 echo "$(tput setaf 6)Pacman packages to be installed:$(tput sgr0)"
@@ -26,7 +26,7 @@ if prompt_yna "Install these pacman packages?"; then
     sudo pacman -S "${pacman_packages[@]}"
 fi
 
-# Step 2: Install yay if not installed
+# Install yay if not installed
 if ! is_package_installed "yay"; then
     git clone https://aur.archlinux.org/yay.git
     cd yay || exit
@@ -35,7 +35,7 @@ if ! is_package_installed "yay"; then
     rm -rf yay
 fi
 
-# Step 3: List and install necessary yay packages
+# List and install necessary yay packages
 yay_packages=("wlogout" "hyprshot")
 
 echo "$(tput setaf 6)Yay packages to be installed:$(tput sgr0)"
@@ -44,15 +44,15 @@ if prompt_yna "Install these yay packages?"; then
     yay -S "${yay_packages[@]}"
 fi
 
-# Step 4: Copy configuration files
+# Copy configuration files
 config_dir="$HOME/.config"
 
 # Prompt for copying configurations
 if prompt_yna "Copy configuration files?"; then
-    cp -v ./hypr "$config_dir/"
-    cp -v ./kitty "$config_dir/"
-    cp -v ./neofetch "$config_dir/"
-    cp -v ./waybar "$config_dir/"
+    cp -rv ./hypr "$config_dir/"
+    cp -rv ./kitty "$config_dir/"
+    cp -rv ./neofetch "$config_dir/"
+    cp -rv ./waybar "$config_dir/"
     cp -v .p10k.zsh "$config_dir/"
     cp -v .zshrc "$config_dir/"
 else
@@ -60,4 +60,3 @@ else
 fi
 
 echo "$(tput setaf 2)Installation completed successfully.$(tput sgr0)"
-
