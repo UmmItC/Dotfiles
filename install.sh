@@ -47,12 +47,12 @@ fi
 # Step 4: Copy configuration files
 config_dir="$HOME/.config"
 config_paths=(
-    "./hypr"
-    "./kitty"
-    "./neofetch"
-    "./waybar"
-    ".p10k.zsh"
-    ".zshrc"
+    "$(pwd)/hypr"
+    "$(pwd)/kitty"
+    "$(pwd)/neofetch"
+    "$(pwd)/waybar"
+    "$(pwd)/.p10k.zsh"
+    "$(pwd)/.zshrc"
 )
 
 # Prompt for copying configurations
