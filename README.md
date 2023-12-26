@@ -1,8 +1,7 @@
 # Dotfiles
 
-> :warning: **: The install.sh is currently only a beta, so it might be best to copy the file directly to ``~/.config/*`.**
-
-WARNING:
+> [!WARNING]
+> **The install.sh is currently only a beta, so it might be best to copy the file directly to ``~/.config/*`.**
 
 This repository is dedicated to my Hyprland WM Arch Linux configuration files. To use it, enter the following command:
 
