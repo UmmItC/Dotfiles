@@ -1,16 +1,19 @@
-# Dotfiles
+## Dotfiles
 
-> [!WARNING]
+This repository is dedicated to my Hyprland WM Arch Linux configuration files.
+
+## Installation
+
+To use it, enter the following command
+
+> **⚠️ Warning**
 > **The install.sh is currently only a beta, so it might be best to copy the file directly to ``~/.config/*`.**
-
-This repository is dedicated to my Hyprland WM Arch Linux configuration files. To use it, enter the following command:
+> **This script will automatically installing all the Necessary packages. and Relace all of your current .config files with the same filename. Please be aware of this.**
 
 ```shell
 chmod +x install.sh
 ./install.sh
 ```
-
->This script will automatically installing all the Necessary packages. and Relace all of your current .config files with the same filename. Please be aware of this.
 
 ## Require Packages
 
