@@ -13,7 +13,12 @@ prompt_yna() {
     done
 }
 
-# Step 1: List and install necessary pacman packages
+# Function to check if a package is installed
+is_package_installed() {
+    pacman -Qs "$1" &>/dev/null
+}
+
+# List and install necessary pacman packages
 pacman_packages=("neofetch" "zsh" "hyprland" "hyprpaper" "waybar" "rofi" "ttf-jetbrains-mono" "kitty" "git")
 
 echo "$(tput setaf 6)Pacman packages to be installed:$(tput sgr0)"
@@ -22,7 +27,16 @@ if prompt_yna "Install these pacman packages?"; then
     sudo pacman -S "${pacman_packages[@]}"
 fi
 
-# Step 2: List and install necessary yay packages
+# Install yay if not installed
+if ! is_package_installed "yay"; then
+    git clone https://aur.archlinux.org/yay.git
+    cd yay || exit
+    makepkg -si
+    cd ..
+    rm -rf yay
+fi
+
+# List and install necessary yay packages
 yay_packages=("wlogout" "hyprshot")
 
 echo "$(tput setaf 6)Yay packages to be installed:$(tput sgr0)"
@@ -31,7 +45,7 @@ if prompt_yna "Install these yay packages?"; then
     yay -S "${yay_packages[@]}"
 fi
 
-# Step 3: Copy configuration files
+# Copy configuration files
 config_dir="$HOME/.config"
 config_paths=(
     "./hypr"
