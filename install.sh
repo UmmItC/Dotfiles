@@ -1,14 +1,13 @@
 #!/bin/bash
 
-# Function to prompt for Yes/No/All
+# Function to prompt for Yes/No
 prompt_yna() {
     while true; do
-        read -rp "$(tput setaf 3)$1 (Y/N/A): $(tput sgr0)" choice
+        read -rp "$(tput setaf 3)$1 (Y/N): $(tput sgr0)" choice
         case $choice in
             [Yy]* ) return 0;;
             [Nn]* ) return 1;;
-            [Aa]* ) return 2;;
-            * ) echo "Please answer Y, N, or A.";;
+            * ) echo "Please answer Y or N.";;
         esac
     done
 }
@@ -59,11 +58,6 @@ config_paths=(
 # Prompt for copying configurations
 case "$(prompt_yna "Copy configuration files?")" in
     0 ) # Yes
-        for path in "${config_paths[@]}"; do
-            cp -r "$path" "$config_dir"
-        done
-        ;;
-    2 ) # All
         for path in "${config_paths[@]}"; do
             cp -r "$path" "$config_dir"
         done
