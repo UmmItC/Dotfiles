@@ -1,14 +1,8 @@
 # Dotfiles
 
-<div class="panel panel-danger">
-**Notice:**
-{: .panel-heading}
-<div class="panel-body">
-
+{{% alert title="Warning" color="warning" %}}
 The install.sh is currently only a beta, so it might be best to copy the file directly to ``~/.config/*`.
-
-</div>
-</div>
+{{% /alert %}}
 
 This repository is dedicated to my Hyprland WM Arch Linux configuration files. To use it, enter the following command:
 
