@@ -18,7 +18,7 @@ is_package_installed() {
     pacman -Qs "$1" &>/dev/null
 }
 
-# List and install necessary pacman packages
+# Step 1: List and install necessary pacman packages
 pacman_packages=("neofetch" "zsh" "hyprland" "hyprpaper" "waybar" "rofi" "ttf-jetbrains-mono" "kitty" "git")
 
 echo "$(tput setaf 6)Pacman packages to be installed:$(tput sgr0)"
@@ -27,7 +27,7 @@ if prompt_yna "Install these pacman packages?"; then
     sudo pacman -S "${pacman_packages[@]}"
 fi
 
-# Install yay if not installed
+# Step 2: Install yay if not installed
 if ! is_package_installed "yay"; then
     git clone https://aur.archlinux.org/yay.git
     cd yay || exit
@@ -36,7 +36,7 @@ if ! is_package_installed "yay"; then
     rm -rf yay
 fi
 
-# List and install necessary yay packages
+# Step 3: List and install necessary yay packages
 yay_packages=("wlogout" "hyprshot")
 
 echo "$(tput setaf 6)Yay packages to be installed:$(tput sgr0)"
@@ -45,7 +45,7 @@ if prompt_yna "Install these yay packages?"; then
     yay -S "${yay_packages[@]}"
 fi
 
-# Copy configuration files
+# Step 4: Copy configuration files
 config_dir="$HOME/.config"
 config_paths=(
     "./hypr"
@@ -57,7 +57,7 @@ config_paths=(
 )
 
 # Prompt for copying configurations
-case $(prompt_yna "Copy configuration files?") in
+case "$(prompt_yna "Copy configuration files?")" in
     0 ) # Yes
         for path in "${config_paths[@]}"; do
             cp -r "$path" "$config_dir"
