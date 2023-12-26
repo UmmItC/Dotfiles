@@ -1,8 +1,7 @@
 # Dotfiles
 
-{{% alert title="Warning" color="warning" %}}
+WARNING:
 The install.sh is currently only a beta, so it might be best to copy the file directly to ``~/.config/*`.
-{{% /alert %}}
 
 This repository is dedicated to my Hyprland WM Arch Linux configuration files. To use it, enter the following command:
 
