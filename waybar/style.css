@@ -12,6 +12,11 @@ window#waybar {
     color: #cdd6f4;
 }
 
+#waybar{
+    background: #13222a;
+    color: #eeeeef;
+}
+
 tooltip {
     background: #1e1e2e;
     border-radius: 10px;
@@ -94,6 +99,8 @@ tooltip {
     color: #fab387;
     border-left: 0px;
     border-right: 0px;
+    margin-left: 10px;
+    border-radius: 10px;
 }
 
 #pulseaudio {
@@ -105,33 +112,32 @@ tooltip {
 }
 
 #cpu {
-	border-left: 0px;
-	border-right: 0px;
-	border-radius: 10px 0px 0px 10px;
+	  border-left: 0px;
+	  border-right: 0px;
+  	border-radius: 10px 0px 0px 10px;
 }
 
 #memory {
-	border-radius: 0px 10px 10px 0px;
+	  border-radius: 0px 10px 10px 0px;
 }
 
 #custom-power {
-	margin-left: 10px;
-	margin-right: 10px;
-	color: #161320;
-	background: #F28FAD;
-	border-radius: 10px;
-	transition: none;
-	font-size: 20px;
+	  margin-left: 10px;
+	  margin-right: 10px;
+	  color: #161320;
+	  background: #F28FAD;
+	  border-radius: 10px;
+	  transition: none;
+	  font-size: 20px;
 }
 
 #custom-launcher {
-	font-size: 24px;
-	margin-top: 10px;
-	margin-left: 10px;
-  padding-right: 5px;
-	border-radius: 10px;
-	transition: none;
-	color: #89DCEB;
-	background: #161320;
+	  font-size: 24px;
+	  margin-top: 10px;
+	  margin-left: 10px;
+    padding-right: 5px;
+	  border-radius: 10px;
+	  transition: none;
+	  color: #89DCEB;
+	  background: #161320;
 }
-
