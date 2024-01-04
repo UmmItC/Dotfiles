@@ -30,6 +30,7 @@ currently, the repository contains the following configuration files:
 - hyprpaper (pacman) - Wallpaper
 - Neovim (NvChad) - text editor
 - Viu - Simple Terminal Image Viewer
+- mako - Simple Notification
 
 ## Screenshot
 
