@@ -13,7 +13,7 @@
         "custom/power"
     ],
 
-         "cpu": {
+    "cpu": {
         "interval": 1,
         "format": " {}%",
         "max-length": 20
@@ -24,17 +24,16 @@
         "max-length": 20
     },
 
-        "custom/launcher":{
+    "custom/launcher": {
         "format": " ",
         "on-click": "rofi -show drun",
         "on-click-right": "killall rofi"
     },
 
-    "custom/power":{
+    "custom/power": {
         "format": "⏻",
-        "on-click": "wlogout",
+        "on-click": "wlogout"
     },
-
 
     "hyprland/window": {
         "format": "{}"
@@ -43,7 +42,6 @@
         "disable-scroll": true,
         "all-outputs": true,
         "on-click": "activate",
-        //"format": "{icon}",
         "persistent_workspaces": {
             "1": [],
             "2": [],
@@ -61,35 +59,36 @@
         "icon-size": 13,
         "spacing": 10
     },
+
     "clock": {
-        "format": "{: %I:%M:%S %p   %Y.%m.%d}",
-	"interval": 1,
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+      "format": " {:%Y/%m/%d %H:%M:%S}",
+      "interval": 1,
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
     },
 
     "network": {
-      "interface": "enp6s0",
-      "tooltip-format-ethernet": "{ifname} ",
-      "interval": 1,
-      "format": " {bandwidthDownBits}  {bandwidthUpBits}",
+        "interface": "enp6s0",
+        "tooltip-format-ethernet": "{ifname} ",
+        "interval": 1,
+        "format": " {bandwidthDownBits}  {bandwidthUpBits}"
     },
 
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "scroll-step": 1,
+        "on-click": "pavucontrol"
+    }
+}
 
-"pulseaudio": {
-	"format": "{volume}% {icon}",
-	"format-bluetooth": "{volume}% {icon}",
-	"format-muted": "",
-	"format-icons": {
-		"alsa_output.pci-0000_00_1f.3.analog-stereo": "",
-		"headphones": "",
-		"handsfree": "",
-		"headset": "",
-		"phone": "",
-		"portable": "",
-		"car": "",
-		"default": ["", ""]
-	},
-	"scroll-step": 1,
-	"on-click": "pavucontrol"
-}
-}
