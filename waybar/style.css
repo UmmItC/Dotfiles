@@ -1,3 +1,4 @@
+/* Global styles */
 * {
     border: none;
     border-radius: 0;
@@ -7,6 +8,7 @@
     min-height: 0;
 }
 
+/* Waybar */
 window#waybar {
     background: rgba(21, 18, 27, 0);
     color: #cdd6f4;
@@ -17,6 +19,7 @@ window#waybar {
     color: #eeeeef;
 }
 
+/* Tooltip */
 tooltip {
     background: #1e1e2e;
     border-radius: 10px;
@@ -25,6 +28,7 @@ tooltip {
     border-color: #11111b;
 }
 
+/* Workspaces */
 #workspaces button {
     padding: 5px;
     color: #313244;
@@ -52,6 +56,7 @@ tooltip {
     background: #1e1e2e;
 }
 
+/* Specific modules */
 #window,
 #clock,
 #pulseaudio,
@@ -61,7 +66,6 @@ tooltip {
 #cpu,
 #memory,
 #tray,
-#custom-power,
 #custom-launcher,
 #custom-power {
     background: #1e1e2e;
@@ -71,11 +75,13 @@ tooltip {
     border: 1px solid #181825;
 }
 
+/* Tray */
 #tray {
     border-radius: 10px;
     margin-right: 10px;
 }
 
+/* Workspaces */
 #workspaces {
     background: #1e1e2e;
     border-radius: 10px;
@@ -84,24 +90,28 @@ tooltip {
     padding-left: 5px;
 }
 
+/* Window */
 #window {
     border-radius: 10px;
     margin-left: 60px;
     margin-right: 60px;
 }
 
+/* Bluetooth */
 #bluetooth {
-    color: #89b4fa; /* Choose a suitable color for Bluetooth */
-    border-radius: 10px; /* Adjust as needed */
-    margin-left: 10px; /* Adjust as needed */
+    color: #89b4fa; 
+    border-radius: 10px; 
+    margin-left: 10px; 
 }
 
+/* Clock */
 #clock {
     color: #f9e2af;
     border-radius: 10px;
     margin-left: 10px;
 }
 
+/* Network */
 #network {
     color: #fab387;
     border-left: 0px;
@@ -110,24 +120,28 @@ tooltip {
     border-radius: 10px;
 }
 
+/* Pulseaudio */
 #pulseaudio {
     color: #89b4fa;
     border-left: 0px;
     border-right: 0px;
     margin-left: 10px;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
+/* CPU */
 #cpu {
     border-left: 0px;
     border-right: 0px;
     border-radius: 10px 0px 0px 10px;
 }
 
+/* Memory */
 #memory {
     border-radius: 0px 10px 10px 0px;
 }
 
+/* Custom Power */
 #custom-power {
     margin-left: 10px;
     margin-right: 10px;
@@ -138,6 +152,7 @@ tooltip {
     font-size: 20px;
 }
 
+/* Custom Launcher */
 #custom-launcher {
     font-size: 24px;
     margin-top: 10px;
@@ -148,4 +163,3 @@ tooltip {
     color: #89dceb;
     background: #161320;
 }
-
