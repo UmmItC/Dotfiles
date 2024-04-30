@@ -12,7 +12,7 @@ window#waybar {
     color: #cdd6f4;
 }
 
-#waybar{
+#waybar {
     background: #13222a;
     color: #eeeeef;
 }
@@ -57,12 +57,13 @@ tooltip {
 #pulseaudio,
 #network,
 #workspaces,
+#bluetooth,
 #cpu,
 #memory,
 #tray,
 #custom-power,
 #custom-launcher,
-#custom-power{
+#custom-power {
     background: #1e1e2e;
     padding: 0px 10px;
     margin: 3px 0px;
@@ -89,6 +90,12 @@ tooltip {
     margin-right: 60px;
 }
 
+#bluetooth {
+    color: #89b4fa; /* Choose a suitable color for Bluetooth */
+    border-radius: 10px; /* Adjust as needed */
+    margin-left: 10px; /* Adjust as needed */
+}
+
 #clock {
     color: #f9e2af;
     border-radius: 10px;
@@ -112,32 +119,33 @@ tooltip {
 }
 
 #cpu {
-	  border-left: 0px;
-	  border-right: 0px;
-  	border-radius: 10px 0px 0px 10px;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 10px 0px 0px 10px;
 }
 
 #memory {
-	  border-radius: 0px 10px 10px 0px;
+    border-radius: 0px 10px 10px 0px;
 }
 
 #custom-power {
-	  margin-left: 10px;
-	  margin-right: 10px;
-	  color: #161320;
-	  background: #F28FAD;
-	  border-radius: 10px;
-	  transition: none;
-	  font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #161320;
+    background: #f28fad;
+    border-radius: 10px;
+    transition: none;
+    font-size: 20px;
 }
 
 #custom-launcher {
-	  font-size: 24px;
-	  margin-top: 10px;
-	  margin-left: 10px;
+    font-size: 24px;
+    margin-top: 10px;
+    margin-left: 10px;
     padding-right: 5px;
-	  border-radius: 10px;
-	  transition: none;
-	  color: #89DCEB;
-	  background: #161320;
+    border-radius: 10px;
+    transition: none;
+    color: #89dceb;
+    background: #161320;
 }
+
