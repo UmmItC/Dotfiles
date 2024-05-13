@@ -12,6 +12,12 @@ prompt_yna() {
     done
 }
 
+# Function to prompt for monitor name
+prompt_monitor() {
+    read -rp "Please enter the Monitor name: " monitor_name
+    read -rp "Please enter the Monitor Hz: " monitor_hz
+}
+
 # Function to check if a package is installed
 is_package_installed() {
     pacman -Qs "$1" &>/dev/null
@@ -43,6 +49,13 @@ printf "$(tput setaf 4)%s$(tput sgr0)\n" "${yay_packages[@]}"
 if prompt_yna "Install these yay packages?"; then
     yay -S "${yay_packages[@]}"
 fi
+
+# Prompt for monitor name and refresh rate with guidance
+prompt_monitor
+echo "If you're unsure about your monitor name and refresh rate, you can use 'hyprctl monitors' to retrieve this information."
+
+# Update hyprland.conf
+sed -i "/^monitor=/c\monitor=$monitor_name,$monitor_hz,0x0,1" hyprland.conf
 
 # Copy configuration files
 config_dir="$HOME/.config"
