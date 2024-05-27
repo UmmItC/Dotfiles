@@ -2,14 +2,13 @@
     "layer": "top",
     "position": "top",
     "height": 0,
-    "modules-left": ["hyprland/workspaces", "network"],
+    "modules-left": ["hyprland/workspaces", "network", "clock"],
     "modules-center": ["hyprland/window"],
     "modules-right": [
         "tray",
         "cpu",
         "memory",
         "bluetooth",
-        "clock",
         "pulseaudio",
         "custom/power"
     ],
