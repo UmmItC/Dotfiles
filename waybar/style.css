@@ -11,6 +11,10 @@ window#waybar {
   color: #E6B673;
 }
 
+window#waybar.empty #window {
+	background: rgba(12, 12, 12, 0.0);
+}
+
 #workspaces {
   background: #0F1419;
   margin: 5px;
