@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "top",
     "height": 0,
-    "modules-left": ["custom/launcher", "hyprland/workspaces", "network"],
+    "modules-left": ["hyprland/workspaces", "network"],
     "modules-center": ["hyprland/window"],
     "modules-right": [
         "tray",
@@ -25,12 +25,6 @@
         "max-length": 20
     },
 
-    "custom/launcher": {
-        "format": " ",
-        "on-click": "rofi -show drun",
-        "on-click-right": "killall rofi"
-    },
-
     "custom/power": {
         "format": "⏻",
         "on-click": "wlogout"
@@ -51,9 +45,9 @@
     },
 
     "clock": {
-      "format": " {:%Y/%m/%d  %H:%M:%S}",
+      "format": " {:%Y/%m/%d }",
+      "format-alt": " {:%H:%M:%S}",
       "interval": 1,
-      "tooltip-format": "<tt><small>{calendar}</small></tt>"
     },
 
     "network": {
