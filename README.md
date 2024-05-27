@@ -19,14 +19,14 @@ chmod +x install.sh
 
 currently, the repository contains the following configuration files:
 
-- Neofetch (pacman) - System confi
+- Neofetch (pacman) - System config
 - Powerlevel10k (manually) - oh my zsh theme
 - Oh my zsh (pacman) - zsh framework
 - Hyprland (pacman) - Windows Manager
 - waybar (pacman - Status bar)
 - wlogout (yay) - Power management
 - hyprshot (yay) - Screenshot
-- rofi (pacman) - App launcher
+- fuzzel (pacman) - App launcher
 - hyprpaper (pacman) - Wallpaper
 - Neovim (NvChad) - text editor
 - Viu - Simple Terminal Image Viewer
