@@ -34,5 +34,5 @@ currently, the repository contains the following configuration files:
 
 ## Screenshot
 
-![hyprland](./hyprland.png)
-![hyprland-2](./hyprland-2.png)
+![hyprland](./screenshots/1.png)
+![hyprland-2](./screenshots/2.png)
