@@ -2,20 +2,19 @@
 
 This repository is dedicated to my Hyprland WM Arch Linux configuration files.
 
-## Installation
+### Installation
 
-To use it, enter the following command
+To use it, execute the following command:
 
 > **⚠️ Warning**
-> **The install.sh is currently only a beta, so it might be best to copy the file directly to `~/.config/*`.**
-> **This script will automatically installing all the Necessary packages. and Relace all of your current .config files with the same filename. Please be aware of this.**
+> **This script is currently in beta. For added safety, it's advisable to manually copy the file to **~/.config/** rather than executing it directly.**
+> **Running this script will automatically install all required packages and overwrite any existing .config files with the same filenames. Make sure to back up any important configurations before proceeding.**
 
 ```shell
-chmod +x install.sh
-./install.sh
+bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/install.sh)
 ```
 
-## Require Packages
+### Require Packages
 
 currently, the repository contains the following configuration files:
 
@@ -33,7 +32,7 @@ currently, the repository contains the following configuration files:
 - mako - Simple Notification
 - cliphist, clipmenu (pacman) - Clipboard manager and Clipboard menu
 
-## Screenshot
+### Screenshots
 
 ![hyprland](./screenshots/1.png)
 ![hyprland-2](./screenshots/2.png)
