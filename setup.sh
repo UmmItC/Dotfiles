@@ -34,7 +34,7 @@ fi
 if prompt_yes_no "Do you want to clone the repository?"; then
     # Clone the repository
     echo -e "${GREEN}[+] Cloning repository...${NC}"
-    git clone $repo_url
+    git clone --recursive $repo_url
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}[+] Repository cloned successfully.${NC}"
         cd $repo
