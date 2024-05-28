@@ -31,6 +31,7 @@ currently, the repository contains the following configuration files:
 - Neovim (NvChad) - text editor
 - Viu - Simple Terminal Image Viewer
 - mako - Simple Notification
+- cliphist, clipmenu (pacman) - Clipboard manager and Clipboard menu
 
 ## Screenshot
 
