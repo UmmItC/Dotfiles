@@ -24,7 +24,7 @@ is_package_installed() {
 }
 
 # List and install necessary pacman packages
-pacman_packages=("neofetch" "zsh" "hyprland" "hyprpaper" "waybar" "fuzzel" "ttf-jetbrains-mono" "kitty" "git" "cliphist" "clipmenu")
+pacman_packages=("neofetch" "zsh" "hyprland" "hyprpaper" "waybar" "fuzzel" "ttf-jetbrains-mono" "kitty" "git" "cliphist" "clipmenu" "neovim")
 
 echo "$(tput setaf 6)Pacman packages to be installed:$(tput sgr0)"
 printf "$(tput setaf 4)%s$(tput sgr0)\n" "${pacman_packages[@]}"
@@ -51,8 +51,8 @@ if prompt_yna "Install these yay packages?"; then
 fi
 
 # Prompt for monitor name and refresh rate with guidance
-prompt_monitor
 echo "If you're unsure about your monitor name and refresh rate, you can use 'hyprctl monitors' to retrieve this information."
+prompt_monitor
 
 # Update hyprland.conf
 sed -i "/^monitor=/c\monitor=$monitor_name,$monitor_hz,0x0,1" hyprland.conf
