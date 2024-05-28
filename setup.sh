@@ -6,7 +6,8 @@ GRAY='\033[1;30m'
 DARKRED='\033[0;31m'
 NC='\033[0m' # No Color
 
-repo=https://codeberg.org/UmmIt/Dotfiles.git
+repo_url=https://codeberg.org/UmmIt/Dotfiles.git
+repo=Dotfiles
 
 # Function to prompt for yes/no input with default value 'y'
 prompt_yes_no() {
@@ -31,7 +32,7 @@ fi
 if prompt_yes_no "Do you want to clone the repository?"; then
     # Clone the repository
     echo -e "${GREEN}[+] Cloning repository...${NC}"
-    git clone <URL_to_repo> ./repo
+    git clone $repo_url
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}[+] Repository cloned successfully.${NC}"
         cd $repo
