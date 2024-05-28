@@ -11,7 +11,7 @@ To use it, execute the following command:
 > **Running this script will automatically install all required packages and overwrite any existing .config files with the same filenames. Make sure to back up any important configurations before proceeding.**
 
 ```shell
-bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/install.sh)
+bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)
 ```
 
 ### Require Packages
