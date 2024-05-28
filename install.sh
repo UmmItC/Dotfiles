@@ -24,7 +24,7 @@ is_package_installed() {
 }
 
 # List and install necessary pacman packages
-pacman_packages=("neofetch" "zsh" "hyprland" "hyprpaper" "waybar" "fuzzel" "ttf-jetbrains-mono" "kitty" "git")
+pacman_packages=("neofetch" "zsh" "hyprland" "hyprpaper" "waybar" "fuzzel" "ttf-jetbrains-mono" "kitty" "git", "cliphist", "clipmenu")
 
 echo "$(tput setaf 6)Pacman packages to be installed:$(tput sgr0)"
 printf "$(tput setaf 4)%s$(tput sgr0)\n" "${pacman_packages[@]}"
