@@ -70,7 +70,7 @@ else
 fi
 
 # Update hyprland.conf
-sed -i "/^monitor=/c\monitor=$monitor_name,$monitor_hz,0x0,1" hyprland.conf
+sed -i "/^monitor=/c\monitor=$monitor_name,$monitor_hz,0x0,1" $config_dir/hypr/hyprland.conf
 
 # Prompt for cloning NvChad and running nvim
 if prompt_yna "Clone NvChad and run nvim?"; then
