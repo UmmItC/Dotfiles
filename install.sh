@@ -54,9 +54,6 @@ fi
 echo "If you're unsure about your monitor name and refresh rate, you can use 'hyprctl monitors' to retrieve this information."
 prompt_monitor
 
-# Update hyprland.conf
-sed -i "/^monitor=/c\monitor=$monitor_name,$monitor_hz,0x0,1" hyprland.conf
-
 # Copy configuration files
 config_dir="$HOME/.config"
 
@@ -71,6 +68,9 @@ if prompt_yna "Copy configuration files?"; then
 else
     echo "$(tput setaf 3)Skipping configuration file copying.$(tput sgr0)"
 fi
+
+# Update hyprland.conf
+sed -i "/^monitor=/c\monitor=$monitor_name,$monitor_hz,0x0,1" hyprland.conf
 
 # Prompt for cloning NvChad and running nvim
 if prompt_yna "Clone NvChad and run nvim?"; then
