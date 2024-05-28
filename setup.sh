@@ -8,6 +8,7 @@ NC='\033[0m' # No Color
 
 repo_url=https://codeberg.org/UmmIt/Dotfiles.git
 repo=Dotfiles
+repo_setup=https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh
 
 # Function to prompt for yes/no input with default value 'y'
 prompt_yes_no() {
@@ -25,7 +26,7 @@ prompt_yes_no() {
 if prompt_yes_no "Do you want to run the script?"; then
     # Run the setup script
     echo -e "${GREEN}[+] Running setup script...${NC}"
-    curl -sSL <URL_to_setup_sh> | bash
+    curl -sSL repo_setup | bash
 fi
 
 # Check if user wants to clone the repository
