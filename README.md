@@ -28,9 +28,9 @@ currently, the repository contains the following configuration files:
 - fuzzel (pacman) - App launcher
 - hyprpaper (pacman) - Wallpaper
 - Neovim (NvChad) - text editor
-- Viu - Simple Terminal Image Viewer
-- mako - Simple Notification
+- mako (pacman) - Simple Notification
 - cliphist, clipmenu (pacman) - Clipboard manager and Clipboard menu
+- Hyprlock (pacman) - Screenlock for hyprland
 
 ### Screenshots
 
