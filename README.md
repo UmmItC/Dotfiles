@@ -34,6 +34,7 @@ currently, the repository contains the following configuration files:
 
 ### Screenshots
 
-![hyprland](./screenshots/1.png)
-![hyprland-2](./screenshots/2.png)
-![hyprland-3](./screenshots/3.png)
+![Hyprland Fullscreen](./screenshots/fullscreen.png)
+![Hyprland Fuzzel](./screenshots/fullscreen-fuzzel.png)
+![Hyprland Cliphist dmenu](./screenshots/fullscreen-cliphist-dmenu.png)
+![Hyprlock](./screenshots/hyprlock.png)
