@@ -128,3 +128,10 @@ window#waybar.empty #window {
 	padding: 2px 15px;
 }
 
+#custom-hyprlock{
+	color: #74E291;
+	background: #0F1419;
+	border-radius: 50px 50px;
+	margin: 5px;
+	padding: 2px 15px;
+}

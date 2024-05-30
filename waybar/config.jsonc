@@ -10,6 +10,7 @@
         "memory",
         "bluetooth",
         "pulseaudio",
+        "custom/hyprlock",
         "custom/power"
     ],
 
@@ -22,6 +23,11 @@
         "interval": 1,
         "format": " {}%",
         "max-length": 20
+    },
+
+    "custom/hyprlock": {
+        "format": "",
+        "on-click": "hyprlock"
     },
 
     "custom/power": {
