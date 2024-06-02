@@ -135,3 +135,11 @@ window#waybar.empty #window {
 	margin: 5px;
 	padding: 2px 15px;
 }
+
+#custom-cliphist{
+	color: #EEEEEE;
+	background: #0F1419;
+	border-radius: 50px 50px;
+	margin: 5px;
+	padding: 2px 15px;
+}

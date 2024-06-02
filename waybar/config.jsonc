@@ -10,6 +10,7 @@
         "memory",
         "bluetooth",
         "pulseaudio",
+        "custom/cliphist",
         "custom/hyprlock",
         "custom/power"
     ],
@@ -23,6 +24,13 @@
         "interval": 1,
         "format": " {}%",
         "max-length": 20
+    },
+
+    "custom/cliphist": {
+        "format": "",
+        "on-click": "cliphist list | fuzzel --dmenu -w 120 | cliphist decode | wl-copy",
+        "on-click-right": "cliphist wipe",
+        "tooltip-format": "Clipboard Manager"
     },
 
     "custom/hyprlock": {
