@@ -12,16 +12,54 @@ prompt_yna() {
     done
 }
 
-# Function to prompt for monitor name
-prompt_monitor() {
-    read -rp "Please enter the Monitor name: " monitor_name
-    read -rp "Please enter the Monitor Hz: " monitor_hz
-}
-
 # Function to check if a package is installed
 is_package_installed() {
     pacman -Qs "$1" &>/dev/null
 }
+
+# Get the connected display name
+connected_display=$(xrandr | awk '/\<connected\>/ {print $1}')
+
+# Run whiptail and capture the output
+selected_resolution=$(whiptail --title "Resolution Selection" --menu "Choose a resolution with $connected_display" 20 60 10 \
+"1920x1080" "" \
+"1440x1080" "" \
+"1400x1050" "" \
+"1280x1024" "" \
+"1280x960" "" \
+"1152x864" "" \
+"1024x768" "" \
+"800x600" "" \
+"640x480" "" \
+"320x240" "" \
+"1680x1050" "" \
+"1440x900" "" \
+"1280x800" "" \
+"1152x720" "" \
+"960x600" "" \
+"928x580" "" \
+"800x500" "" \
+"768x480" "" \
+"720x480" "" \
+"640x400" "" \
+"320x200" "" \
+"1600x900" "" \
+"1368x768" "" \
+"1280x720" "" \
+"1024x576" "" \
+"864x486" "" \
+"720x400" "" \
+"640x350" "" \
+3>&1 1>&2 2>&3)
+
+# Check if the user cancelled or exited without making a selection
+if [[ $? -ne 0 ]]; then
+    echo "No resolution selected. Exiting..."
+    exit 1
+else
+  echo "You selected $selected_resolution as your screen resolution. ($connected_display)"
+fi
+
 
 # List and install necessary pacman packages
 pacman_packages=("neofetch" "zsh" "hyprland" "hyprpaper" "waybar" "fuzzel" "ttf-jetbrains-mono" "kitty" "git" "cliphist" "clipmenu" "neovim" "hyprlock")
@@ -50,10 +88,6 @@ if prompt_yna "Install these yay packages?"; then
     yay -S "${yay_packages[@]}"
 fi
 
-# Prompt for monitor name and refresh rate with guidance
-echo "If you're unsure about your monitor name and refresh rate, you can use 'hyprctl monitors' to retrieve this information."
-prompt_monitor
-
 # Copy configuration files
 config_dir="$HOME/.config"
 
@@ -69,16 +103,29 @@ else
     echo "$(tput setaf 3)Skipping configuration file copying.$(tput sgr0)"
 fi
 
-# Update hyprland.conf
-sed -i "/^monitor=/c\monitor=$monitor_name,$monitor_hz,0x0,1" $config_dir/hypr/hyprland.conf
+# Prompt for monitor refresh rate until a valid integer is provided
+while true; do
+    read -rp "Enter the Monitor refresh rate you want: " monitor_hz
+    if [[ -z $monitor_hz ]]; then
+        echo "$(tput setaf 3):: Warning - Input cannot be empty.$(tput sgr0)"
+    elif ! [[ $monitor_hz =~ ^[0-9]+$ ]]; then
+        echo "$(tput setaf 1):: Error - '$monitor_hz' is not a valid integer.$(tput sgr0)"
+    else
+        break
+    fi
+done
+
+# Update hyprland.conf on line 16
+sed -i "16 s/^monitor=.*/monitor=$connected_display,$selected_resolution@$monitor_hz,0x0,1/" "$config_dir/hypr/hyprland.conf"
 
 # Prompt for cloning NvChad and running nvim
 if prompt_yna "Clone NvChad and run nvim?"; then
     echo "$(tput setaf 6)Neovim using NvChad:$(tput sgr0)"
-    echo "NvChad will asking you the default configuration, please enter 'n'."
+    echo "NvChad will ask you the default configuration, please enter 'n'."
     git clone https://github.com/NvChad/NvChad "$config_dir/nvim" --depth 1 && nvim
 else
     echo "$(tput setaf 3)Skipping NvChad cloning and nvim execution.$(tput sgr0)"
 fi
 
 echo "$(tput setaf 2)Installation completed successfully.$(tput sgr0)"
+
