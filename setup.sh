@@ -21,6 +21,28 @@ prompt_yes_no() {
     esac
 }
 
+# Function to check if a command is available
+command_exists() {
+    command -v "$1" &>/dev/null
+}
+
+# Function to check if git is installed
+check_git() {
+    if ! command_exists git; then
+        echo "${COLOR_YELLOW}:: git is not installed.${COLOR_RESET}"
+        if prompt_yes_no ":: Would you like to install git?"; then
+            echo "${COLOR_GREEN}:: Installing git...${COLOR_RESET}"
+            if ! (sudo pacman -S git --noconfirm); then
+                echo "${COLOR_DARK_RED}:: Failed to install git.${COLOR_RESET}"
+                exit 1
+            fi
+        else
+            echo "${COLOR_DARK_RED}:: Exiting...${COLOR_RESET}"
+            exit 0
+        fi
+    fi
+}
+
 # Check if user wants to run the script
 if prompt_yes_no "Do you want to run the script?"; then
     # Run the setup script
@@ -29,6 +51,8 @@ else
     echo -e "${GRAY}[~] Exiting the program.${NC}"
     exit 0
 fi
+
+check_git
 
 # Check if user wants to clone the repository
 if prompt_yes_no "Do you want to clone the repository?"; then
