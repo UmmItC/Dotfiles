@@ -18,7 +18,7 @@ bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)
 
 currently, the repository contains the following configuration files:
 
-- Neofetch (pacman) - System config
+- Fastfetch (pacman) - System config
 - Powerlevel10k (manually) - oh my zsh theme
 - Oh my zsh (pacman) - zsh framework
 - Hyprland (pacman) - Windows Manager
