@@ -25,6 +25,28 @@ is_package_installed() {
     pacman -Qs "$1" &>/dev/null
 }
 
+# Function to check if a command is available
+command_exists() {
+    command -v "$1" &>/dev/null
+}
+
+# Function to check if yay is installed
+check_yay() {
+    if ! command_exists yay; then
+        echo "${COLOR_YELLOW}:: yay is not installed.${COLOR_RESET}"
+        if prompt_yna ":: Would you like to install yay?"; then
+            echo "${COLOR_GREEN}:: Installing yay...${COLOR_RESET}"
+            if ! (git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si); then
+                echo "${COLOR_DARK_RED}:: Failed to install yay.${COLOR_RESET}"
+                exit 1
+            fi
+        else
+            echo "${COLOR_DARK_RED}:: Exiting...${COLOR_RESET}"
+            exit 0
+        fi
+    fi
+}
+
 # Function to install Pacman packages
 install_pacman_packages() {
     local pacman_packages=("zsh" "hyprland" "hyprpaper" "waybar" "fuzzel" "ttf-jetbrains-mono" "kitty" "git" "cliphist" "clipmenu" "neovim" "hyprlock" "fastfetch")
@@ -45,7 +67,7 @@ install_aur_packages() {
         echo "${COLOR_GREY}$package${COLOR_RESET}"
     done
     if prompt_yna ":: Install these aur packages?"; then
-        sudo pacman -S "${aur_packages[@]}"
+        yay -S "${aur_packages[@]}"
     fi
 }
 
@@ -77,6 +99,7 @@ main() {
     fi
 
     install_pacman_packages
+    check_yay
     install_aur_packages
     copy_config_files
 
