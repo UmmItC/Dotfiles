@@ -1,0 +1,106 @@
+// Load with --load-config examples/2.jsonc
+// Note that you must replace the image path to an existing image to display it.
+
+{
+    "display": {
+        "separator": " "
+    },
+    "modules": [
+        {
+            "type": "custom",
+            "format": "┌────────────────────────────────────────────────────────────┐",
+            "outputColor": "green"
+        },
+        {
+            "type": "title",
+            "keyWidth": 10,
+            "format": "                         I use Arch BTW",
+            "outputColor": "green"
+        },
+        {
+            "type": "custom",
+            "format": "└────────────────────────────────────────────────────────────┘",
+            "outputColor": "green"
+        },
+        {
+            "type": "os",
+            "key": "╭─ ", // Just get your distro's logo off nerdfonts.com
+            "keyColor": "green"
+        },
+        {
+            "type": "kernel",
+            "key": "├─ ",
+            "format": "{1} {2}",
+            "keyColor": "green"
+        },
+        {
+            "type": "packages",
+            "key": "├─󰏖 ",
+            "keyColor": "green"
+        },
+
+        {
+            "type": "shell",
+            "key": "╰─ ",
+            "keyColor": "green"
+        },
+
+        "break",
+        {
+            "type": "wm",
+            "key": "╭─ ",
+            "keyColor": "yellow"
+        },
+        {
+            "type": "terminal",
+            "key": "├─ ",
+            "keyColor": "yellow"
+        },
+        {
+            "type": "terminalfont",
+            "key": "├─ ",
+            "keyColor": "yellow"
+        },
+        {
+            "type": "lm",
+            "key": "╰─󰧨 ",
+            "keyColor": "yellow"
+        },
+
+
+
+        "break",
+
+        {
+            "type": "cpu",
+            "key": "╭─󰻠",
+            "keyColor": "blue"
+        },
+        {
+            "type": "gpu",
+            "key": "├─󰍛",
+            "keyColor": "blue"
+        },
+
+        {
+            "type": "uptime",
+            "key": "╰─󰅐",
+            "keyColor": "blue"
+        },
+
+        "break",
+        
+        {
+            "type": "media",
+            "key": "󰝚  Playing",
+            "keyColor": "blue"
+        },
+
+        "break",
+
+        {
+            "type": "custom",
+            "format": "               {#33}   {#34}   {#33}   {#34}   {#33}   {#34}   {#35}   {#34}  "
+        }
+    ]
+}

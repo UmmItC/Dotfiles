@@ -27,7 +27,7 @@ is_package_installed() {
 
 # Function to install Pacman packages
 install_pacman_packages() {
-    local pacman_packages=("neofetch" "zsh" "hyprland" "hyprpaper" "waybar" "fuzzel" "ttf-jetbrains-mono" "kitty" "git" "cliphist" "clipmenu" "neovim" "hyprlock")
+    local pacman_packages=("zsh" "hyprland" "hyprpaper" "waybar" "fuzzel" "ttf-jetbrains-mono" "kitty" "git" "cliphist" "clipmenu" "neovim" "hyprlock" "fastfetch")
     echo "${COLOR_GREEN}:: Pacman packages to be installed:${COLOR_RESET}"
     for package in "${pacman_packages[@]}"; do
         echo "${COLOR_GREY}$package${COLOR_RESET}"
@@ -57,7 +57,7 @@ copy_config_files() {
     if prompt_yna ":: Copy configuration files?"; then
         cp -rv ./hypr "$config_dir/"
         cp -rv ./kitty "$config_dir/"
-        cp -rv ./neofetch "$config_dir/"
+        cp -rv ./fastfetch "$config_dir/"
         cp -rv ./waybar "$config_dir/"
         cp -v .p10k.zsh "$config_dir/"
         cp -v .zshrc "$config_dir/"
