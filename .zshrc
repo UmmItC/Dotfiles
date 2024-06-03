@@ -108,7 +108,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
-neofetch
+fastfetch --show-errors --pipe false
 export term=kitty
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
