@@ -119,6 +119,12 @@ main() {
     # Update hyprland.conf on line 16
     sed -i "16 s/^monitor=.*/monitor=$connected_display,$selected_resolution@$monitor_hz,0x0,1/" "$config_dir/hypr/hyprland.conf"
 
+    # Update hyprlock.conf
+    sed -i "s/^monitor\s*=\s*.*/monitor = $connected_display/g" "$config_dir/hypr/hyprlock.conf"
+    
+    # Update hyprpaper.conf
+    sed -i "10s@wallpaper = .*@wallpaper = $connected_display,~/.config/hypr/wallpaper/hong-kong.jpg@" "$config_dir/hypr/hyprpaper.conf"
+
     # Prompt for cloning NvChad and running nvim
     if prompt_yna ":: Clone NvChad and run nvim?"; then
         echo "${COLOR_YELLOW}Neovim using NvChad:${COLOR_RESET}"
