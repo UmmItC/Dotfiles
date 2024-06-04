@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # Define colors
-GREEN='\033[0;32m'
-GRAY='\033[1;30m'
-DARKRED='\033[0;31m'
-NC='\033[0m' # No Color
+COLOR_GREEN='\033[0;32m'
+COLOR_GRAY='\033[1;30m'
+COLOR_DARKRED='\033[0;31m'
+COLOR_YELLO='\033[0;33m]'
+COLOR_RESET='\033[0m' # No Color
 
 repo_url=https://codeberg.org/UmmIt/Dotfiles.git
 repo=Dotfiles
@@ -17,7 +18,7 @@ prompt_yes_no() {
     case "$choice" in
         [Yy]* ) return 0;;
         [Nn]* ) return 1;;
-        * ) echo -e "${DARKRED}[!] Invalid input. Please enter 'y' or 'n'.${NC}";;
+        * ) echo -e "${COLOR_DARKRED}[!] Invalid input. Please enter 'y' or 'n'.${COLOR_RESET}";;
     esac
 }
 
@@ -33,11 +34,11 @@ check_git() {
         if prompt_yes_no ":: Would you like to install git?"; then
             echo "${COLOR_GREEN}:: Installing git...${COLOR_RESET}"
             if ! (sudo pacman -S git --noconfirm); then
-                echo "${COLOR_DARK_RED}:: Failed to install git.${COLOR_RESET}"
+                echo "${COLOR_DARKRED}:: Failed to install git.${COLOR_RESET}"
                 exit 1
             fi
         else
-            echo "${COLOR_DARK_RED}:: Exiting...${COLOR_RESET}"
+            echo "${COLOR_GRAY}:: Exiting...${COLOR_RESET}"
             exit 0
         fi
     fi
@@ -46,9 +47,9 @@ check_git() {
 # Check if user wants to run the script
 if prompt_yes_no "Do you want to run the script?"; then
     # Run the setup script
-    echo -e "${GREEN}[+] Running setup script...${NC}"
+    echo -e "${COLOR_GREEN}[+] Running setup script...${COLOR_RESET}"
 else
-    echo -e "${GRAY}[~] Exiting the program.${NC}"
+    echo -e "${COLOR_GRAY}[~] Exiting the program.${COLOR_RESET}"
     exit 0
 fi
 
@@ -57,26 +58,26 @@ check_git
 # Check if user wants to clone the repository
 if prompt_yes_no "Do you want to clone the repository?"; then
     # Clone the repository
-    echo -e "${GREEN}[+] Cloning repository...${NC}"
+    echo -e "${COLOR_GREEN}[+] Cloning repository...${NC}"
     git clone --recursive $repo_url
     if [ $? -eq 0 ]; then
-        echo -e "${GREEN}[+] Repository cloned successfully.${NC}"
+        echo -e "${COLOR_GREEN}[+] Repository cloned successfully.${COLOR_RESET}"
         cd $repo
         # Check if user wants to run the install script
         if prompt_yes_no "Do you want to run the install script?"; then
             # Run the install script if it exists
             if [ -f "install.sh" ]; then
-                echo -e "${GREEN}[+] Running install script...${NC}"
+                echo -e "${COLOR_GREEN}[+] Running install script...${COLOR_RESET}"
                 bash install.sh
             else
-                echo -e "${GRAY}[~] No install script found.${NC}"
+                echo -e "${COLOR_GRAY}[~] No install script found.${COLOR_RESET}"
             fi
         else
-            echo -e "${GRAY}[~] Install script not executed.${NC}"
+            echo -e "${COLOR_GRAY}[~] Install script not executed.${COLOR_RESET}"
         fi
     else
-        echo -e "${DARKRED}[!] Cloning failed.${NC}"
+        echo -e "${COLOR_DARK_RED}[!] Cloning failed.${COLOR_RESET}"
     fi
 else
-    echo -e "${GRAY}[~] Repository not cloned.${NC}"
+    echo -e "${COLOR_GRAY}[~] Repository not cloned.${COLOR_RESET}"
 fi
