@@ -81,6 +81,7 @@ copy_config_files() {
         cp -rv ./kitty "$config_dir/"
         cp -rv ./fastfetch "$config_dir/"
         cp -rv ./waybar "$config_dir/"
+        cp -rv ./fuzzel "$config_dir"
         cp -v .p10k.zsh "$config_dir/"
         cp -v .zshrc "$config_dir/"
     else
