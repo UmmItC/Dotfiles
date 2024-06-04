@@ -4,7 +4,7 @@
 COLOR_GREEN='\033[0;32m'
 COLOR_GRAY='\033[1;30m'
 COLOR_DARKRED='\033[0;31m'
-COLOR_YELLO='\033[0;33m]'
+COLOR_YELLOW='\033[0;33m'
 COLOR_RESET='\033[0m' # No Color
 
 repo_url=https://codeberg.org/UmmIt/Dotfiles.git
@@ -13,13 +13,15 @@ repo=Dotfiles
 # Function to prompt for yes/no input with default value 'y'
 prompt_yes_no() {
     local choice
-    read -p "$1 [Y/n]: " choice
-    choice=${choice:-y}
-    case "$choice" in
-        [Yy]* ) return 0;;
-        [Nn]* ) return 1;;
-        * ) echo -e "${COLOR_DARKRED}[!] Invalid input. Please enter 'y' or 'n'.${COLOR_RESET}";;
-    esac
+    while true; do
+        read -p "$1 [Y/n]: " choice
+        choice=${choice:-y}
+        case "$choice" in
+            [Yy]* ) return 0;;
+            [Nn]* ) return 1;;
+            * ) echo -e "${COLOR_YELLOW}[!] Invalid input. Please enter 'y' or 'n'.${COLOR_RESET}";;
+        esac
+    done
 }
 
 # Function to check if a command is available
