@@ -16,7 +16,7 @@ bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)
 
 ### Require Packages
 
-currently, the repository contains the following configuration files:
+Currently, the repository contains the following packages:
 
 - Fastfetch (pacman) - System config
 - Powerlevel10k (manually) - oh my zsh theme
