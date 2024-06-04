@@ -32,15 +32,15 @@ command_exists() {
 # Function to check if git is installed
 check_git() {
     if ! command_exists git; then
-        echo "${COLOR_YELLOW}:: git is not installed.${COLOR_RESET}"
+        echo -e "${COLOR_YELLOW}:: git is not installed.${COLOR_RESET}"
         if prompt_yes_no ":: Would you like to install git?"; then
-            echo "${COLOR_GREEN}:: Installing git...${COLOR_RESET}"
+            echo -e "${COLOR_GREEN}:: Installing git...${COLOR_RESET}"
             if ! (sudo pacman -S git --noconfirm); then
-                echo "${COLOR_DARKRED}:: Failed to install git.${COLOR_RESET}"
+                echo -e "${COLOR_DARKRED}:: Failed to install git.${COLOR_RESET}"
                 exit 1
             fi
         else
-            echo "${COLOR_GRAY}:: Exiting...${COLOR_RESET}"
+            echo -e "${COLOR_GRAY}:: Exiting...${COLOR_RESET}"
             exit 0
         fi
     fi
