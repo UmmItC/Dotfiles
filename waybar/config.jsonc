@@ -10,8 +10,8 @@
         "memory",
         "bluetooth",
         "pulseaudio",
+        "custom/notification",
         "custom/cliphist",
-        "custom/hyprlock",
         "custom/power"
     ],
 
@@ -26,16 +26,17 @@
         "max-length": 20
     },
 
+    "custom/notification": {
+        "format": "",
+        "on-click": "swaync-client -t -sw",
+        "tooltip-format": "Notification Widgets"
+    },
+
     "custom/cliphist": {
         "format": "",
         "on-click": "cliphist list | fuzzel --dmenu -w 120 | cliphist decode | wl-copy",
         "on-click-right": "cliphist wipe",
         "tooltip-format": "Clipboard Manager"
-    },
-
-    "custom/hyprlock": {
-        "format": "",
-        "on-click": "hyprlock"
     },
 
     "custom/power": {
@@ -60,7 +61,7 @@
     "clock": {
       "format": " {:%Y/%m/%d }",
       "format-alt": " {:%H:%M:%S}",
-      "interval": 1,
+      "interval": 1
     },
 
     "network": {
