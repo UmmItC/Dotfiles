@@ -39,6 +39,7 @@ bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)
 ### Screenshots
 
 ![Hyprland Fullscreen](./screenshots/fullscreen.png)
+![Hyprland Fastfetch](./screenshots/fastfetch.png)
 ![Hyprland Fuzzel](./screenshots/fullscreen-fuzzel.png)
-![Hyprland Cliphist dmenu](./screenshots/fullscreen-cliphist-dmenu.png)
+![Hyprland Swaync](./screenshots/swaync.png)
 ![Hyprlock](./screenshots/hyprlock.png)
