@@ -18,21 +18,23 @@ bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)
 
 ### Require Packages
 
-Currently, the repository contains the following packages:
-
-- Fastfetch (pacman) - System config
-- Powerlevel10k (manually) - oh my zsh theme
-- Oh my zsh (pacman) - zsh framework
-- Hyprland (pacman) - Windows Manager
-- waybar (pacman - Status bar)
-- wlogout (yay) - Power management
-- hyprshot (yay) - Screenshot
-- fuzzel (pacman) - App launcher
-- hyprpaper (pacman) - Wallpaper
-- Neovim (NvChad) - text editor
-- mako (pacman) - Simple Notification
-- cliphist, clipmenu (pacman) - Clipboard manager and Clipboard menu
-- Hyprlock (pacman) - Screenlock for hyprland
+| Module Type              | Module Name   | Package Manager |
+|--------------------------|---------------|-----------------|
+| System Information       | Fastfetch     | Pacman          |
+| Prompt Theme             | Powerlevel10k | Manually (Git)  |
+| Terminal                 | Kitty         | Pacman          |
+| Shell                    | Oh my zsh     | Pacman          |
+| Window Manager           | Hyprland      | Pacman          |
+| Power Management         | Wlogout       | AUR             |
+| Status Bar               | waybar        | Pacman          |
+| Application Launcher     | Fuzzel        | Pacman          |
+| Wallpaper Engine         | Hyprpaper     | Pacman          |
+| Text Editor              | Neovim        | Pacman          |
+| Notification System      | Swaync        | Pacman          |
+| Clipboard Utility        | cliphist      | Pacman          |
+| Clipboard Manager        | clipmenu      | Pacman          |
+| Screenlock Management    | Hyprlock      | Pacman          |
+| Screenshot               | Hyprshot      | AUR             |
 
 ### Screenshots
 
