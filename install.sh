@@ -49,7 +49,7 @@ check_yay() {
 
 # Function to install Pacman packages
 install_pacman_packages() {
-    local pacman_packages=("zsh" "hyprland" "hyprpaper" "waybar" "fuzzel" "ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "kitty" "git" "cliphist" "clipmenu" "neovim" "hyprlock" "fastfetch" "wf-recoreder" "swaync" "ly")
+    local pacman_packages=("zsh" "hyprland" "hyprpaper" "waybar" "fuzzel" "ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "kitty" "git" "cliphist" "clipmenu" "neovim" "hyprlock" "fastfetch" "wf-recorder" "swaync" "ly")
     echo "${COLOR_GREEN}:: Pacman packages to be installed:${COLOR_RESET}"
     for package in "${pacman_packages[@]}"; do
         echo "${COLOR_GREY}$package${COLOR_RESET}"
