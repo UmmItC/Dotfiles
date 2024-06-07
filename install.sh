@@ -91,6 +91,11 @@ copy_config_files() {
     fi
 }
 
+zsh_as_default_shell() {
+  echo "${COLOR_GREEN}:: Enter your password to set zsh as your default shell.${COLOR_RESET}"
+  chsh -s "$(which zsh)"
+}
+
 # Main function
 main() {
     # Check if a resolution is selected
@@ -105,6 +110,7 @@ main() {
     check_yay
     install_aur_packages
     copy_config_files
+    zsh_as_default_shell
 
     # Prompt for monitor refresh rate until a valid integer is provided
     while true; do
@@ -137,6 +143,7 @@ main() {
     fi
 
     echo "${COLOR_GREEN}:: Installation completed successfully.${COLOR_RESET}"
+    echo "${COLOR_GREEN}:: Please reboot your system to apply all changes!${COLOR_RESET}"
 }
 
 # Get the connected display name
