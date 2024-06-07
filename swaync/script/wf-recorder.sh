@@ -17,7 +17,14 @@ record_or_stop() {
     if [[ $SWAYNC_TOGGLE_STATE == true ]]; then
         wf-recorder -a --file "$recording_dir/wf-recording-$(date +'%Y-%m-%d-%H-%M-%S').mkv"
     else
-        pkill -15 wf-recorder
+        # Get the PID of wf-recorder
+        PID=$(pidof wf-recorder)
+        if [ -n "$PID" ]; then
+            echo "Sending Ctrl + C signal to wf-recorder with PID $PID"
+            kill -SIGINT $PID
+        else
+            echo "wf-recorder is not running."
+        fi
     fi
 }
 
