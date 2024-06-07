@@ -16,7 +16,7 @@ To use it, execute the following command in your new environment:
 bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)
 ```
 
-### Require Packages
+### Usage packages
 
 | Module Type              | Module Name   | Package Manager |
 |--------------------------|---------------|-----------------|
@@ -35,6 +35,7 @@ bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)
 | Clipboard Manager        | clipmenu      | Pacman          |
 | Screenlock Management    | Hyprlock      | Pacman          |
 | Screenshot               | Hyprshot      | AUR             |
+| Display Manager          | Ly            | Pacman          |
 
 ### Screenshots
 
