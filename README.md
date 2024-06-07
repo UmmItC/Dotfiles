@@ -24,7 +24,7 @@ bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)
 | Prompt Theme             | Powerlevel10k   | Manually (Git)  |
 | Terminal Emulator        | Kitty           | Pacman          |
 | Shell                    | Zsh             | Pacman          |
-| Shell Framework          | Oh My Zsh       | Pacman          |
+| Shell Framework          | Oh My Zsh       | Manually (Git)  |
 | Window Manager           | Hyprland        | Pacman          |
 | Power Management         | Wlogout         | AUR             |
 | Status Bar               | waybar          | Pacman          |
