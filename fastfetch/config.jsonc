@@ -1,6 +1,3 @@
-// Load with --load-config examples/2.jsonc
-// Note that you must replace the image path to an existing image to display it.
-
 {
     "display": {
         "separator": " "
@@ -24,7 +21,7 @@
         },
         {
             "type": "os",
-            "key": "╭─ ", // Just get your distro's logo off nerdfonts.com
+            "key": "╭─ ",
             "keyColor": "green"
         },
         {
