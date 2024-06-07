@@ -11,7 +11,6 @@
         "bluetooth",
         "pulseaudio",
         "custom/notification",
-        "custom/cliphist",
         "custom/power"
     ],
 
@@ -30,13 +29,6 @@
         "format": "",
         "on-click": "swaync-client -t -sw",
         "tooltip-format": "Notification Widgets"
-    },
-
-    "custom/cliphist": {
-        "format": "",
-        "on-click": "cliphist list | fuzzel --dmenu -w 120 | cliphist decode | wl-copy",
-        "on-click-right": "cliphist wipe",
-        "tooltip-format": "Clipboard Manager"
     },
 
     "custom/power": {
