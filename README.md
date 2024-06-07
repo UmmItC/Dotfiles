@@ -22,10 +22,6 @@ You can select your preferred mirror for installation. Here's my Mirror
 | Codeberg     | `bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)`    |
 | Github       | `bash <(curl -s https://raw.githubusercontent.com/UmmItC/Dotfiles/main/setup.sh)` |
 
-```shell
-bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)
-```
-
 ### Usage packages
 
 | Module Type              | Module Name     | Package Manager |
