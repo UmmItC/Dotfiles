@@ -18,24 +18,26 @@ bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)
 
 ### Usage packages
 
-| Module Type              | Module Name   | Package Manager |
-|--------------------------|---------------|-----------------|
-| System Information       | Fastfetch     | Pacman          |
-| Prompt Theme             | Powerlevel10k | Manually (Git)  |
-| Terminal                 | Kitty         | Pacman          |
-| Shell                    | Oh my zsh     | Pacman          |
-| Window Manager           | Hyprland      | Pacman          |
-| Power Management         | Wlogout       | AUR             |
-| Status Bar               | waybar        | Pacman          |
-| Application Launcher     | Fuzzel        | Pacman          |
-| Wallpaper Engine         | Hyprpaper     | Pacman          |
-| Text Editor              | Neovim        | Pacman          |
-| Notification System      | Swaync        | Pacman          |
-| Clipboard Utility        | cliphist      | Pacman          |
-| Clipboard Manager        | clipmenu      | Pacman          |
-| Screenlock Management    | Hyprlock      | Pacman          |
-| Screenshot               | Hyprshot      | AUR             |
-| Display Manager          | Ly            | Pacman          |
+| Module Type              | Module Name     | Package Manager |
+|--------------------------|-----------------|-----------------|
+| System Information       | Fastfetch       | Pacman          |
+| Prompt Theme             | Powerlevel10k   | Manually (Git)  |
+| Terminal Emulator        | Kitty           | Pacman          |
+| Shell                    | Zsh             | Pacman          |
+| Shell Framework          | Oh My Zsh       | Pacman          |
+| Window Manager           | Hyprland        | Pacman          |
+| Power Management         | Wlogout         | AUR             |
+| Status Bar               | waybar          | Pacman          |
+| Application Launcher     | Fuzzel          | Pacman          |
+| Wallpaper Engine         | Hyprpaper       | Pacman          |
+| Text Editor              | Neovim          | Pacman          |
+| Notification System      | Swaync          | Pacman          |
+| Clipboard Utility        | cliphist        | Pacman          |
+| Clipboard Manager        | clipmenu        | Pacman          |
+| Screenlock Management    | Hyprlock        | Pacman          |
+| Screenshot               | Hyprshot        | AUR             |
+| Display Manager          | Ly              | Pacman          |
+
 
 ### Screenshots
 
