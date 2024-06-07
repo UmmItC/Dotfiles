@@ -82,40 +82,12 @@ copy_config_files() {
         cp -rv ./fastfetch "$config_dir/"
         cp -rv ./waybar "$config_dir/"
         cp -rv ./fuzzel "$config_dir"
-        cp -v .p10k.zsh "$config_dir/"
-        cp -v .zshrc "$config_dir/"
-        cp -v ./swaync "$config_dir/"
+        cp -rv ./swaync "$config_dir/"
+
         sudo cp -v ./ly/config.ini /etc/ly
     else
         echo "${COLOR_YELLOW}:: Skipping configuration file copying.${COLOR_RESET}"
     fi
-}
-
-
-# Set ZSH as Default Shell
-zsh_as_default_shell() {
-  echo "${COLOR_GREEN}:: Enter your password to set zsh as your default shell.${COLOR_RESET}"
-  chsh -s "$(which zsh)"
-}
-
-# Install Oh my ZSH
-install_ohmyzsh() {
-  echo "${COLOR_GREEN}:: Installing Oh my zsh as your ZSH Framework.${COLOR_RESET}"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-}
-
-# Install zsh-autosuggestions for auto suggestions
-install_zsh_auto_suggestions() {
-  echo "${COLOR_GREEN}:: Installing zsh-autosuggestions for Auto Suggestions."
-  cd ~/.oh-my-zsh/custom/plugins
-  git clone https://github.com/zsh-users/zsh-autosuggestions
-}
-
-# Installing Powerlevel10k
-install_powerlevel10k(){
-  echo "${COLOR_GREEN}:: Installing Powerlevel10k as your ZSH theme.${COLOR_RESET}"
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-  echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 }
 
 # Main function
@@ -131,11 +103,6 @@ main() {
     install_pacman_packages
     check_yay
     install_aur_packages
-
-    zsh_as_default_shell
-    install_ohmyzsh
-    install_zsh_auto_suggestions
-    install_powerlevel10k
     
     copy_config_files
    
