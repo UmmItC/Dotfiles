@@ -35,7 +35,7 @@
       "actions": [
         {
           "active": true,
-          "command": "sh -c 'cliphist list | fuzzel --dmenu -w 100 | cliphist decode | wl-copy'",
+          "command": "sh -c ~/.config/swaync/script/cliphist-menu.sh",
           "label": "",
           "type": "button"
         },
