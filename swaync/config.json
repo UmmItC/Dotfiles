@@ -34,16 +34,11 @@
     "buttons-grid": {
       "actions": [
         {
-          "active": true,
-          "command": "sh -c ~/.config/swaync/script/cliphist-menu.sh",
-          "label": "",
-          "type": "button"
-        },
-        {
+          "label": "",
+          "type": "toggle",
           "active": false,
-          "command": "hyprlock",
-          "label": "",
-          "type": "button"
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'",
+          "update-command": "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'"
         },
         {
           "active": false,
@@ -59,17 +54,23 @@
           "update-command": "sh -c 'pgrep -x wf-recorder > /dev/null && echo true || echo false'"
         },
         {
+          "active": true,
+          "command": "sh -c ~/.config/swaync/script/cliphist-menu.sh",
+          "label": "",
+          "type": "button"
+        },
+        {
+          "active": false,
+          "command": "hyprlock",
+          "label": "",
+          "type": "button"
+        },
+
+        {
           "active": false,
           "command": "wlogout",
           "label": "",
           "type": "button"
-        },
-        {
-          "label": "",
-          "type": "toggle",
-          "active": false,
-          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'",
-          "update-command": "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'"
         }
       ]
     },
@@ -92,10 +93,10 @@
 
   "widgets": [
     "title",
-    "dnd",
-    "mpris",
-    "notifications",
     "buttons-grid",
+    "mpris",
+    "dnd",
+    "notifications",
     "volume"
   ]
 }
