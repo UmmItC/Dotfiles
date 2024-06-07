@@ -55,8 +55,8 @@
           "label": "󰕧",
           "type": "toggle",
           "active": false,
-"command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && wf-recorder -a -f \"$(date +'%Y-%m-%d-%H-%M-%S').mkv\" || pkill -15 wf-recorder'",
-  "update-command": "sh -c 'pgrep -x wf-recorder > /dev/null && echo true || echo false'"
+          "command": "sh -c ~/.config/swaync/script/wf-recorder.sh",
+          "update-command": "sh -c 'pgrep -x wf-recorder > /dev/null && echo true || echo false'"
         },
         {
           "active": false,
