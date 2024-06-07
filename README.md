@@ -1,8 +1,8 @@
-## Dotfiles
+# Dotfiles
 
 This repository is dedicated to my Hyprland WM Arch Linux configuration files.
 
-### Installation instructions
+## Installation instructions
 
 To use it, execute the following command in your new environment:
 
@@ -11,6 +11,16 @@ To use it, execute the following command in your new environment:
 > **⚠️ Warning**
 > **This script is currently in beta. For added safety, it's advisable to manually copy the file to **~/.config/** rather than executing it directly.**
 > **Running this script will automatically install all required packages and overwrite any existing .config files with the same filenames. Make sure to back up any important configurations before proceeding.**
+
+### Mirror Installtion
+
+You can select your preferred mirror for installation. Here's my Mirror
+
+| DevOps       | Installation Command                                                              |
+|--------------|---------------------------------------------------------------------------------- |
+| Gitlab       | `bash <(curl -s https://gitlab.com/UmmIt/dotfiles/-/raw/main/setup.sh)`           |
+| Codeberg     | `bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)`    |
+| Github       | `bash <(curl -s https://raw.githubusercontent.com/UmmItC/Dotfiles/main/setup.sh)` |
 
 ```shell
 bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)
