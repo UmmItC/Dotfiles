@@ -51,4 +51,5 @@ You can select your preferred mirror for installation. Here's my Mirror
 ![Hyprland Fastfetch](./screenshots/fastfetch.png)
 ![Hyprland Fuzzel](./screenshots/fullscreen-fuzzel.png)
 ![Hyprland Swaync](./screenshots/swaync.png)
+![wlogout](./screenshots/wlogout.png)
 ![Hyprlock](./screenshots/hyprlock.png)
