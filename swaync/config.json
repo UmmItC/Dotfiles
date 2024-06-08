@@ -58,19 +58,6 @@
           "command": "sh -c ~/.config/swaync/script/cliphist-menu.sh",
           "label": "",
           "type": "button"
-        },
-        {
-          "active": false,
-          "command": "hyprlock",
-          "label": "",
-          "type": "button"
-        },
-
-        {
-          "active": false,
-          "command": "wlogout",
-          "label": "",
-          "type": "button"
         }
       ]
     },
