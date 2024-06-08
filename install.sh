@@ -83,6 +83,7 @@ copy_config_files() {
         cp -rv ./waybar "$config_dir/"
         cp -rv ./fuzzel "$config_dir"
         cp -rv ./swaync "$config_dir/"
+        cp -rv ./wlogout "$config_dir/"
 
         sudo cp -v ./ly/config.ini /etc/ly
     else
