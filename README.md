@@ -37,7 +37,7 @@ You can select your preferred mirror for installation. Here's my Mirror
 | Application Launcher     | Fuzzel          | Pacman          |
 | Wallpaper Engine         | Hyprpaper       | Pacman          |
 | Text Editor              | Neovim          | Pacman          |
-| Notification System      | Swaync          | Pacman          |
+| Notification Deamon      | Swaync          | Pacman          |
 | Clipboard Utility        | cliphist        | Pacman          |
 | Clipboard Manager        | clipmenu        | Pacman          |
 | Screenlock Management    | Hyprlock        | Pacman          |
