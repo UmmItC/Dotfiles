@@ -33,13 +33,13 @@ You can select your preferred mirror for installation. Here's my Mirror
 | Shell Framework          | Oh My Zsh       | Manually (Git)  |
 | Window Manager           | Hyprland        | Pacman          |
 | Power Management         | Wlogout         | AUR             |
-| Status Bar               | waybar          | Pacman          |
+| Status Bar               | Waybar          | Pacman          |
 | Application Launcher     | Fuzzel          | Pacman          |
 | Wallpaper Engine         | Hyprpaper       | Pacman          |
 | Text Editor              | Neovim          | Pacman          |
 | Notification Deamon      | Swaync          | Pacman          |
-| Clipboard Utility        | cliphist        | Pacman          |
-| Clipboard Manager        | clipmenu        | Pacman          |
+| Clipboard Utility        | Cliphist        | Pacman          |
+| Clipboard Manager        | Clipmenu        | Pacman          |
 | Screenlock Management    | Hyprlock        | Pacman          |
 | Screenshot               | Hyprshot        | AUR             |
 | Display Manager          | Ly              | Pacman          |
