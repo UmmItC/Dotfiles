@@ -43,6 +43,7 @@ You can select your preferred mirror for installation. Here's my Mirror
 | Screenlock Management    | Hyprlock        | Pacman          |
 | Screenshot               | Hyprshot        | AUR             |
 | Display Manager          | Ly              | Pacman          |
+| Sound Server             | Pulseaudio      | Pacman          |
 
 
 ### Screenshots
