@@ -49,13 +49,22 @@ check_yay() {
 
 # Function to install Pacman packages
 install_pacman_packages() {
-    local pacman_packages=("zsh" "hyprland" "hyprpaper" "waybar" "fuzzel" "ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "kitty" "cliphist" "clipmenu" "neovim" "hyprlock" "fastfetch" "wf-recorder" "swaync" "ly")
+    local pacman_terminal_packages=("zsh" "kitty")
+    local pacman_editor=("neovim" "vim")
+    local pacman_clipboard_packages=("cliphist" "clipmenu")
+    local pacman_display_manager_package=("ly")
+    local pacman_hypr_packages=("hyprland" "hyprpaper" "hyprlock")
+    local pacman_fonts_packages=("ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd")
+    local pacman_utilities_packages=("waybar" "fuzzel" "fastfetch" "wf-recorder" "swaync")
+    
     echo "${COLOR_GREEN}:: Pacman packages to be installed:${COLOR_RESET}"
-    for package in "${pacman_packages[@]}"; do
+
+    for package in "${pacman_terminal_packages[@]}" "${pacman_editor[@]}" "${pacman_clipboard_packages[@]}" "${pacman_display_manager_package[@]}" "${pacman_fonts_packages[@]}" "${pacman_hypr_packages[@]}" "${pacman_utilities_packages[@]}"; do
         echo "${COLOR_GREY}$package${COLOR_RESET}"
     done
+
     if prompt_yna ":: Install these pacman packages?"; then
-        sudo pacman -S "${pacman_packages[@]}"
+        sudo pacman -S "${pacman_terminal_packages[@]}" "${pacman_fonts_packages[@]}" "${pacman_hypr_packages[@]}" "${pacman_utilities_packages[@]}"
     fi
 }
 
