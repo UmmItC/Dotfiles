@@ -58,16 +58,19 @@ install_pacman_packages() {
     local pacman_utilities_packages=("waybar" "fuzzel" "fastfetch" "wf-recorder" "swaync")
     local pacman_audio_packages=("pulseaudio" "pavucontrol" "lib32-alsa-plugins" "lib32-alsa-lib" "alsa-plugins")
     
-    echo "${COLOR_GREEN}:: Pacman packages to be installed:${COLOR_RESET}"
+    local total_packages=$(( ${#pacman_terminal_packages[@]} + ${#pacman_editor_packages[@]} + ${#pacman_clipboard_packages[@]} + ${#pacman_display_manager_package[@]} + ${#pacman_hypr_packages[@]} + ${#pacman_fonts_packages[@]} + ${#pacman_utilities_packages[@]} + ${#pacman_audio_packages[@]} ))
 
-    for package in "${pacman_terminal_packages[@]}" "${pacman_editor[@]}" "${pacman_clipboard_packages[@]}" "${pacman_display_manager_package[@]}" "${pacman_fonts_packages[@]}" "${pacman_hypr_packages[@]}" "${pacman_utilities_packages[@]}" "${pacman_audio_packages[@]}"; do
+    echo "${COLOR_GREEN}:: Pacman packages to be installed - Package (${total_packages})${COLOR_RESET}"
+
+    for package in "${pacman_terminal_packages[@]}" "${pacman_editor_packages[@]}" "${pacman_clipboard_packages[@]}" "${pacman_display_manager_package[@]}" "${pacman_fonts_packages[@]}" "${pacman_hypr_packages[@]}" "${pacman_utilities_packages[@]}" "${pacman_audio_packages[@]}"; do
         echo "${COLOR_GREY}$package${COLOR_RESET}"
     done
 
     if prompt_yna ":: Install these pacman packages?"; then
-        sudo pacman -S "${pacman_terminal_packages[@]}" "${pacman_fonts_packages[@]}" "${pacman_hypr_packages[@]}" "${pacman_utilities_packages[@]}" "${pacman_audio_packages}"
+        sudo pacman -S "${pacman_terminal_packages[@]}" "${pacman_editor_packages[@]}" "${pacman_clipboard_packages[@]}" "${pacman_display_manager_package[@]}" "${pacman_fonts_packages[@]}" "${pacman_hypr_packages[@]}" "${pacman_utilities_packages[@]}" "${pacman_audio_packages[@]}"
     fi
 }
+
 
 # Function to install aur packages
 install_aur_packages() {
