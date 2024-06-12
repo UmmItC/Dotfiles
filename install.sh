@@ -143,7 +143,7 @@ main() {
 
     # Prompt for cloning NvChad and running nvim
     if prompt_yna ":: Clone NvChad and run neovim?"; then
-        echo "${COLOR_YELLOW}:: Execute the command `MasonInstallAll` after lazy.nvim completes downloading plugins."
+        echo "${COLOR_YELLOW}:: After lazy.nvim finishes downloading plugins, execute the command :MasonInstallAll in Neovim."
         git clone https://github.com/NvChad/starter "$config_dir/nvim" && nvim
     else
         echo "${COLOR_YELLOW}:: Skipping NvChad cloning and nvim execution.${COLOR_RESET}"
