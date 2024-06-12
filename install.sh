@@ -142,10 +142,9 @@ main() {
     sed -i "10s@wallpaper = .*@wallpaper = $connected_display,~/.config/hypr/wallpaper/hong-kong.jpg@" "$config_dir/hypr/hyprpaper.conf"
 
     # Prompt for cloning NvChad and running nvim
-    if prompt_yna ":: Clone NvChad and run nvim?"; then
-        echo "${COLOR_YELLOW}Neovim using NvChad:${COLOR_RESET}"
-        echo ":: NvChad will ask you the default configuration, please enter 'n'."
-        git clone https://github.com/NvChad/NvChad "$config_dir/nvim" --depth 1 && nvim
+    if prompt_yna ":: Clone NvChad and run neovim?"; then
+        echo "${COLOR_YELLOW}:: Execute the command `MasonInstallAll` after lazy.nvim completes downloading plugins."
+        git clone https://github.com/NvChad/starter "$config_dir/nvim" && nvim
     else
         echo "${COLOR_YELLOW}:: Skipping NvChad cloning and nvim execution.${COLOR_RESET}"
     fi
