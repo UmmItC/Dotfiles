@@ -104,6 +104,40 @@ copy_config_files() {
     fi
 }
 
+# Function to detect and configure Ly as the default display manager
+ly_detect() {
+    echo -e "${COLOR_YELLOW}:: Setting up Ly as your Default Display Manager. If Ly is already set up, this step will be skipped.${COLOR_RESET}"
+
+    # Get the currently running display manager
+    dm=$(ps -eo comm | grep -E '^ly-dm|^gdm|^sddm|^lightdm|^lxdm|^xdm' | head -n 1)
+
+    # Define the list of display managers
+    dm_package=("ly-dm" "gdm" "sddm" "lightdm" "xdm" "lxdm")
+
+    if [ -n "$dm" ]; then
+    
+        # Check if the detected display manager is ly-dm
+        if [ "$dm" == "ly-dm" ]; then
+            echo -e "${COLOR_GREEN}:: You are already using Ly as your display manager. Nothing to do. Skipping...${COLOR_RESET}"
+        else
+            echo -e "${COLOR_GREEN}:: Setting Ly as your default display manager...${COLOR_RESET}"
+            sudo systemctl enable ly.service
+        fi
+    
+        # Disable auto-start for other display managers
+        for package in "${dm_package[@]}"; do
+            if [ "$package" != "$dm" ] && systemctl is-active --quiet "$package"; then
+                echo -e "${COLOR_GREEN}:: Disabling $package...${COLOR_RESET}"
+                sudo systemctl disable "$package"
+                echo -e "${COLOR_GREEN}:: Successfully disabled $package as your previous display manager.${COLOR_RESET}"
+            fi
+        done
+    
+    else
+        echo "Unable to determine the display manager."
+    fi
+}
+
 # Main function
 main() {
     # Check if a resolution is selected
@@ -118,6 +152,8 @@ main() {
     check_yay
     install_aur_packages
     
+    ly_detect
+
     copy_config_files
    
     # Prompt for monitor refresh rate until a valid integer is provided
