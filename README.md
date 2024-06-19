@@ -44,6 +44,7 @@ You can select your preferred mirror for installation. Here's my Mirror
 | Screenshot               | Hyprshot        | AUR             |
 | Display Manager          | Ly              | Pacman          |
 | Sound Server             | Pulseaudio      | Pacman          |
+| AUR Helper               | Yay             | Manually (Git)  |
 
 
 ### Screenshots
