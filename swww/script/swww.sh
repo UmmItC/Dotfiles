@@ -17,13 +17,21 @@ selected=$(echo "$filenames" | fuzzel --dmenu -w "$FUZZEL_WIDTH" -p "$FUZZEL_TIT
 # Construct the full path based on user selection
 selected_path="$WALLPAPER_DIR/$selected"
 
-# Wallpaper picker with Swww
+# Randomly choose a transition type and its arguments
+transition_options=(
+    "--transition-type grow --transition-pos 0.977,0.969 --transition-step 200 --transition-duration 3"
+    "--transition-type wipe --transition-pos 0.977,0.969 --transition-step 90 --transition-duration 3 --transition-angle 30"
+    "--transition-type outer --transition-pos 0.977,0.969 --transition-step 90 --transition-duration 3"
+    "--transition-type center --transition-pos 0.977,0.969 --transition-step 90 --transition-duration 3"
+)
+
+# Choose a random index
+selected_transition=${transition_options[RANDOM % ${#transition_options[@]}]}
+
+# Wallpaper picker with Swww using the selected transition
 swww img \
     --transition-fps "$FPS" \
-    --transition-type grow \
-    --transition-pos 0.977,0.969 \
-    --transition-step 200 \
-    --transition-duration 3 \
+    $selected_transition \
     "$selected_path"
 
 # Display notification about wallpaper change
