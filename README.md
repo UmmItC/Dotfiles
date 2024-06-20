@@ -35,7 +35,7 @@ You can select your preferred mirror for installation. Here's my Mirror
 | Power Management         | Wlogout         | AUR             |
 | Status Bar               | Waybar          | Pacman          |
 | Application Launcher     | Fuzzel          | Pacman          |
-| Wallpaper Engine         | Hyprpaper       | Pacman          |
+| Wallpaper Engine         | Swwww           | AUR             |
 | Text Editor              | Neovim          | Pacman          |
 | Notification Deamon      | Swaync          | Pacman          |
 | Clipboard Utility        | Cliphist        | Pacman          |
