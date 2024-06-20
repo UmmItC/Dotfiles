@@ -53,7 +53,7 @@ install_pacman_packages() {
     local pacman_editor_packages=("neovim" "vim")
     local pacman_clipboard_packages=("cliphist" "clipmenu")
     local pacman_display_manager_package=("ly")
-    local pacman_hypr_packages=("hyprland" "hyprpaper" "hyprlock")
+    local pacman_hypr_packages=("hyprland" "hyprlock")
     local pacman_fonts_packages=("ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd")
     local pacman_utilities_packages=("waybar" "fuzzel" "fastfetch" "wf-recorder" "swaync")
     local pacman_audio_packages=("pulseaudio" "pavucontrol" "lib32-alsa-plugins" "lib32-alsa-lib" "alsa-plugins")
@@ -74,7 +74,7 @@ install_pacman_packages() {
 
 # Function to install aur packages
 install_aur_packages() {
-    local aur_packages=("wlogout" "swww")
+    local aur_packages=("wlogout" "hyprshot" "swww")
     echo "${COLOR_GREEN}:: AUR packages to be installed:${COLOR_RESET}"
     for package in "${aur_packages[@]}"; do
         echo "${COLOR_GREY}$package${COLOR_RESET}"
