@@ -74,7 +74,7 @@ install_pacman_packages() {
 
 # Function to install aur packages
 install_aur_packages() {
-    local aur_packages=("wlogout" "hyprshot")
+    local aur_packages=("wlogout" "swww")
     echo "${COLOR_GREEN}:: AUR packages to be installed:${COLOR_RESET}"
     for package in "${aur_packages[@]}"; do
         echo "${COLOR_GREY}$package${COLOR_RESET}"
@@ -97,6 +97,8 @@ copy_config_files() {
         cp -rv ./fuzzel "$config_dir"
         cp -rv ./swaync "$config_dir/"
         cp -rv ./wlogout "$config_dir/"
+        cp -rv ./swww "$config_dir/"
+        cp -rv ./.wallpaper/ "$HOME/"
 
         sudo cp -v ./ly/config.ini /etc/ly
     else
