@@ -74,7 +74,7 @@ install_pacman_packages() {
 
 # Function to install aur packages
 install_aur_packages() {
-    local aur_packages=("wlogout" "hyprshot" "swww")
+    local aur_packages=("wlogout" "hyprshot" "swww" "overskride")
     echo "${COLOR_GREEN}:: AUR packages to be installed:${COLOR_RESET}"
     for package in "${aur_packages[@]}"; do
         echo "${COLOR_GREY}$package${COLOR_RESET}"
