@@ -41,6 +41,13 @@
           "update-command": "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'"
         },
         {
+          "label": "",
+          "type": "toggle",
+          "active": false,
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && rfkill unblock bluetooth || rfkill block bluetooth'",
+          "update-command": "sh -c '[[ $(rfkill list bluetooth | grep \"Soft blocked: yes\") ]] && echo false || echo true'"
+        },
+        {
           "active": false,
           "command": "hyprshot -m region",
           "label": "󰄀",
