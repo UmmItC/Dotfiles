@@ -62,7 +62,7 @@
         },
         {
           "active": true,
-          "command": "sh -c ~/.config/swaync/script/cliphist-menu.sh",
+          "command": "sh -c ~/.config/cliphist/cliphist-menu.sh",
           "label": "",
           "type": "button"
         }
