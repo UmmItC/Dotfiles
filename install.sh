@@ -192,39 +192,45 @@ main() {
     echo "${COLOR_GREEN}:: Please reboot your system to apply all changes!${COLOR_RESET}"
 }
 
-# Get the connected display name
-connected_display=$(xrandr | awk '/\<connected\>/ {print $1}')
+# Check if the distro is Arch Linux
+if [ -f /etc/arch-release ]; then
+    # Get the connected display name
+    connected_display=$(xrandr | awk '/\<connected\>/ {print $1}')
 
-# Run whiptail and capture the output
-selected_resolution=$(whiptail --title "Resolution Selection" --menu "Choose a resolution with $connected_display" 20 60 10 \
-"1920x1080" "" \
-"1440x1080" "" \
-"1400x1050" "" \
-"1280x1024" "" \
-"1280x960" "" \
-"1152x864" "" \
-"1024x768" "" \
-"800x600" "" \
-"640x480" "" \
-"320x240" "" \
-"1680x1050" "" \
-"1440x900" "" \
-"1280x800" "" \
-"1152x720" "" \
-"960x600" "" \
-"928x580" "" \
-"800x500" "" \
-"768x480" "" \
-"720x480" "" \
-"640x400" "" \
-"320x200" "" \
-"1600x900" "" \
-"1368x768" "" \
-"1280x720" "" \
-"1024x576" "" \
-"864x486" "" \
-"720x400" "" \
-"640x350" "" \
-3>&1 1>&2 2>&3)
+    # Run whiptail and capture the output
+    selected_resolution=$(whiptail --title "Resolution Selection" --menu \
+        "Choose a resolution with $connected_display" 20 60 10 \
+        "1920x1080" "" \
+        "1440x1080" "" \
+        "1400x1050" "" \
+        "1280x1024" "" \
+        "1280x960" "" \
+        "1152x864" "" \
+        "1024x768" "" \
+        "800x600" "" \
+        "640x480" "" \
+        "320x240" "" \
+        "1680x1050" "" \
+        "1440x900" "" \
+        "1280x800" "" \
+        "1152x720" "" \
+        "960x600" "" \
+        "928x580" "" \
+        "800x500" "" \
+        "768x480" "" \
+        "720x480" "" \
+        "640x400" "" \
+        "320x200" "" \
+        "1600x900" "" \
+        "1368x768" "" \
+        "1280x720" "" \
+        "1024x576" "" \
+        "864x486" "" \
+        "720x400" "" \
+        "640x350" "" \
+        3>&1 1>&2 2>&3)
 
-main
+    main
+else
+    echo "${COLOR_YELLOW}:: Sorry, Script only allows Arch Linux to run.${COLOR_RESET}"
+fi
