@@ -98,6 +98,7 @@ copy_config_files() {
         cp -rv ./swaync "$config_dir/"
         cp -rv ./wlogout "$config_dir/"
         cp -rv ./swww "$config_dir/"
+        cp -rv ./cliphist "$config_dir/"
         cp -rv ./.wallpaper/ "$HOME/"
 
         sudo cp -v ./ly/config.ini /etc/ly
