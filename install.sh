@@ -177,9 +177,6 @@ main() {
     # Update hyprlock.conf
     sed -i "s/monitor = .*/monitor = $connected_display/g" "$config_dir/hypr/hyprlock.conf"
     
-    # Update hyprpaper.conf
-    sed -i "10s@wallpaper = .*@wallpaper = $connected_display,~/.config/hypr/wallpaper/hong-kong.jpg@" "$config_dir/hypr/hyprpaper.conf"
-
     # Prompt for cloning NvChad and running nvim
     if prompt_yna ":: Clone NvChad and run neovim?"; then
         echo "${COLOR_YELLOW}:: After lazy.nvim finishes downloading plugins, execute the command :MasonInstallAll in Neovim."
