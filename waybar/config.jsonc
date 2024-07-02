@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "top",
     "height": 0,
-    "modules-left": ["hyprland/workspaces", "network", "clock"],
+    "modules-left": ["hyprland/workspaces", "network", "clock", "custom/upgrade"],
     "modules-center": ["hyprland/window"],
     "modules-right": [
         "tray",
@@ -53,6 +53,12 @@
       "format": " {:%Y/%m/%d }",
       "format-alt": " {:%H:%M:%S}",
       "interval": 1
+    },
+
+    "custom/upgrade": {
+      "format": "⚙",
+      "on-click": "kitty --execute ~/.config/waybar/script/update.sh",
+      "tooltip-format": "Fully System upgrade"
     },
 
     "network": {

@@ -80,6 +80,15 @@ window#waybar.empty #window {
 	padding: 2px 15px;
 }
 
+#custom-upgrade {
+	color: #E2BBE9;
+	background: #0F1419;
+	border-radius: 50px 50px;
+	margin: 5px;
+	padding: 2px 15px;
+  font-size: 20px;
+}
+
 #cpu {
 	color: #F3F4F5;
 	background: #0F1419;
@@ -94,6 +103,7 @@ window#waybar.empty #window {
 	border-radius: 50px 50px;
 	margin: 5px;
 	padding: 2px 15px;
+  min-width: 180px;
 }
 
 #tray {
