@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # ANSI color codes
+readonly COLOR_LIGHT_BLUE='\e[94m'
 readonly COLOR_GREEN='\e[32m'
-readonly COLOR_RED='\e[31m'
+readonly COLOR_DARK_RED='\e[31m'
 readonly COLOR_RESET='\e[0m'
 
 # Function to print systemd-style status messages
@@ -12,7 +13,7 @@ print_status() {
     if [ "${status}" == "OK" ]; then
         echo -e "[ ${COLOR_GREEN}OK${COLOR_RESET} ] ${message}"
     else
-        echo -e "[ ${COLOR_RED}FAILED${COLOR_RESET} ] ${message}"
+        echo -e "[ ${COLOR_DARK_RED}FAILED${COLOR_RESET} ] ${message}"
     fi
 }
 
@@ -29,30 +30,58 @@ execute_command() {
     fi
 }
 
-# Start time for total update duration calculation
-start_time=$(date +%s)
+# Banner for upgrade system
+echo -e "${COLOR_LIGHT_BLUE}"
+echo "╦ ╦┌─┐┌─┐┬─┐┌─┐┌┬┐┌─┐  ╔═╗┬ ┬┌─┐┌┬┐┌─┐┌┬┐"
+echo "║ ║├─┘│ ┬├┬┘├─┤ ││├┤   ╚═╗└┬┘└─┐ │ ├┤ │││"
+echo "╚═╝┴  └─┘┴└─┴ ┴─┴┘└─┘  ╚═╝ ┴ └─┘ ┴ └─┘┴ ┴"
+echo -e "${COLOR_RESET}"
 
-# Using () for command blocks
-(
-    # Update Pacman and ignore dart package
-    execute_command "sudo pacman -Syuv --ignore dart" "Full system upgrade (Syuv)"
+# Prompt user to confirm system upgrade
+while true; do
+    echo -e "${COLOR_GREEN}"
+    read -p "Do you want to proceed with the system upgrade? (y/n): " choice
+    echo -e "${COLOR_RESET}"
+    case $choice in
+        [Yy]* )
+            # Start time for total update duration calculation
+            start_time=$(date +%s)
 
-    # Update AUR packages using yay
-    execute_command "yay -Syu" "Upgrading AUR Packages"
+            # Using () for command blocks
+            (
+                # Update Pacman and ignore dart package
+                execute_command "sudo pacman -Syuv --ignore dart" "Full system upgrade (Syuv)"
 
-    # Upgrade oh my zsh
-    execute_command "bash ~/.oh-my-zsh/tools/upgrade.sh" "Upgrading oh my zsh"
+                # Update AUR packages using yay
+                execute_command "yay -Syu" "Upgrading AUR Packages"
 
-    # Update Powerlevel10k theme
-    execute_command "git -C $HOME/powerlevel10k pull" "Upgrading Powerlevel10k"
+                # Upgrade oh my zsh
+                execute_command "~/.oh-my-zsh/tools/upgrade.sh" "Upgrading oh my zsh"
 
-    # Update Flatpak packages
-    execute_command "flatpak update -v" "Upgrading Flatpak packages"
-)
+                # Update Powerlevel10k theme
+                execute_command "git -C $HOME/powerlevel10k pull" "Upgrading Powerlevel10k"
 
-# Calculate total update duration
-end_time=$(date +%s)
-total_duration=$((end_time - start_time))
+                # Update Flatpak packages
+                execute_command "flatpak update -v" "Upgrading Flatpak packages"
+            )
 
-# Print total update time
-echo "Total update time: ${total_duration} seconds"
+            # Calculate total update duration
+            end_time=$(date +%s)
+            total_duration=$((end_time - start_time))
+
+            # Print total update time
+            echo -e "${COLOR_GREEN}Total update time: ${total_duration} seconds${COLOR_RESET}"
+
+            # Prompt user to press Enter to exit
+            echo -e "${COLOR_GREEN}Press Enter to exit...${COLOR_RESET}"
+            read -r
+            break;;
+        [Nn]* )
+            echo -e "${COLOR_GREEN}System upgrade aborted.${COLOR_RESET}"
+            echo -e "${COLOR_GREEN}Press Enter to exit...${COLOR_RESET}"
+            read -r
+            exit;;
+        * )
+            echo -e "${COLOR_DARK_RED}Please answer yes or no.${COLOR_RESET}";;
+    esac
+done
