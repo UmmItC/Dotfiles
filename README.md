@@ -45,6 +45,7 @@ You can select your preferred mirror for installation. Here's my Mirror
 | Display Manager          | Ly              | Pacman          |
 | Sound Server             | Pulseaudio      | Pacman          |
 | AUR Helper               | Yay             | Manually (Git)  |
+| Icon Theme               | Papirus         | Pacman          |
 
 
 ### Screenshots
