@@ -71,6 +71,7 @@ while true; do
 
             # Print total update time
             echo -e "${COLOR_GREEN}Total update time: ${total_duration} seconds${COLOR_RESET}"
+            notify-send "System Upgrade" "Upgrade completed successfully.\nTotal duration: ${total_duration} seconds"
 
             # Prompt user to press Enter to exit
             echo -e "${COLOR_GREEN}Press Enter to exit...${COLOR_RESET}"
