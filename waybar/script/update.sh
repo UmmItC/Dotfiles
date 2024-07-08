@@ -73,6 +73,23 @@ while true; do
             echo -e "${COLOR_GREEN}Total update time: ${total_duration} seconds${COLOR_RESET}"
             notify-send "System Upgrade" "Upgrade completed successfully.\nTotal duration: ${total_duration} seconds"
 
+            # Prompt user to reboot the system
+            while true; do
+                echo -e "${COLOR_GREEN}"
+                read -p "Would you like to reboot your system now? (y/n): " reboot_choice
+                echo -e "${COLOR_RESET}"
+                case $reboot_choice in
+                    [Yy]* )
+                        systemctl reboot
+                        break;;
+                    [Nn]* )
+                        echo -e "${COLOR_GREEN}You can manually reboot your system later.${COLOR_RESET}"
+                        break;;
+                    * )
+                        echo -e "${COLOR_DARK_RED}Please answer yes or no.${COLOR_RESET}";;
+                esac
+            done
+
             # Prompt user to press Enter to exit
             echo -e "${COLOR_GREEN}Press Enter to exit...${COLOR_RESET}"
             read -r
@@ -86,3 +103,4 @@ while true; do
             echo -e "${COLOR_DARK_RED}Please answer yes or no.${COLOR_RESET}";;
     esac
 done
+
