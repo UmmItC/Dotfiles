@@ -30,6 +30,16 @@ execute_command() {
     fi
 }
 
+# Function for countdown
+countdown() {
+    local seconds=$1
+    while [ $seconds -gt 0 ]; do
+        echo -e "${COLOR_GREEN}Rebooting in $seconds seconds...${COLOR_RESET}"
+        sleep 1
+        : $((seconds--))
+    done
+}
+
 # Banner for upgrade system
 echo -e "${COLOR_LIGHT_BLUE}"
 echo "╦ ╦┌─┐┌─┐┬─┐┌─┐┌┬┐┌─┐  ╔═╗┬ ┬┌─┐┌┬┐┌─┐┌┬┐"
@@ -80,6 +90,10 @@ while true; do
                 echo -e "${COLOR_RESET}"
                 case $reboot_choice in
                     [Yy]* )
+                        # Initiate countdown
+                        countdown 5
+
+                        # Reboot the system
                         systemctl reboot
                         break;;
                     [Nn]* )
