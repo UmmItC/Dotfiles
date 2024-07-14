@@ -47,6 +47,9 @@ You can select your preferred mirror for installation. Here's my Mirror
 | AUR Helper               | Yay             | Manually (Git)  |
 | Icon Theme               | Papirus         | Pacman          |
 
+### Additional Configuration
+
+- **Steam**: To enhance download speeds, enable HTTP/2 and optimize download rates.
 
 ### Screenshots
 
