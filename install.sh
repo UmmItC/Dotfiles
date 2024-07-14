@@ -107,6 +107,27 @@ copy_config_files() {
     fi
 }
 
+copy_steam_config_files() {
+    if prompt_yna ":: Do you want to copy Steam configuration files?"; then
+        if command_exists steam; then
+            cp -v ~/.steam/steam/steam_dev.cfg ~/.steam/steam/
+            echo "Steam configuration files copied successfully."
+        else
+            echo "Steam is not installed. Installing Steam..."
+            sudo pacman -S steam
+            if [ $? -eq 0 ]; then
+                echo "Steam install successfully."
+                cp -v ~/.steam/steam/steam_dev.cfg ~/.steam/steam/
+                echo "Steam configuration files copied successfully."
+            else
+                echo "Failed to install Steam."
+            fi
+        fi
+    else
+        echo "${COLOR_YELLOW}:: Skipping copying of Steam configuration files.${COLOR_RESET}"
+    fi
+}
+
 # Function to detect and configure Ly as the default display manager
 ly_detect() {
     echo -e "${COLOR_YELLOW}:: Setting up Ly as your Default Display Manager. If Ly is already set up, this step will be skipped.${COLOR_RESET}"
@@ -158,6 +179,7 @@ main() {
     ly_detect
 
     copy_config_files
+    copy_steam_config_files
    
     # Prompt for monitor refresh rate until a valid integer is provided
     while true; do
