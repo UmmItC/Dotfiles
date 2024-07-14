@@ -110,14 +110,14 @@ copy_config_files() {
 copy_steam_config_files() {
     if prompt_yna ":: Do you want to copy Steam configuration files?"; then
         if command_exists steam; then
-            cp -v ~/.steam/steam/steam_dev.cfg ~/.steam/steam/
+            cp -v ./.steam/steam/steam_dev.cfg ~/.steam/steam/
             echo "Steam configuration files copied successfully."
         else
             echo "Steam is not installed. Installing Steam..."
             sudo pacman -S steam
             if [ $? -eq 0 ]; then
                 echo "Steam install successfully."
-                cp -v ~/.steam/steam/steam_dev.cfg ~/.steam/steam/
+                cp -v ./.steam/steam/steam_dev.cfg ~/.steam/steam/
                 echo "Steam configuration files copied successfully."
             else
                 echo "Failed to install Steam."
