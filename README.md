@@ -4,14 +4,6 @@ This repository is dedicated to my Hyprland WM Arch Linux configuration files.
 
 ## Installation instructions
 
-To use it, execute the following command in your new environment:
-
-***Tips: You can simplify the installation process by leveraging archinstall for easy installation of Arch Linux.***
-
-> **⚠️ Warning**
-> **This script is currently in beta. For added safety, it's advisable to manually copy the file to **~/.config/** rather than executing it directly.**
-> **Running this script will automatically install all required packages and overwrite any existing .config files with the same filenames. Make sure to back up any important configurations before proceeding.**
-
 ### Mirror Installtion
 
 You can select your preferred mirror for installation. Here's my Mirror
