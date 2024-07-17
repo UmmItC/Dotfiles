@@ -71,6 +71,29 @@ install_pacman_packages() {
     fi
 }
 
+# Function to install GPU packages
+install_gpu_package() {
+    # Define the GPU-related packages to install
+    local pacman_gpu_packages=("mesa" "lib32-mesa" "xf86-video-amdgpu" "vulkan-radeon" "amdvlk" "lib32-vulkan-radeon" "lib32-amdvlk" "libva-mesa-driver" "mesa-vdpau" "lib32-mesa-vdpau" "lib32-mesa-demos")
+
+    # Check if amdgpu kernel module is loaded
+    if lsmod | grep -q '^amdgpu\s'; then
+        local total_packages=$((${#pacman_gpu_packages[@]}))
+
+        echo "${COLOR_GREEN}:: GPU packages to be installed - Package (${total_packages})${COLOR_RESET}"
+
+        for package in "${pacman_gpu_packages[@]}"; do
+            echo "${COLOR_GREY}$package${COLOR_RESET}"
+        done
+
+        echo "${COLOR_GREEN}Would you like to install these packages to enhance your gaming experience?${COLOR_RESET}"
+        if prompt_yna ":: Install these GPU pacman packages?"; then
+            sudo pacman -S "${pacman_gpu_packages[@]}"
+        fi
+    else
+        echo "${COLOR_YELLOW}:: AMDGPU driver not detected. These packages are typically used with AMD GPUs. Installation aborted.${COLOR_RESET}"
+    fi
+}
 
 # Function to install aur packages
 install_aur_packages() {
@@ -173,6 +196,7 @@ main() {
     fi
 
     install_pacman_packages
+    install_gpu_package
     check_yay
     install_aur_packages
     
