@@ -185,6 +185,16 @@ ly_detect() {
     fi
 }
 
+# Function to prompt for installation confirmation
+prompt_installation() {
+    if prompt_yna ":: Do you want to continue with the installation?"; then
+        return 0
+    else
+        echo "${COLOR_YELLOW}:: Installation aborted.${COLOR_RESET}"
+        exit 0
+    fi
+}
+
 # Main function
 main() {
     # Check if a resolution is selected
@@ -237,6 +247,10 @@ main() {
 
 # Check if the distro is Arch Linux
 if [ -f /etc/arch-release ]; then
+
+    # Prompt for installation confirmation
+    prompt_installation
+
     # Get the connected display name
     connected_display=$(xrandr | awk '/\<connected\>/ {print $1}')
 
