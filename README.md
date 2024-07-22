@@ -2,6 +2,8 @@
 
 This repository is dedicated to my Hyprland WM Arch Linux configuration files.
 
+![](./screenshot/2024-07-22-145706_hyprshot.png)
+
 ## Installation instructions
 
 ### Mirror Installtion
@@ -45,7 +47,3 @@ You can select your preferred mirror for installation. Here's my Mirror
 ### Additional Configuration
 
 - **Steam**: To enhance download speeds, enable HTTP/2 and optimize download rates.
-
-### Screenshots
-
-![](./screenshot/2024-07-22-145706_hyprshot.png)
