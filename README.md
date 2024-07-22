@@ -38,7 +38,10 @@ You can select your preferred mirror for installation. Here's my Mirror
 | Sound Server             | Pulseaudio      | Pacman          |
 | AUR Helper               | Yay             | Manually (Git)  |
 | Icon Theme               | Papirus         | Pacman          |
-
+| IDLE Management          | Hypridle        | Pacman          |
+| Recorder                 | wf-recorder     | Pacman          |
+| Fonts                    | Jetbrains       | Pacman          |
+    
 ### Additional Configuration
 
 - **Steam**: To enhance download speeds, enable HTTP/2 and optimize download rates.
