@@ -53,7 +53,7 @@ install_pacman_packages() {
     local pacman_editor_packages=("neovim" "vim")
     local pacman_clipboard_packages=("cliphist" "clipmenu")
     local pacman_display_manager_package=("ly")
-    local pacman_hypr_packages=("hyprland" "hyprlock" "hypridle")
+    local pacman_hypr_packages=("hyprland" "hyprlock" "hypridle" "xdg-desktop-portal-hyprland")
     local pacman_fonts_packages=("ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "papirus-icon-theme")
     local pacman_utilities_packages=("waybar" "fuzzel" "fastfetch" "wf-recorder" "swaync")
     local pacman_audio_packages=("pulseaudio" "pavucontrol" "lib32-alsa-plugins" "lib32-alsa-lib" "alsa-plugins")
