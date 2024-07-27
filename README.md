@@ -6,7 +6,7 @@ This repository is dedicated to my Hyprland WM Arch Linux configuration files.
 
 ## Installation instructions
 
-### Mirror Installtion
+### Mirror Select
 
 You can select your preferred mirror for installation. Here's my Mirror
 
