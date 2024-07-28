@@ -9,9 +9,10 @@ readonly COLOR_RESET=$(tput sgr0)
 
 # Function to prompt for Yes/No
 prompt_yna() {
+    local prompt_message="$1"
     local choice
     while true; do
-        read -rp "${COLOR_GREEN}$1 (Y/N): ${COLOR_RESET}" choice
+        read -rp "${COLOR_GREEN}${prompt_message} (Y/N): ${COLOR_RESET}" choice
         case $choice in
             [Yy]*) return 0 ;;
             [Nn]*) return 1 ;;
@@ -49,36 +50,39 @@ check_yay() {
 
 # Function to install Pacman packages
 install_pacman_packages() {
-    local pacman_terminal_packages=("zsh" "kitty")
-    local pacman_editor_packages=("neovim" "vim")
-    local pacman_clipboard_packages=("cliphist" "clipmenu")
-    local pacman_display_manager_package=("ly")
-    local pacman_hypr_packages=("hyprland" "hyprlock" "hypridle" "xdg-desktop-portal-hyprland")
-    local pacman_fonts_packages=("ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "papirus-icon-theme")
-    local pacman_utilities_packages=("waybar" "fuzzel" "fastfetch" "wf-recorder" "swaync")
-    local pacman_audio_packages=("pulseaudio" "pavucontrol" "lib32-alsa-plugins" "lib32-alsa-lib" "alsa-plugins")
-    
-    local total_packages=$(( ${#pacman_terminal_packages[@]} + ${#pacman_editor_packages[@]} + ${#pacman_clipboard_packages[@]} + ${#pacman_display_manager_package[@]} + ${#pacman_hypr_packages[@]} + ${#pacman_fonts_packages[@]} + ${#pacman_utilities_packages[@]} + ${#pacman_audio_packages[@]} ))
+    local packages=(
+        "zsh" "kitty"
+        "neovim" "vim"
+        "cliphist" "clipmenu"
+        "ly"
+        "hyprland" "hyprlock" "hypridle" "xdg-desktop-portal-hyprland"
+        "ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "papirus-icon-theme"
+        "waybar" "fuzzel" "fastfetch" "wf-recorder" "swaync"
+        "pulseaudio" "pavucontrol" "alsa-plugins" "lib32-alsa-plugins" "lib32-alsa-lib"
+    )
 
+    local total_packages=${#packages[@]}
     echo "${COLOR_GREEN}:: Pacman packages to be installed - Package (${total_packages})${COLOR_RESET}"
 
-    for package in "${pacman_terminal_packages[@]}" "${pacman_editor_packages[@]}" "${pacman_clipboard_packages[@]}" "${pacman_display_manager_package[@]}" "${pacman_fonts_packages[@]}" "${pacman_hypr_packages[@]}" "${pacman_utilities_packages[@]}" "${pacman_audio_packages[@]}"; do
+    for package in "${packages[@]}"; do
         echo "${COLOR_GREY}$package${COLOR_RESET}"
     done
 
     if prompt_yna ":: Install these pacman packages?"; then
-        sudo pacman -S "${pacman_terminal_packages[@]}" "${pacman_editor_packages[@]}" "${pacman_clipboard_packages[@]}" "${pacman_display_manager_package[@]}" "${pacman_fonts_packages[@]}" "${pacman_hypr_packages[@]}" "${pacman_utilities_packages[@]}" "${pacman_audio_packages[@]}"
+        sudo pacman -S "${packages[@]}"
     fi
 }
 
 # Function to install GPU packages
 install_gpu_package() {
-    # Define the GPU-related packages to install
-    local pacman_gpu_packages=("mesa" "lib32-mesa" "xf86-video-amdgpu" "vulkan-radeon" "amdvlk" "lib32-vulkan-radeon" "lib32-amdvlk" "libva-mesa-driver" "mesa-vdpau" "lib32-mesa-vdpau" "lib32-mesa-demos")
+    local pacman_gpu_packages=(
+        "amdvlk" "lib32-amdvlk"
+        "lib32-mesa" "lib32-mesa-demos" "lib32-mesa-vdpau" "lib32-vulkan-radeon" 
+        "libva-mesa-driver" "mesa" "mesa-vdpau" "vulkan-radeon" "xf86-video-amdgpu"
+    )
 
-    # Check if amdgpu kernel module is loaded
     if lsmod | grep -q '^amdgpu\s'; then
-        local total_packages=$((${#pacman_gpu_packages[@]}))
+        local total_packages=${#pacman_gpu_packages[@]}
 
         echo "${COLOR_GREEN}:: GPU packages to be installed - Package (${total_packages})${COLOR_RESET}"
 
@@ -86,7 +90,6 @@ install_gpu_package() {
             echo "${COLOR_GREY}$package${COLOR_RESET}"
         done
 
-        echo "${COLOR_GREEN}Would you like to install these packages to enhance your gaming experience?${COLOR_RESET}"
         if prompt_yna ":: Install these GPU pacman packages?"; then
             sudo pacman -S "${pacman_gpu_packages[@]}"
         fi
@@ -95,23 +98,25 @@ install_gpu_package() {
     fi
 }
 
-# Function to install aur packages
+# Function to install AUR packages
 install_aur_packages() {
     local aur_packages=("wlogout" "hyprshot" "swww" "overskride")
     echo "${COLOR_GREEN}:: AUR packages to be installed:${COLOR_RESET}"
+
     for package in "${aur_packages[@]}"; do
         echo "${COLOR_GREY}$package${COLOR_RESET}"
     done
-    if prompt_yna ":: Install these aur packages?"; then
+
+    if prompt_yna ":: Install these AUR packages?"; then
         yay -S "${aur_packages[@]}"
     fi
 }
 
-# Copy configuration files
 config_dir="$HOME/.config"
 
-# Function to copy configuration files
-copy_config_files() {
+# Function to copy and update configuration files
+copy_and_update_config_files() {
+    # Copy configuration files
     if prompt_yna ":: Copy configuration files?"; then
         cp -rv ./hypr "$config_dir/"
         cp -rv ./kitty "$config_dir/"
@@ -125,11 +130,45 @@ copy_config_files() {
         cp -rv ./.wallpaper/ "$HOME/"
 
         sudo cp -v ./ly/config.ini /etc/ly
+
+        echo "${COLOR_GREEN}:: Configuration files copied successfully.${COLOR_RESET}"
+        
+        # Verify that the files have been copied
+        local hyprland_config="$HOME/.config/hypr/hyprland.conf"
+        local hyprlock_config="$HOME/.config/hypr/hyprlock.conf"
+
+        if [[ -f $hyprland_config && -f $hyprlock_config ]]; then
+            # Prompt to update configuration files
+            if prompt_yna ":: Update hyprland and hyprlock configuration files? (This will also prompt for the monitor refresh rate you want)"; then
+                # Prompt for monitor refresh rate until a valid integer is provided
+                while true; do
+                    read -rp ":: Enter the Monitor refresh rate you want: " monitor_hz
+                    if [[ -z $monitor_hz ]]; then
+                        echo "${COLOR_YELLOW}:: Warning - Input cannot be empty.${COLOR_RESET}"
+                    elif ! [[ $monitor_hz =~ ^[0-9]+$ ]]; then
+                        echo "${COLOR_DARK_RED}:: Error - '$monitor_hz' is not a valid integer.${COLOR_RESET}"
+                    else
+                        break
+                    fi
+                done
+
+                # Update hyprland.conf on line 16
+                sed -i "16 s/^monitor=.*/monitor=$connected_display,$selected_resolution@$monitor_hz,0x0,1/" "$hyprland_config"
+
+                # Update hyprlock.conf
+                sed -i "s/monitor = .*/monitor = $connected_display/g" "$hyprlock_config"
+            else
+                echo "${COLOR_YELLOW}:: Skipping configuration file updates.${COLOR_RESET}"
+            fi
+        else
+            echo "${COLOR_DARK_RED}:: Warning - Some configuration files are missing.${COLOR_RESET}"
+        fi
     else
-        echo "${COLOR_YELLOW}:: Skipping configuration file copying.${COLOR_RESET}"
+        echo "${COLOR_YELLOW}:: Skipping configuration file copying and updates.${COLOR_RESET}"
     fi
 }
 
+# Function to copy Steam configuration files
 copy_steam_config_files() {
     if prompt_yna ":: Do you want to copy Steam configuration files?"; then
         if command_exists steam; then
@@ -139,7 +178,7 @@ copy_steam_config_files() {
             echo "Steam is not installed. Installing Steam..."
             sudo pacman -S steam
             if [ $? -eq 0 ]; then
-                echo "Steam install successfully."
+                echo "Steam installed successfully."
                 cp -v ./.steam/steam/steam_dev.cfg ~/.steam/steam/
                 echo "Steam configuration files copied successfully."
             else
@@ -152,26 +191,20 @@ copy_steam_config_files() {
 }
 
 # Function to detect and configure Ly as the default display manager
-ly_detect() {
+configure_ly() {
     echo -e "${COLOR_YELLOW}:: Setting up Ly as your Default Display Manager. If Ly is already set up, this step will be skipped.${COLOR_RESET}"
 
-    # Get the currently running display manager
-    dm=$(ps -eo comm | grep -E '^ly-dm|^gdm|^sddm|^lightdm|^lxdm|^xdm' | head -n 1)
-
-    # Define the list of display managers
-    dm_package=("ly-dm" "gdm" "sddm" "lightdm" "xdm" "lxdm")
+    local dm=$(ps -eo comm | grep -E '^ly-dm|^gdm|^sddm|^lightdm|^lxdm|^xdm' | head -n 1)
+    local dm_package=("ly-dm" "gdm" "sddm" "lightdm" "xdm" "lxdm")
 
     if [ -n "$dm" ]; then
-    
-        # Check if the detected display manager is ly-dm
         if [ "$dm" == "ly-dm" ]; then
             echo -e "${COLOR_GREEN}:: You are already using Ly as your display manager. Nothing to do. Skipping...${COLOR_RESET}"
         else
             echo -e "${COLOR_GREEN}:: Setting Ly as your default display manager...${COLOR_RESET}"
             sudo systemctl enable ly.service
         fi
-    
-        # Disable auto-start for other display managers
+
         for package in "${dm_package[@]}"; do
             if [ "$package" != "$dm" ] && systemctl is-active --quiet "$package"; then
                 echo -e "${COLOR_GREEN}:: Disabling $package...${COLOR_RESET}"
@@ -179,9 +212,18 @@ ly_detect() {
                 echo -e "${COLOR_GREEN}:: Successfully disabled $package as your previous display manager.${COLOR_RESET}"
             fi
         done
-    
     else
         echo "Unable to determine the display manager."
+    fi
+}
+
+# Function to clone NvChad and run Neovim
+clone_nvchad_and_run_nvim() {
+    if prompt_yna ":: Clone NvChad and run neovim?"; then
+        echo "${COLOR_YELLOW}:: After lazy.nvim finishes downloading plugins, execute the command :MasonInstallAll in Neovim."
+        git clone https://github.com/NvChad/starter "$HOME/.config/nvim" && nvim
+    else
+        echo "${COLOR_YELLOW}:: Skipping NvChad cloning and nvim execution.${COLOR_RESET}"
     fi
 }
 
@@ -205,50 +247,28 @@ main() {
         echo "${COLOR_GREEN}:: You selected $selected_resolution as your screen resolution. ($connected_display)${COLOR_RESET}"
     fi
 
+    # Install packages
     install_pacman_packages
     install_gpu_package
     check_yay
     install_aur_packages
-    
-    ly_detect
 
-    copy_config_files
+    # Configure Display Manager
+    configure_ly
+
+    # Copy configuration files
+    copy_and_update_config_files
     copy_steam_config_files
-   
-    # Prompt for monitor refresh rate until a valid integer is provided
-    while true; do
-        read -rp ":: Enter the Monitor refresh rate you want: " monitor_hz
-        if [[ -z $monitor_hz ]]; then
-            echo "${COLOR_YELLOW}:: Warning - Input cannot be empty.${COLOR_RESET}"
-        elif ! [[ $monitor_hz =~ ^[0-9]+$ ]]; then
-            echo "${COLOR_DARK_RED}:: Error - '$monitor_hz' is not a valid integer.${COLOR_RESET}"
-        else
-            break
-        fi
-    done
 
-    # Update hyprland.conf on line 16
-    sed -i "16 s/^monitor=.*/monitor=$connected_display,$selected_resolution@$monitor_hz,0x0,1/" "$config_dir/hypr/hyprland.conf"
-
-    # Update hyprlock.conf
-    sed -i "s/monitor = .*/monitor = $connected_display/g" "$config_dir/hypr/hyprlock.conf"
-    
-    # Prompt for cloning NvChad and running nvim
-    if prompt_yna ":: Clone NvChad and run neovim?"; then
-        echo "${COLOR_YELLOW}:: After lazy.nvim finishes downloading plugins, execute the command :MasonInstallAll in Neovim."
-        git clone https://github.com/NvChad/starter "$config_dir/nvim" && nvim
-    else
-        echo "${COLOR_YELLOW}:: Skipping NvChad cloning and nvim execution.${COLOR_RESET}"
-    fi
+    # Clone NvChad and run Neovim if user confirms
+    clone_nvchad_and_run_nvim
 
     echo "${COLOR_GREEN}:: Installation completed successfully.${COLOR_RESET}"
     echo "${COLOR_GREEN}:: Please reboot your system to apply all changes!${COLOR_RESET}"
 }
 
-# Check if the distro is Arch Linux
+# Main script execution
 if [ -f /etc/arch-release ]; then
-
-    # Prompt for installation confirmation
     prompt_installation
 
     # Get the connected display name
