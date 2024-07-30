@@ -271,26 +271,26 @@ copy_steam_config_files() {
 configure_ly() {
     echo -e "${COLOR_YELLOW}:: Setting up Ly as your Default Display Manager. If Ly is already set up, this step will be skipped.${COLOR_RESET}"
 
-    local dm=$(ps -eo comm | grep -E '^ly-dm|^gdm|^sddm|^lightdm|^lxdm|^xdm' | head -n 1)
-    local dm_package=("ly-dm" "gdm" "sddm" "lightdm" "xdm" "lxdm")
+    # Check the currently running display manager
+    local current_dm=$(ps -eo comm | grep -E '^ly-dm|^gdm|^sddm|^lightdm|^lxdm|^xdm' | head -n 1)
+    local dm_packages=("gdm" "sddm" "lightdm" "xdm" "lxdm")
 
-    if [ -n "$dm" ]; then
-        if [ "$dm" == "ly-dm" ]; then
-            echo -e "${COLOR_GREEN}:: You are already using Ly as your display manager. Nothing to do. Skipping...${COLOR_RESET}"
-        else
+    if [ "$current_dm" == "ly-dm" ]; then
+        echo -e "${COLOR_GREEN}:: You are already using Ly as your display manager. Nothing to do. Skipping...${COLOR_RESET}"
+    else
+        if [ -n "$current_dm" ]; then
             echo -e "${COLOR_GREEN}:: Setting Ly as your default display manager...${COLOR_RESET}"
             sudo systemctl enable ly.service
         fi
 
-        for package in "${dm_package[@]}"; do
-            if [ "$package" != "$dm" ] && systemctl is-active --quiet "$package"; then
+        # Disable other display managers if they are active
+        for package in "${dm_packages[@]}"; do
+            if systemctl is-active --quiet "$package.service"; then
                 echo -e "${COLOR_GREEN}:: Disabling $package...${COLOR_RESET}"
-                sudo systemctl disable "$package"
+                sudo systemctl disable "$package.service"
                 echo -e "${COLOR_GREEN}:: Successfully disabled $package as your previous display manager.${COLOR_RESET}"
             fi
         done
-    else
-        echo "Unable to determine the display manager."
     fi
 }
 
