@@ -57,12 +57,12 @@
           "label": "󰕧",
           "type": "toggle",
           "active": false,
-          "command": "sh -c ~/.config/swaync/script/wf-recorder.sh",
+          "command": "sh -c ~/script/swaync/wf-recorder.sh",
           "update-command": "sh -c 'pgrep -x wf-recorder > /dev/null && echo true || echo false'"
         },
         {
           "active": true,
-          "command": "sh -c ~/.config/cliphist/cliphist-menu.sh",
+          "command": "sh -c ~/script/cliphist/cliphist-menu.sh",
           "label": "",
           "type": "button"
         }

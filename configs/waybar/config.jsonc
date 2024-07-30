@@ -57,7 +57,7 @@
 
     "custom/upgrade": {
       "format": "⚙",
-      "on-click": "kitty --execute ~/.config/waybar/script/update.sh",
+      "on-click": "kitty --execute ~/script/waybar/update.sh",
       "tooltip-format": "Fully System upgrade"
     },
 

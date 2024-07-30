@@ -194,19 +194,20 @@ config_dir="$HOME/.config"
 copy_and_update_config_files() {
     # Copy configuration files
     if prompt_yna ":: Copy configuration files?"; then
-        cp -rv ./hypr "$config_dir/"
-        cp -rv ./kitty "$config_dir/"
-        cp -rv ./fastfetch "$config_dir/"
-        cp -rv ./waybar "$config_dir/"
-        cp -rv ./fuzzel "$config_dir"
-        cp -rv ./swaync "$config_dir/"
-        cp -rv ./wlogout "$config_dir/"
-        cp -rv ./swww "$config_dir/"
-        cp -rv ./cliphist "$config_dir/"
+        cp -rv ./configs/hypr "$config_dir/"
+        cp -rv ./configs/kitty "$config_dir/"
+        cp -rv ./configs/fastfetch "$config_dir/"
+        cp -rv ./configs/waybar "$config_dir/"
+        cp -rv ./configs/fuzzel "$config_dir"
+        cp -rv ./configs/swaync "$config_dir/"
+        cp -rv ./configs/wlogout/ "$config_dir/"
+
+        sudo cp -v ./configs/ly/config.ini /etc/ly
+        
+        cp -rv ./script "$config_dir/"
+        
         cp -rv ./.wallpaper/ "$HOME/"
-
-        sudo cp -v ./ly/config.ini /etc/ly
-
+        
         echo "${COLOR_GREEN}:: Configuration files copied successfully.${COLOR_RESET}"
         
         # Verify that the files have been copied
@@ -248,14 +249,14 @@ copy_and_update_config_files() {
 copy_steam_config_files() {
     if prompt_yna ":: Do you want to copy Steam configuration files?"; then
         if command_exists steam; then
-            cp -v ./.steam/steam/steam_dev.cfg ~/.steam/steam/
+            cp -v ./configs/steam/steam_dev.cfg ~/.steam/steam/
             echo "Steam configuration files copied successfully."
         else
             echo "Steam is not installed. Installing Steam..."
             sudo pacman -S steam
             if [ $? -eq 0 ]; then
                 echo "Steam installed successfully."
-                cp -v ./.steam/steam/steam_dev.cfg ~/.steam/steam/
+                cp -v ./configs/steam/steam_dev.cfg ~/.steam/steam/
                 echo "Steam configuration files copied successfully."
             else
                 echo "Failed to install Steam."
