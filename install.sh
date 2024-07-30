@@ -204,7 +204,7 @@ copy_and_update_config_files() {
 
         sudo cp -v ./configs/ly/config.ini /etc/ly
         
-        cp -rv ./script "$config_dir/"
+        cp -rv ./script "$HOME/"
         
         cp -rv ./.wallpaper/ "$HOME/"
         
