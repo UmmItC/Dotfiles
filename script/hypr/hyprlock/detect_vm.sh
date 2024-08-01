@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# This script is designed for scenarios where gaming with a KVM (Keyboard, Video, Mouse switch), activating hypridle, and using hyprlock to lock your screen may conflict with the KVM setup. This conflict can result in your KVM system shutting down unexpectedly, potentially causing data loss or system instability. Additionally, even if you are using KDE or GNOME, it's advisable to disable default idle options to prevent this issue, especially for GPU Passthrough users. Furthermore, the main system may become unresponsive, necessitating a system reboot.
+# This script is designed for scenarios where gaming with a KVM (Keyboard, Video, Mouse switch),
+# activating hypridle, and using hyprlock to lock your screen may conflict with the KVM setup.
+# This conflict can result in your KVM system shutting down unexpectedly, potentially causing
+# data loss or system instability. Additionally, even if you are using KDE or GNOME, it's
+# advisable to disable default idle options to prevent this issue, especially for GPU Passthrough users.
+# Furthermore, the main system may become unresponsive, necessitating a system reboot.
 
 # Define color variables
 BLUE='\e[34m'
@@ -15,11 +20,20 @@ check_qemu_and_lock() {
 
         # Display notification about QEMU running
         notify-send "QEMU is Running" \
-                    "System locking is not performed because QEMU is using system resources." \
+                    "$(cat ~/script/hypr/hyprlock/message_hyprlock_qemu)" \
                     --app-name="hyprlock" \
                     --icon="hyprlock"
     else
         echo -e "${GREEN}:: QEMU is not running. Going to use hyprlock to lock your system.${RESET}"
+
+        # Display notification that Hyprlock is about to lock after 15 seconds
+        notify-send "Hyprlock" \
+                    "$(cat ~/script/hypr/hyprlock/message_hyprlock)" \
+                    --app-name="hyprlock" \
+                    --icon="hyprlock"
+
+        # # Sleep 15 seconds and lock the system by hyprlock
+        sleep 15
 
         # Execute hyprlock to lock the system
         hyprlock
