@@ -1,0 +1,51 @@
+.client-image {
+    margin: 15px;
+}
+
+.client-index {
+    margin: 6px;
+    padding: 5px;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: 3px solid rgba(130, 130, 180, 0.4);
+    background-color: rgba(20, 20, 20, 0.99);
+}
+
+.client {
+    border-radius: 15px;
+    border: 3px solid rgba(130, 130, 180, 0.4);
+    background-color: rgba(20, 20, 25, 0.85);
+    color: #E6E1CF;
+}
+
+.client:hover {
+    background-color: rgba(30, 30, 30, 0.99);
+}
+
+.client_active {
+    border: 3px solid rgba(239, 9, 9, 0.94);
+}
+
+.workspace {
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: 3px solid rgba(80, 80, 80, 0.4);
+    background-color: rgba(20, 20, 25, 0.85); 
+    color: #E6E1CF
+}
+
+.workspace_special {
+    border: 3px solid rgba(0, 255, 0, 0.4);
+}
+
+.workspaces {
+    margin: 10px;
+}
+
+window {
+    border-radius: 15px;
+    opacity: 0.9;
+    border: 6px solid rgba(0, 0, 0, 0.4);
+}
