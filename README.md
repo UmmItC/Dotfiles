@@ -43,6 +43,7 @@ You can select your preferred mirror for installation. Here's my Mirror
 | IDLE Management          | Hypridle        | Pacman          |
 | Recorder                 | wf-recorder     | Pacman          |
 | Fonts                    | Jetbrains       | Pacman          |
+| Windows Management       | Hyprswitch      | AUR             |
     
 ### Additional Configuration
 
