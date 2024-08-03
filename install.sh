@@ -60,6 +60,7 @@ install_pacman_packages() {
         "ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "papirus-icon-theme"
         "waybar" "fuzzel" "fastfetch" "wf-recorder" "swaync"
         "pulseaudio" "pavucontrol" "alsa-plugins" "lib32-alsa-plugins" "lib32-alsa-lib"
+        "mpv"
     )
 
     local total_packages=${#packages[@]}
@@ -200,7 +201,8 @@ copy_and_update_config_files() {
         cp -rv ./configs/waybar "$config_dir/"
         cp -rv ./configs/fuzzel "$config_dir"
         cp -rv ./configs/swaync "$config_dir/"
-        cp -rv ./configs/wlogout/ "$config_dir/"
+        cp -rv ./configs/wlogout "$config_dir/"
+        cp -rv ./configs/mpv "$config_dir/"
 
         sudo cp -v ./configs/ly/config.ini /etc/ly
         
