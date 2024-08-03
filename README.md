@@ -44,6 +44,7 @@ You can select your preferred mirror for installation. Here's my Mirror
 | Recorder                 | wf-recorder     | Pacman          |
 | Fonts                    | Jetbrains       | Pacman          |
 | Windows Management       | Hyprswitch      | AUR             |
+| Video Player             | MPV             | Pacman          |
     
 ### Additional Configuration
 
