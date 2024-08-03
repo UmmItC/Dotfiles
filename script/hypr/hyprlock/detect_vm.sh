@@ -12,6 +12,16 @@ BLUE='\e[34m'
 GREEN='\e[32m'
 RESET='\e[0m'  # Reset color to default
 
+# Function to check if hyprlock is running
+check_hyprlock_running() {
+    if pgrep -x "hyprlock" > /dev/null; then
+        echo -e "${BLUE}:: Hyprlock is already running. No need to lock the system.${RESET}"
+        return 0
+    else
+        return 1
+    fi
+}
+
 # Function to check QEMU status
 check_qemu_and_lock() {
     # Check if qemu-system-x86_64 is running
@@ -24,7 +34,13 @@ check_qemu_and_lock() {
                     --app-name="hyprlock" \
                     --icon="hyprlock"
     else
-        echo -e "${GREEN}:: QEMU is not running. Going to use hyprlock to lock your system.${RESET}"
+        echo -e "${GREEN}:: QEMU is not running. Checking if hyprlock is running...${RESET}"
+
+        # Check if hyprlock is running
+        if check_hyprlock_running; then
+            # Hyprlock is running, so do nothing
+            return
+        fi
 
         # Display notification that Hyprlock is about to lock after 15 seconds
         notify-send "Hyprlock" \
@@ -32,7 +48,7 @@ check_qemu_and_lock() {
                     --app-name="hyprlock" \
                     --icon="hyprlock"
 
-        # # Sleep 15 seconds and lock the system by hyprlock
+        # Sleep 15 seconds and lock the system by hyprlock
         sleep 15
 
         # Execute hyprlock to lock the system
@@ -45,6 +61,14 @@ if command -v qemu-system-x86_64 > /dev/null; then
     echo -e "${GREEN}:: QEMU is installed. Checking if qemu-system is launched or not...${RESET}"
     check_qemu_and_lock
 else
-    echo -e "${BLUE}:: QEMU is not installed. Locking with hyprlock.${RESET}"
+    echo -e "${BLUE}:: QEMU is not installed. Checking if hyprlock is running...${RESET}"
+
+    # Check if hyprlock is running
+    if check_hyprlock_running; then
+        # Hyprlock is running, so do nothing
+        return
+    fi
+
+    # Hyprlock is not running, so lock the system
     hyprlock
 fi
