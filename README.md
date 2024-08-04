@@ -45,6 +45,7 @@ You can select your preferred mirror for installation. Here's my Mirror
 | Fonts                    | Jetbrains       | Pacman          |
 | Windows Management       | Hyprswitch      | AUR             |
 | Video Player             | MPV             | Pacman          |
+| Audio Visualizer         | Cava            | AUR             |
     
 ### Additional Configuration
 
