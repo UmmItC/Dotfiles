@@ -102,7 +102,7 @@ install_gpu_package() {
 
 # Function to install AUR packages
 install_aur_packages() {
-    local aur_packages=("hyprshot" "hyprswitch" "swww" "wlogout" "overskride")
+    local aur_packages=("hyprshot" "hyprswitch" "swww" "wlogout" "overskride" "cava")
     echo "${COLOR_GREEN}:: AUR packages to be installed:${COLOR_RESET}"
 
     for package in "${aur_packages[@]}"; do
@@ -203,6 +203,7 @@ copy_and_update_config_files() {
         cp -rv ./configs/swaync "$config_dir/"
         cp -rv ./configs/wlogout "$config_dir/"
         cp -rv ./configs/mpv "$config_dir/"
+        cp -rv ./configs/cava "$config_dir/"
 
         sudo cp -v ./configs/ly/config.ini /etc/ly
         
