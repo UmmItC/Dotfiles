@@ -6,7 +6,7 @@
 - [ ] Implement `sed` command to dynamically grep the interface names.
 
 ### Sound Input
-- [ ] Install required packages such as PulseAudio to enable sound functionality for Waybar control.
+- [x] Install required packages such as PulseAudio to enable sound functionality for Waybar control.
 
 ### File Manager
 - [ ] Add Yazi Configuration
