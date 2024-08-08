@@ -37,12 +37,13 @@ if [ -n "$selected" ]; then
         "$selected_path"
 
     # Display notification about wallpaper change
-    notify-send "Wallpaper Changed" "Wallpaper changed to $selected_path" \
+    notify-send "Swww" "Wallpaper changed to $selected_path" \
         --app-name="Swww" \
         --icon="$selected_path"
 else
     # If no wallpaper was selected (selected_path is empty), notify the user or handle as needed
-    notify-send "No Wallpaper Selected" "No wallpaper was selected. Please choose a wallpaper." \
-        --app-name="Swww"
+    notify-send "Swww" "No wallpaper was selected. Please choose a wallpaper." \
+        --app-name="Swww" \
+        --icon="Swww"
 fi
 

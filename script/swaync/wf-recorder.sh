@@ -17,7 +17,7 @@ record_or_stop() {
     if [[ $SWAYNC_TOGGLE_STATE == true ]]; then
         filename="$recording_dir/wf-recorder-$(date +'%Y-%m-%d-%H-%M-%S').mkv"
         notify-send "wf-recorder" "Starting video recording with wf-recorder" \
-        --app-name="wf-recorder"
+        --app-name="wf-recorder" --icon="wf-recorder"
         wf-recorder -a --file "$filename"
     else
         # Get the PID of wf-recorder
@@ -27,7 +27,7 @@ record_or_stop() {
             kill -SIGINT $PID
             filename=$(ls -t "$recording_dir" | head -n1)
             notify-send "wf-recorder" "Video recording ended and saved to: \n\n$recording_dir/$filename" \
-            --app-name="wf-recorder"
+            --app-name="wf-recorder" --icon="wf-recorder"
             echo "Video recording ended and saved to $filename"
         else
             echo "wf-recorder is not running."

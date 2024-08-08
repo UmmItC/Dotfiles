@@ -29,7 +29,7 @@ check_qemu_and_lock() {
         echo -e "${BLUE}:: QEMU is running.${RESET}"
 
         # Display notification about QEMU running
-        notify-send "QEMU is Running" \
+        notify-send "Hyprlock" \
                     "$(cat ~/script/hypr/hyprlock/message_hyprlock_qemu)" \
                     --app-name="hyprlock" \
                     --icon="hyprlock"

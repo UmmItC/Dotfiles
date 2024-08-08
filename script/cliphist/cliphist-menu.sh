@@ -16,12 +16,12 @@ if [[ -n "$clipboard_text" ]]; then
         echo "$decoded_text" | wl-copy
 
         # Notify the user
-        notify-send "Clipboard" "Selected text copied to clipboard" --app-name="Cliphist"
+        notify-send "Clipboard" "Selected text copied to clipboard" --app-name="Cliphist" --icon="Cliphist"
 
     else
-        notify-send "Clipboard" "No text selected from clipboard history" --app-name="Cliphist"
+        notify-send "Clipboard" "No text selected from clipboard history" --app-name="Cliphist" --icon="Cliphist"
     fi
 
 else
-    notify-send "Clipboard" "No clipboard history available or no text copied recently" --app-name="Cliphist"
+    notify-send "Clipboard" "No clipboard history available or no text copied recently" --app-name="Cliphist" --icon="Cliphist"
 fi

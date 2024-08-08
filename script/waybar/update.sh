@@ -81,7 +81,7 @@ while true; do
 
             # Print total update time
             echo -e "${COLOR_GREEN}Total update time: ${total_duration} seconds${COLOR_RESET}"
-            notify-send "System Upgrade" "Upgrade completed successfully.\nTotal duration: ${total_duration} seconds"
+            notify-send "update.sh" "Upgrade completed successfully.\nTotal duration: ${total_duration} seconds" --app-name="Upgrade" --icon="Upgrade"
 
             # Prompt user to reboot the system
             while true; do
