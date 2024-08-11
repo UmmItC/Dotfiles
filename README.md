@@ -69,6 +69,7 @@ Here's a list of the packages I used.
 | Windows Management       | Hyprswitch      | AUR             |
 | Video Player             | MPV             | Pacman          |
 | Audio Visualizer         | Cava            | AUR             |
+| Emoji Picker             | Emote           | AUR             |
     
 ### Additional Configuration
 
