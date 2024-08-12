@@ -75,6 +75,22 @@ Here's a list of the packages I used.
 
 - **Steam**: To enhance download speeds, enable HTTP/2 and optimize download rates.
 
+## Keybindings
+
+The hotkeys for managing your windows and launching tools are configured in the Hyprland configuration file located at `./configs/hypr/hyprland.conf`.
+
+| Key Combination   | Action                     |
+|-------------------|----------------------------|
+| `Superkey + T`    | Launch Kitty               |
+| `Superkey + C`    | Kill Windows               |
+| `Superkey + V`    | Toggle Floating Windows    |
+| `Superkey + J`    | Swap Windows               |
+| `Superkey + X`    | Launch Wlogout             |
+| `ALT_L + V`       | Launch Clipboard Manager   |
+| `ALT_L + W`       | Launch Wallpaper Picker    |
+| `ALT_L + E`       | Launch Emoji Picker        |
+| `ALT_L + TAB`     | Switch Windows             |
+
 ### Contribution Guidelines
 
 Always welcome both issues and pull requests! When submitting a pull request (PR), please adhere to the Conventional Commits specification. Avoid using vague commit messages such as `update` or `some update`.
