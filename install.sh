@@ -214,7 +214,7 @@ copy_and_update_config_files() {
         echo "${COLOR_GREEN}:: Configuration files copied successfully.${COLOR_RESET}"
         
         # Verify that the files have been copied
-        local hyprland_config="$HOME/.config/hypr/hyprland.conf"
+        local hyprland_config="$HOME/.config/hypr/hyprland/monitors.conf"
         local hyprlock_config="$HOME/.config/hypr/hyprlock.conf"
 
         if [[ -f $hyprland_config && -f $hyprlock_config ]]; then
@@ -233,7 +233,7 @@ copy_and_update_config_files() {
                 done
 
                 # Update hyprland.conf on line 16
-                sed -i "16 s/^monitor=.*/monitor=$connected_display,$selected_resolution@$monitor_hz,0x0,1/" "$hyprland_config"
+                sed -i "2 s/^monitor=.*/monitor=$connected_display,$selected_resolution@$monitor_hz,0x0,1/" "$hyprland_config"
 
                 # Update hyprlock.conf
                 sed -i "s/monitor = .*/monitor = $connected_display/g" "$hyprlock_config"
