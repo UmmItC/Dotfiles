@@ -232,7 +232,7 @@ copy_and_update_config_files() {
                     fi
                 done
 
-                # Update hyprland.conf on line 16
+                # Update hyprland.conf on line 2
                 sed -i "2 s/^monitor=.*/monitor=$connected_display,$selected_resolution@$monitor_hz,0x0,1/" "$hyprland_config"
 
                 # Update hyprlock.conf
