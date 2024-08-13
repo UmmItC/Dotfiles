@@ -60,19 +60,31 @@ while true; do
             # Using () for command blocks
             (
                 # Update Pacman and ignore dart package
-                execute_command "sudo pacman -Syuv --ignore dart" "Full system upgrade (Syuv)"
+                execute_command "sudo pacman -Syuv" "Full system upgrade (Syuv)"
 
                 # Update AUR packages using yay
                 execute_command "yay -Syu" "Upgrading AUR Packages"
 
-                # Upgrade oh my zsh
-                execute_command "~/.oh-my-zsh/tools/upgrade.sh" "Upgrading oh my zsh"
+                # Check if oh-my-zsh upgrade script exists before running it
+                if [ -f "$HOME/.oh-my-zsh/tools/upgrade.sh" ]; then
+                    execute_command "~/.oh-my-zsh/tools/upgrade.sh" "Upgrading oh my zsh"
+                else
+                    print_status "FAILED" "oh-my-zsh upgrade script not found"
+                fi
 
-                # Update Powerlevel10k theme
-                execute_command "git -C $HOME/powerlevel10k pull" "Upgrading Powerlevel10k"
+                # Check if Powerlevel10k repository exists before attempting to update
+                if [ -d "$HOME/powerlevel10k/.git" ]; then
+                    execute_command "git -C $HOME/powerlevel10k pull" "Upgrading Powerlevel10k"
+                else
+                    print_status "FAILED" "Powerlevel10k repository not found"
+                fi
 
-                # Update Flatpak packages
-                execute_command "flatpak update -v" "Upgrading Flatpak packages"
+                # Check if flatpak is installed before updating packages
+                if command -v flatpak &> /dev/null; then
+                    execute_command "flatpak update -v" "Upgrading Flatpak packages"
+                else
+                    print_status "FAILED" "flatpak is not installed"
+                fi
             )
 
             # Calculate total update duration
