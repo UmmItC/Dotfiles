@@ -2,7 +2,7 @@
 
 This repository is dedicated to my Hyprland DWM Arch Linux configuration files.
 
-![](./screenshot/2024-08-15-202526_hyprshot.png)
+![](./screenshot/2024-08-15-202943_hyprshot.png)
 
 # Installation Instructions
 
