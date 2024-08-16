@@ -1,33 +1,37 @@
 #!/bin/bash
 
+# Define the directory where recordings will be saved
+recording_dir="/home/$USER/Videos/wf-recorder"
+
+# Function to handle recording start or stop
 record_or_stop() {
-    recording_dir="/home/$USER/Videos/wf-recorder"
-
-    # Check if the directory exists; if not, create it
-    if ! ls "$recording_dir" > /dev/null 2>&1; then
-        mkdir -p "$recording_dir"
-    fi
-
-    # Check if the directory creation was successful
+    # Check if the recording directory exists; create it if not
     if [[ ! -d $recording_dir ]]; then
-        echo "Error: Failed to create the directory $recording_dir"
-        exit 1
+        mkdir -p "$recording_dir" || { echo "Error: Failed to create the directory $recording_dir"; exit 1; }
     fi
 
+    # Check if recording should start or stop
     if [[ $SWAYNC_TOGGLE_STATE == true ]]; then
-        filename="$recording_dir/wf-recorder-$(date +'%Y-%m-%d-%H-%M-%S').mkv"
+        # Start recording
+        local filename="$recording_dir/wf-recorder-$(date +'%Y-%m-%d-%H-%M-%S').mkv"
         notify-send "wf-recorder" "Starting video recording with wf-recorder" \
-        --app-name="wf-recorder" --icon="wf-recorder"
+            --app-name="wf-recorder" --icon="wf-recorder"
         wf-recorder -a --file "$filename"
     else
-        # Get the PID of wf-recorder
-        PID=$(pidof wf-recorder)
-        if [ -n "$PID" ]; then
-            echo "Sending Ctrl + C signal to wf-recorder with PID $PID"
-            kill -SIGINT $PID
+        # Stop recording
+        local pid
+        pid=$(pidof wf-recorder)
+
+        if [[ -n $pid ]]; then
+            # Send SIGINT signal to stop wf-recorder
+            echo "Sending Ctrl + C signal to wf-recorder with PID $pid"
+            kill -SIGINT "$pid"
+
+            # Get the most recent recording file
+            local filename
             filename=$(ls -t "$recording_dir" | head -n1)
             notify-send "wf-recorder" "Video recording ended and saved to: \n\n$recording_dir/$filename" \
-            --app-name="wf-recorder" --icon="wf-recorder"
+                --app-name="wf-recorder" --icon="wf-recorder"
             echo "Video recording ended and saved to $filename"
         else
             echo "wf-recorder is not running."
@@ -35,4 +39,5 @@ record_or_stop() {
     fi
 }
 
+# Call the function to start or stop recording
 record_or_stop
