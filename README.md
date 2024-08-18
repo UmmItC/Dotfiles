@@ -70,6 +70,7 @@ Here's a list of the packages I used.
 | Video Player             | MPV             | Pacman          |
 | Audio Visualizer         | Cava            | AUR             |
 | Emoji Picker             | Emote           | AUR             |
+| Color Picker             | Hyprpicker      | AUR             |
     
 ### Additional Configuration
 
@@ -90,6 +91,7 @@ The hotkeys for managing your windows and launching tools are configured in the 
 | `ALT_L + W`       | Launch Wallpaper Picker    |
 | `ALT_L + E`       | Launch Emoji Picker        |
 | `ALT_L + TAB`     | Switch Windows             |
+| `ALT_L + P`       | Launch Color Picker        |
 
 ### Contribution Guidelines
 
