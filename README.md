@@ -19,6 +19,15 @@ chmod +x ./install.sh
 ./install.sh
 ```
 
+## Installation Script
+
+The `./setup.sh` script helps with the fresh installation process and handles the git cloning of the repository. Alternatively, you can clone the repository manually and run `install.sh` directly.
+
+The `install.sh` script performs the following actions:
+
+1. Installs the packages required for my dotfiles.
+2. Copies configuration files to `~/`, `~/.config`, for the `ly` display manager, to `/etc/ly` and wallpaper on `~/.wallpaper`
+
 ## For manual configuration:
 
 Just Copy the necessary files you want to your configuration directory:
