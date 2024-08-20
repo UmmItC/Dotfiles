@@ -6,6 +6,12 @@ notify() {
     notify-send "Hyprpicker" "$message" --app-name="hyprpicker" --icon="hyprpicker"
 }
 
+# Check if hyprpicker is installed
+if ! command -v hyprpicker &> /dev/null; then
+    notify "Hyprpicker is not installed. Please install it first."
+    exit 1
+fi
+
 # Run hyprpicker and capture the output
 color=$(hyprpicker --autocopy)
 
@@ -18,5 +24,6 @@ else
     notify "Color $color has been copied to clipboard."
     
     # Just for the terminal display
-    echo $color
+    echo "$color"
 fi
+
