@@ -132,60 +132,34 @@ install_addition_setup() {
    
     local all_packages=("${packages_pacman[@]}" "${packages_aur[@]}")
     local total_packages=${#all_packages[@]}
-    echo -e "\n${COLOR_BLUE}:: This section is tailored to my personal setup.\nIf you prefer to skip it, you can simply type 'n'.\nHowever, if you want to install packages like fcitx5, LibreWolf, Mullvad, and other programs for building from source—please proceed with this section.\nNote that this is the final step and may take some time, as it involves building from source code. [Y/N]${COLOR_RESET}"
 
-    echo -e "\n${COLOR_GREEN}:: Packages to be installed - Total (${total_packages})${COLOR_RESET}"
+    echo -e """
+${COLOR_BLUE}:: This section is tailored to my personal setup.
+If you prefer to skip it, you can simply type 'n'.
+However, if you want to install packages like fcitx5, LibreWolf, Mullvad, and other programs for building from source—please proceed with this section.
+Note that this is the final step and may take some time, as it involves building from source code. [Y/N]${COLOR_RESET}
+"""
 
-    echo "${COLOR_GREEN}Pacman Packages:${COLOR_RESET}"
+    echo -e "${COLOR_GREEN}:: Packages to be installed - Total (${total_packages})${COLOR_RESET}"
+
+    echo -e "${COLOR_GREEN}Pacman Packages:${COLOR_RESET}"
     for package in "${packages_pacman[@]}"; do
-        echo "${COLOR_GREY}$package${COLOR_RESET}"
+        echo -e "${COLOR_GREY}$package${COLOR_RESET}"
     done
 
-    echo "${COLOR_GREEN}AUR Packages:${COLOR_RESET}"
+    echo -e "${COLOR_GREEN}AUR Packages:${COLOR_RESET}"
     for package in "${packages_aur[@]}"; do
-        echo "${COLOR_GREY}$package${COLOR_RESET}"
+        echo -e "${COLOR_GREY}$package${COLOR_RESET}"
     done
 
     if prompt_yna ":: Install these packages?"; then
-        echo "${COLOR_YELLOW}Installing Pacman packages...${COLOR_RESET}"
+        echo -e "${COLOR_YELLOW}Installing Pacman packages...${COLOR_RESET}"
         sudo pacman -S "${packages_pacman[@]}"
 
-        echo "${COLOR_YELLOW}Installing AUR packages...${COLOR_RESET}"
+        echo -e "${COLOR_YELLOW}Installing AUR packages...${COLOR_RESET}"
         for package in "${packages_aur[@]}"; do
             yay -S "$package"
         done
-
-        # Define the environment variables to add
-        local env_vars=(
-            "export GTK_IM_MODULE=fcitx"
-            "export XMODIFIERS=fcitx"
-            "export QT_IM_MODULE=fcitx"
-            "export SDL_IM_MODULE=fcitx"
-        )
-
-        # Check if the environment variables are already present
-        echo "${COLOR_YELLOW}Checking /etc/environment for existing input method variables...${COLOR_RESET}"
-        local found_all=true
-        for var in "${env_vars[@]}"; do
-            if ! sudo grep -q "^${var}$" /etc/environment; then
-                found_all=false
-                break
-            fi
-        done
-
-        if ! $found_all; then
-            # Append environment variables to /etc/environment
-            echo "${COLOR_YELLOW}Updating /etc/environment with input method variables...${COLOR_RESET}"
-            sudo bash -c 'cat << EOF >> /etc/environment
-export GTK_IM_MODULE=fcitx
-export XMODIFIERS=fcitx
-export QT_IM_MODULE=fcitx
-export SDL_IM_MODULE=fcitx
-EOF
-'
-        else
-            echo "${COLOR_GREEN}The input method variables are already present in /etc/environment.${COLOR_RESET}"
-        fi
     fi
 }
 
