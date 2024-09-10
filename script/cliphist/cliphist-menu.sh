@@ -1,12 +1,18 @@
 #!/bin/bash
 
+# Check if rofi is already running
+if pgrep -x "rofi" > /dev/null; then
+    notify-send "Rofi" "Well, rofi is already running :D" --app-name="rofi" --icon="rofi"
+    exit 1
+fi
+
 # Run cliphist to list clipboard history
 clipboard_text=$(cliphist list)
 
 # Check if cliphist returned any text
 if [[ -n "$clipboard_text" ]]; then
     # Use fuzzel and dmenu to select an item from clipboard history
-    selected_text=$(echo "$clipboard_text" | fuzzel --dmenu -w 80)
+    selected_text=$(echo "$clipboard_text" | rofi -dmenu -p "Select history:" -theme ~/.config/rofi/clipboard.rasi)
 
     if [[ -n "$selected_text" ]]; then
         # Decode the selected text using cliphist

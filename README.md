@@ -60,7 +60,7 @@ Here's a list of the packages I used.
 | Window Manager           | Hyprland        | Pacman          |
 | Power Management         | Wlogout         | AUR             |
 | Status Bar               | Waybar          | Pacman          |
-| Application Launcher     | Fuzzel          | Pacman          |
+| Application Launcher     | Rofi            | Pacman          |
 | Wallpaper Engine         | Swwww           | AUR             |
 | Text Editor              | Neovim          | Pacman          |
 | Notification Deamon      | Swaync          | Pacman          |

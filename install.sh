@@ -58,7 +58,7 @@ install_pacman_packages() {
         "ly"
         "hyprland" "hyprlock" "hypridle" "xdg-desktop-portal-hyprland"
         "ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "papirus-icon-theme"
-        "waybar" "fuzzel" "fastfetch" "wf-recorder" "swaync"
+        "waybar" "rofi" "fastfetch" "wf-recorder" "swaync"
         "pulseaudio" "pavucontrol" "alsa-plugins" "lib32-alsa-plugins" "lib32-alsa-lib"
         "mpv"
     )
@@ -173,7 +173,7 @@ copy_and_update_config_files() {
         cp -rv ./configs/kitty "$config_dir/"
         cp -rv ./configs/fastfetch "$config_dir/"
         cp -rv ./configs/waybar "$config_dir/"
-        cp -rv ./configs/fuzzel "$config_dir"
+        cp -rv ./configs/rofi "$config_dir"
         cp -rv ./configs/swaync "$config_dir/"
         cp -rv ./configs/wlogout "$config_dir/"
         cp -rv ./configs/mpv "$config_dir/"
