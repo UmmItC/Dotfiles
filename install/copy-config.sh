@@ -76,3 +76,6 @@ main() {
     # Copy Steam configuration files
     copy_steam_config_files
 }
+
+# Main script execution
+main
