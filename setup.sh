@@ -46,6 +46,23 @@ check_git() {
     fi
 }
 
+# Function to check if yay is installed
+check_yay() {
+    if ! command_exists yay; then
+        echo "${COLOR_YELLOW}:: yay is not installed.${COLOR_RESET}"
+        if prompt_yna ":: Would you like to install yay?"; then
+            echo "${COLOR_GREEN}:: Installing yay...${COLOR_RESET}"
+            if ! (git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si); then
+                echo "${COLOR_DARK_RED}:: Failed to install yay.${COLOR_RESET}"
+                exit 1
+            fi
+        else
+            echo "${COLOR_DARK_RED}:: Exiting...${COLOR_RESET}"
+            exit 0
+        fi
+    fi
+}
+
 # Check if user wants to run the script
 if prompt_yes_no "Do you want to run the script?"; then
     # Run the setup script
@@ -55,7 +72,9 @@ else
     exit 0
 fi
 
+# Check if git and yay are installed
 check_git
+check_yay
 
 # Check if user wants to clone the repository
 if prompt_yes_no "Do you want to clone the repository?"; then
