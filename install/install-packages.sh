@@ -23,8 +23,12 @@ install_pacman_packages() {
 
     if prompt_yna ":: Install these pacman packages?"; then
         sudo pacman -S "${packages[@]}"
+
+        sleep 1
+        clear
     else
         echo "${COLOR_YELLOW}:: Skipping pacman package installation.${COLOR_RESET}"
+        
         sleep 1
         clear
     fi
@@ -49,8 +53,12 @@ install_gpu_package() {
 
         if prompt_yna ":: Install these GPU pacman packages?"; then
             sudo pacman -S "${pacman_gpu_packages[@]}"
+
+            sleep 1
+            clear
         else
             echo "${COLOR_YELLOW}:: Skipping GPU package installation.${COLOR_RESET}"
+
             sleep 1
             clear
         fi
@@ -70,8 +78,12 @@ install_aur_packages() {
 
     if prompt_yna ":: Install these AUR packages?"; then
         yay -S "${aur_packages[@]}"
+
+        sleep 1
+        clear
     else
       echo "${COLOR_YELLOW}:: Skipping AUR package installation.${COLOR_RESET}"
+
       sleep 1
       clear
     fi

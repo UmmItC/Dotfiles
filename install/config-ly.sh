@@ -23,6 +23,7 @@ configure_ly() {
 
         if [ "$current_dm" == "ly-dm" ]; then
             echo -e "${COLOR_GREEN}:: You are already using Ly as your display manager. Nothing to do. Skipping...${COLOR_RESET}"
+
             sleep 1
             clear
         else
@@ -37,6 +38,9 @@ configure_ly() {
                     echo -e "${COLOR_GREEN}:: Disabling $package...${COLOR_RESET}"
                     sudo systemctl disable "$package.service"
                     echo -e "${COLOR_GREEN}:: Successfully disabled $package as your previous display manager.${COLOR_RESET}"
+
+                    sleep 1
+                    clear
                 fi
             done
         fi

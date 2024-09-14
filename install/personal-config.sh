@@ -49,9 +49,15 @@ install_addition_setup() {
         echo -e "${COLOR_YELLOW}Installing Pacman packages...${COLOR_RESET}"
         sudo pacman -S "${packages_pacman[@]}"
 
+        sleep 1
+        clear
+
         echo -e "${COLOR_YELLOW}Installing AUR packages...${COLOR_RESET}"
         for package in "${packages_aur[@]}"; do
             yay -S "$package"
+
+            sleep 1
+            clear
         done
     fi
 }
@@ -61,6 +67,7 @@ prompt_copy() {
       install_addition_setup
     else
       echo "${COLOR_YELLOW}:: Skipping dotfiles and configurations installation.${COLOR_RESET}"
+
       sleep 2
       clear
     fi

@@ -32,6 +32,9 @@ copy_config_files() {
         cp -rv ./.wallpaper/ "$HOME/"
         
         echo "${COLOR_GREEN}:: Configuration files copied successfully.${COLOR_RESET}"
+
+        sleep 1
+        clear
     else
         echo "${COLOR_YELLOW}:: Skipping configuration file copying and updates.${COLOR_RESET}"
 
@@ -46,6 +49,9 @@ copy_steam_config_files() {
         if command_exists steam; then
             cp -v ./configs/steam/steam_dev.cfg ~/.steam/steam/
             echo "Steam configuration files copied successfully."
+
+            sleep 1
+            clear
         else
             echo "Steam is not installed. Installing Steam..."
             sudo pacman -S steam
@@ -53,8 +59,14 @@ copy_steam_config_files() {
                 echo "Steam installed successfully."
                 cp -v ./configs/steam/steam_dev.cfg ~/.steam/steam/
                 echo "Steam configuration files copied successfully."
+
+                sleep 1
+                clear
             else
                 echo "Failed to install Steam."
+
+                sleep 1
+                clear
             fi
         fi
     else
