@@ -2,7 +2,7 @@
 
 # Check if rofi is already running
 if pgrep -x "rofi" > /dev/null; then
-    notify-send "Rofi" "Well, rofi is already running :D" --app-name="rofi" --icon="rofi"
+    hyprctl notify 3 2500 "rgb(C62E2E)" "fontsize:35   Bruh, Don't launch multiple instances of rofi 🫠"
     exit 1
 fi
 
@@ -22,12 +22,12 @@ if [[ -n "$clipboard_text" ]]; then
         echo "$decoded_text" | wl-copy
 
         # Notify the user
-        notify-send "Clipboard" "Selected text copied to clipboard" --app-name="Cliphist" --icon="Cliphist"
+        hyprctl notify 5 2500 "rgb(86D293)" "fontsize:35   Copied to clipboard"
 
     else
-        notify-send "Clipboard" "No text selected from clipboard history" --app-name="Cliphist" --icon="Cliphist"
+        hyprctl notify 2 2500 "rgb(4CC9FE)" "fontsize:35   No text selected"
     fi
 
 else
-    notify-send "Clipboard" "No clipboard history available or no text copied recently" --app-name="Cliphist" --icon="Cliphist"
+    hyprctl notify 2 2500 "rgb(FFF100)" "fontsize:35   No clipboard history available"
 fi

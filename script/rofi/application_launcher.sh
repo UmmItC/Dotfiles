@@ -2,7 +2,8 @@
 
 # Check if rofi is already running
 if pgrep -x "rofi" > /dev/null; then
-    notify-send "Rofi" "Well, rofi is already running :D" --app-name="rofi" --icon="rofi"
+    hyprctl notify 3 2500 "rgb(EF6D6D)" "fontsize:35   Bruh, don't launch multiple instances of rofi 🫠"
+
     exit 1
 fi
 
@@ -19,6 +20,6 @@ rofi \
 
 # Check the exit status of the rofi command
 if [ $? -ne 0 ]; then
-    notify-send "Rofi" "Error: rofi did not run correctly."
+    hyprctl notify 3 2500 "rgb(EF6D6D)" "fontsize:35   Error: rofi did not run correctly 🫠"
     exit 1
 fi

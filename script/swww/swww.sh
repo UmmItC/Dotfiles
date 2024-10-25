@@ -2,12 +2,12 @@
 
 # Check if rofi is already running
 if pgrep -x "rofi" > /dev/null; then
-    notify-send "Rofi" "Well, rofi is already running :D" --app-name="rofi" --icon="rofi"
+    hyprctl notify 3 2500 "rgb(C62E2E)" "fontsize:35   Bruh, Don't launch multiple instances of rofi 🫠"
     exit 1
 fi
 
 # Frame rate
-FPS=185
+FPS=60
 
 # Directory where wallpapers are stored
 WALLPAPER_DIR="$HOME/.wallpaper"
@@ -28,10 +28,9 @@ if [ -n "$selected" ]; then
 
     # Randomly choose a transition type and its arguments
     transition_options=(
-        "--transition-type grow --transition-pos 0.977,0.969 --transition-step 200 --transition-duration 3"
-        "--transition-type wipe --transition-pos 0.977,0.969 --transition-step 90 --transition-duration 3 --transition-angle 30"
-        "--transition-type outer --transition-pos 0.977,0.969 --transition-step 90 --transition-duration 3"
-        "--transition-type center --transition-pos 0.977,0.969 --transition-step 90 --transition-duration 3"
+        "--transition-type random --transition-pos 0.977,0.969 --transition-step 90 --transition-duration 2.5"
+        "--transition-type center --transition-pos 0.977,0.969 --transition-step 90 --transition-duration 2.5"
+
     )
 
     # Choose a random index
@@ -43,13 +42,7 @@ if [ -n "$selected" ]; then
         $selected_transition \
         "$selected_path"
 
-    # Display notification about wallpaper change
-    notify-send "Swww" "Wallpaper changed to $selected_filename" \
-        --app-name="Swww" \
-        --icon="$selected_path"
+    hyprctl notify 5 2500 "rgb(86D293)" "fontsize:35   Ayo, Wallpaper changed to $selected_filename 🚀"
 else
-    # If no wallpaper was selected (selected_path is empty), notify the user or handle as needed
-    notify-send "Swww" "No wallpaper was selected. Please choose a wallpaper." \
-        --app-name="Swww" \
-        --icon="Swww"
+    hyprctl notify 2 2500 "rgb(FEEC37)" "fontsize:35   Don't you choose wallpaper? 🤔"
 fi

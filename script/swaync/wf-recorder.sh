@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the directory where recordings will be saved
-recording_dir="/home/$USER/Videos/wf-recorder"
+recording_dir="/mnt/hpdrive/Videos/wf-recorder"
 
 # Function to handle recording start or stop
 record_or_stop() {
@@ -14,8 +14,9 @@ record_or_stop() {
     if [[ $SWAYNC_TOGGLE_STATE == true ]]; then
         # Start recording
         local filename="$recording_dir/wf-recorder-$(date +'%Y-%m-%d-%H-%M-%S').mkv"
-        notify-send "wf-recorder" "Starting video recording with wf-recorder" \
             --app-name="wf-recorder" --icon="wf-recorder"
+        hyprctl notify 1 5000 "rgb(00FF00)" "fontsize:35   Video recording started with wf-recorder 📹"
+
         wf-recorder -a --file "$filename"
     else
         # Stop recording
@@ -30,9 +31,9 @@ record_or_stop() {
             # Get the most recent recording file
             local filename
             filename=$(ls -t "$recording_dir" | head -n1)
-            notify-send "wf-recorder" "Video recording ended and saved to: \n\n$recording_dir/$filename" \
                 --app-name="wf-recorder" --icon="wf-recorder"
             echo "Video recording ended and saved to $filename"
+            hyprctl notify 5 5000 "rgb(00FF00)" "fontsize:35   Video recording ended and saved to: $recording_dir/$filename 📹"
         else
             echo "wf-recorder is not running."
         fi
