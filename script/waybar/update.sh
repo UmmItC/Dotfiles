@@ -96,6 +96,8 @@ while true; do
             echo -e "${COLOR_GREEN}Total update time: ${total_duration} seconds${COLOR_RESET}"
 
             hyprctl notify 5 5000 "rgb(00ff00)" """fontsize:35   Upgrade completed successfully. Total duration: ${total_duration} seconds"
+            
+            echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): System upgrade completed successfully. Total duration: ${total_duration} seconds" >> ~/script/waybar/update.log
 
             # Prompt user to reboot the system
             while true; do

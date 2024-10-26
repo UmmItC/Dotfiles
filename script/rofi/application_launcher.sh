@@ -4,6 +4,8 @@
 if pgrep -x "rofi" > /dev/null; then
     hyprctl notify 3 2500 "rgb(EF6D6D)" "fontsize:35   Bruh, don't launch multiple instances of rofi 🫠"
 
+    echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Bruh, don't launch multiple instances of rofi 🫠 - Application Launcher" >> ~/script/rofi/application_launcher.log
+
     exit 1
 fi
 
@@ -18,8 +20,11 @@ rofi \
     -kb-cancel Escape \
     -theme ~/.config/rofi/application-launcher.rasi
 
+echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Rofi ran successfully - Application Launcher" >> ~/script/rofi/application_launcher.log
+
 # Check the exit status of the rofi command
 if [ $? -ne 0 ]; then
     hyprctl notify 3 2500 "rgb(EF6D6D)" "fontsize:35   Error: rofi did not run correctly 🫠"
+    echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Rofi did not run correctly 🫠 - Application Launcher" >> ~/script/rofi/application_launcher.log
     exit 1
 fi

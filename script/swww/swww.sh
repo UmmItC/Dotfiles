@@ -3,6 +3,7 @@
 # Check if rofi is already running
 if pgrep -x "rofi" > /dev/null; then
     hyprctl notify 3 2500 "rgb(C62E2E)" "fontsize:35   Bruh, Don't launch multiple instances of rofi 🫠"
+    echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Bruh, Don't launch multiple instances of rofi 🫠 - Swww" >> ~/script/swww/swww.log
     exit 1
 fi
 
@@ -43,6 +44,8 @@ if [ -n "$selected" ]; then
         "$selected_path"
 
     hyprctl notify 5 2500 "rgb(86D293)" "fontsize:35   Ayo, Wallpaper changed to $selected_filename 🚀"
+    echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Wallpaper changed to $selected_filename - Swww" >> ~/script/swww/swww.log
 else
     hyprctl notify 2 2500 "rgb(FEEC37)" "fontsize:35   Don't you choose wallpaper? 🤔"
+    echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Don't you choose wallpaper? 🤔 - Swww" >> ~/script/swww/swww.log
 fi

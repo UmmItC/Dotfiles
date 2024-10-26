@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the directory where recordings will be saved
-recording_dir="/mnt/hpdrive/Videos/wf-recorder"
+recording_dir="/home/$USER/Videos/wf-recorder"
 
 # Function to handle recording start or stop
 record_or_stop() {
@@ -13,9 +13,10 @@ record_or_stop() {
     # Check if recording should start or stop
     if [[ $SWAYNC_TOGGLE_STATE == true ]]; then
         # Start recording
-        local filename="$recording_dir/wf-recorder-$(date +'%Y-%m-%d-%H-%M-%S').mkv"
+        local filename="$recording_dir/wf-recorder-$(date +'%Y-%m-%d-%H-%M-%S').mp4"
             --app-name="wf-recorder" --icon="wf-recorder"
         hyprctl notify 1 5000 "rgb(00FF00)" "fontsize:35   Video recording started with wf-recorder 📹"
+        echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Video recording started with wf-recorder - $filename" >> ~/script/swaync/wf-recorder.log
 
         wf-recorder -a --file "$filename"
     else
@@ -34,8 +35,10 @@ record_or_stop() {
                 --app-name="wf-recorder" --icon="wf-recorder"
             echo "Video recording ended and saved to $filename"
             hyprctl notify 5 5000 "rgb(00FF00)" "fontsize:35   Video recording ended and saved to: $recording_dir/$filename 📹"
+            echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Video recording ended and saved to: $recording_dir/$filename - wf-recorder" >> ~/script/swaync/wf-recorder.log
         else
             echo "wf-recorder is not running."
+            echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): wf-recorder is not running - wf-recorder" >> ~/script/swaync/wf-recorder.log
         fi
     fi
 }
