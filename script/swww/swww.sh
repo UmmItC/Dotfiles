@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Frame rate
+FPS=185
+
+# Directory where wallpapers are stored
+WALLPAPER_DIR="$HOME/.wallpaper"
+
+# Get list of all files (including those in subdirectories)
+filenames=$(find "$WALLPAPER_DIR" -type f -printf "%P\n")
+
 # Check if rofi is already running
 if pgrep -x "rofi" > /dev/null; then
     hyprctl notify 3 2500 "rgb(C62E2E)" "fontsize:35   Bruh, Don't launch multiple instances of rofi 🫠"
@@ -7,31 +16,26 @@ if pgrep -x "rofi" > /dev/null; then
     exit 1
 fi
 
-# Frame rate
-FPS=60
+entries=""
+while IFS= read -r filename; do
+    entries+="$filename\x00icon\x1f$WALLPAPER_DIR/$filename\n"
+done <<< "$filenames"
 
-# Directory where wallpapers are stored
-WALLPAPER_DIR="$HOME/.wallpaper"
-
-# Get list of all files (including those in subdirectories) relative to $WALLPAPER_DIR
-filenames=$(find "$WALLPAPER_DIR" -type f -printf "%P\n")
-
-# Use rofi to display the list and get user selection
-selected=$(echo "$filenames" | rofi -dmenu -p "Select Wallpaper:" -theme ~/.config/rofi/wallpaper-picker.rasi)
+selected=$(echo -e "$entries" | rofi -dmenu -p "Wallpaper Picker" -theme ~/.config/rofi/wallpaper-picker.rasi)
 
 # Check if user selected a wallpaper
 if [ -n "$selected" ]; then
-    # Construct the full path based on user selection
+    selected=$(echo "$selected" | sed 's/\x00icon\x1f.*//')
+    
     selected_path="$WALLPAPER_DIR/$selected"
 
     # Get the filename from the selected path
-    selected_filename=$(echo "$selected")
+    selected_filename=$(basename "$selected")
 
     # Randomly choose a transition type and its arguments
     transition_options=(
         "--transition-type random --transition-pos 0.977,0.969 --transition-step 90 --transition-duration 2.5"
         "--transition-type center --transition-pos 0.977,0.969 --transition-step 90 --transition-duration 2.5"
-
     )
 
     # Choose a random index
