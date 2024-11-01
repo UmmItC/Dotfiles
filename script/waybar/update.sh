@@ -88,6 +88,8 @@ while true; do
                 fi
             )
 
+            bash ~/script/waybar/history.sh
+
             # Calculate total update duration
             end_time=$(date +%s)
             total_duration=$((end_time - start_time))
