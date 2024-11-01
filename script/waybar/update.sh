@@ -41,6 +41,9 @@ countdown() {
     done
 }
 
+# Execute history script first
+execute_command "bash ~/script/waybar/history.sh" "Executed history script"
+
 # Banner for upgrade system
 echo -e "${COLOR_LIGHT_BLUE}"
 echo "╦ ╦┌─┐┌─┐┬─┐┌─┐┌┬┐┌─┐  ╔═╗┬ ┬┌─┐┌┬┐┌─┐┌┬┐"
@@ -87,8 +90,6 @@ while true; do
                     print_status "FAILED" "flatpak is not installed"
                 fi
             )
-
-            bash ~/script/waybar/history.sh
 
             # Calculate total update duration
             end_time=$(date +%s)
