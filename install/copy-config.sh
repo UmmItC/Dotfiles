@@ -23,9 +23,6 @@ copy_config_files() {
         cp -rv ./configs/swaync "$config_dir/"
         cp -rv ./configs/wlogout "$config_dir/"
         cp -rv ./configs/mpv "$config_dir/"
-        cp -rv ./configs/cava "$config_dir/"
-
-        sudo cp -v ./configs/ly/config.ini /etc/ly
         
         cp -rv ./script "$HOME/"
         

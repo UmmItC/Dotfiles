@@ -47,17 +47,8 @@ main() {
     # install packages from install-packages.sh
     source ./install/install-packages.sh
 
-    # Configure Display Manager
-    source ./install/config-ly.sh
-
     # Copy configuration files
     source ./install/copy-config.sh
-
-    # Clone NvChad and run Neovim if user confirms
-    source ./install/nvchad-neovim.sh
-
-    # Personal setup
-    source ./install/personal-config.sh
 
     echo "${COLOR_GREEN}:: Installation completed successfully.${COLOR_RESET}"
     echo "${COLOR_GREEN}:: Please reboot your system to apply all changes!${COLOR_RESET}"

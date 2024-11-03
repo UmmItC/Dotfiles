@@ -69,7 +69,7 @@ Here's a list of the packages I used.
 | Screenlock Management    | Hyprlock        | Pacman          |
 | Screenshot               | Hyprshot        | AUR             |
 | Display Manager          | Ly              | Pacman          |
-| Sound Server             | Pulseaudio      | Pacman          |
+| Sound Server             | Pipewire        | Pacman          |
 | AUR Helper               | Yay             | Manually (Git)  |
 | Icon Theme               | Papirus         | Pacman          |
 | IDLE Management          | Hypridle        | Pacman          |
@@ -80,6 +80,7 @@ Here's a list of the packages I used.
 | Audio Visualizer         | Cava            | AUR             |
 | Emoji Picker             | Emote           | AUR             |
 | Color Picker             | Hyprpicker      | AUR             |
+| Zoomer                   | Woomer          | AUR             |
     
 ### Additional Configuration
 
@@ -101,6 +102,7 @@ The hotkeys for managing your windows and launching tools are configured in the 
 | `ALT_L + E`       | Launch Emoji Picker        |
 | `ALT_L + TAB`     | Switch Windows             |
 | `ALT_L + P`       | Launch Color Picker        |
+| `ALT_L + O`       | Launch Zoomer              |
 
 ### Contribution Guidelines
 
