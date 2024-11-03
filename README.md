@@ -81,6 +81,7 @@ Here's a list of the packages I used.
 | Emoji Picker             | Emote           | AUR             |
 | Color Picker             | Hyprpicker      | AUR             |
 | Zoomer                   | Woomer          | AUR             |
+| Cursor Theme             | Bibata          | AUR             |
     
 ### Additional Configuration
 

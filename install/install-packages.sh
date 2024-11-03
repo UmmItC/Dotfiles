@@ -69,7 +69,7 @@ install_gpu_package() {
 
 # Function to install AUR packages
 install_aur_packages() {
-    local aur_packages=("hyprshot" "hyprswitch" "hyprpicker" "swww" "wlogout" "emote" "woomer")
+    local aur_packages=("hyprshot" "hyprswitch" "hyprpicker" "swww" "wlogout" "emote" "woomer" "bibata-cursor-theme")
     echo "${COLOR_GREEN}:: AUR packages to be installed:${COLOR_RESET}"
 
     for package in "${aur_packages[@]}"; do
