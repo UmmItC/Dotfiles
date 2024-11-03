@@ -7,6 +7,7 @@ install_pacman_packages() {
         "neovim" "vim"
         "cliphist" "clipmenu"
         "ly"
+        "yazi"
         "hyprland" "hyprlock" "hypridle" "xdg-desktop-portal-hyprland"
         "ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "papirus-icon-theme"
         "waybar" "rofi" "fastfetch" "wf-recorder" "swaync"

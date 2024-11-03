@@ -82,6 +82,7 @@ Here's a list of the packages I used.
 | Color Picker             | Hyprpicker      | AUR             |
 | Zoomer                   | Woomer          | AUR             |
 | Cursor Theme             | Bibata          | AUR             |
+| File Manager (TUI)       | Yazi            | Pacman          |
     
 ### Additional Configuration
 
