@@ -9,10 +9,11 @@ install_pacman_packages() {
         "ly"
         "yazi"
         "hyprland" "hyprlock" "hypridle" "xdg-desktop-portal-hyprland"
-        "ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "papirus-icon-theme"
+        "ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "ttf-overpass" "papirus-icon-theme"
         "waybar" "rofi" "fastfetch" "wf-recorder" "swaync"
         "pipewire-jack" "pipewire-alsa" "pipewire-pulse" "qjackctl" "pavucontrol" "wireplumber"
         "mpv"
+        "imagemagick" "grim"
     )
 
     local total_packages=${#packages[@]}
