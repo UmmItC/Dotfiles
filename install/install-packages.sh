@@ -9,7 +9,7 @@ install_pacman_packages() {
         "ly"
         "yazi"
         "hyprland" "hyprlock" "hypridle" "xdg-desktop-portal-hyprland"
-        "ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "ttf-overpass"
+        "ttf-jetbrains-mono" "ttf-jetbrains-mono-nerd" "ttf-overpass" "gnu-free-fonts"
         "papirus-icon-theme" "orchis-theme"
         "waybar" "rofi" "fastfetch" "wf-recorder" "swaync"
         "pipewire-jack" "pipewire-alsa" "pipewire-pulse" "qjackctl" "pavucontrol" "wireplumber"
@@ -72,7 +72,7 @@ install_gpu_package() {
 
 # Function to install AUR packages
 install_aur_packages() {
-    local aur_packages=("hyprshot" "hyprswitch" "hyprpicker" "swww" "wlogout" "emote" "woomer" "bibata-cursor-theme")
+    local aur_packages=("hyprshot" "hyprswitch" "hyprpicker" "swww" "wlogout" "emote" "woomer" "bibata-cursor-theme" "ttf-ds-digital")
     echo "${COLOR_GREEN}:: AUR packages to be installed:${COLOR_RESET}"
 
     for package in "${aur_packages[@]}"; do
