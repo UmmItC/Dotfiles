@@ -18,11 +18,11 @@ else
     exit 1
 fi
 
-# Log out using wlogout
+# Wlogout launch
 if wlogout --protocol layer-shell; then
-    echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Logged out successfully" >> ~/script/wlogout/wlogout.log
+    ecoh "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Wlogout executed successfully" >> ~/script/wlogout/wlogout.log
 else
-    echo "<ERROR> $(date +"%Y-%m-%d %H:%M:%S"): Logout via wlogout failed" >> ~/script/wlogout/wlogout.log
-    hyprctl notify 1 5000 "rgb(FF0000)" "fontsize:35   Logout failed"
+    echo "<ERROR> $(date +"%Y-%m-%d %H:%M:%S"): Wlogout failed to lauch" >> ~/script/wlogout/wlogout.log
+    hyprctl notify 1 5000 "rgb(FF0000)" "fontsize:35   Wlogout failed to launch"
     exit 1
 fi
