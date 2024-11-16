@@ -6,6 +6,10 @@ FPS=185
 # Directory where wallpapers are stored
 WALLPAPER_DIR="$HOME/.wallpaper"
 
+# Change the variable below to 0 if you don't want to change the wallpaper
+# its for hyprlock wallpaper
+same_wallpaper=1
+
 # Get list of all files (including those in subdirectories)
 filenames=$(find "$WALLPAPER_DIR" -type f -printf "%P\n")
 
@@ -47,8 +51,13 @@ if [ -n "$selected" ]; then
         $selected_transition \
         "$selected_path"
 
+    if [ $same_wallpaper -eq 1 ]; then
+        source $HOME/script/swww/detect.sh
+    fi
+
     hyprctl notify 5 2500 "rgb(86D293)" "fontsize:35   Ayo, Wallpaper changed to $selected_filename 🚀"
     echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Wallpaper changed to $selected_filename - Swww" >> ~/script/swww/swww.log
+
 else
     hyprctl notify 2 2500 "rgb(FEEC37)" "fontsize:35   Don't you choose wallpaper? 🤔"
     echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Don't you choose wallpaper? 🤔 - Swww" >> ~/script/swww/swww.log
