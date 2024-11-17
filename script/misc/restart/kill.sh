@@ -15,3 +15,11 @@ if pgrep -x "swaync" > /dev/null; then
 else
     hyprctl notify 1 2500 "rgb(ED5AB3)" "fontsize:35   Swaync is not running."
 fi
+
+# Check if hyprswitch is running
+if pgrep -x "hyprswitch" > /dev/null; then
+    killall hyprswitch
+    hyprctl notify 1 2500 "rgb(ED5AB3)" "fontsize:35   Hyprswitch has been killed."
+else
+    hyprctl notify 1 2500 "rgb(ED5AB3)" "fontsize:35   Hyprswitch is not running."
+fi
