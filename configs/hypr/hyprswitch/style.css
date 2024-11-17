@@ -1,51 +1,73 @@
-.client-image {
-    margin: 15px;
-}
-
-.client-index {
-    margin: 6px;
-    padding: 5px;
-    font-size: 30px;
-    font-weight: bold;
-    border-radius: 15px;
-    border: 3px solid rgba(130, 130, 180, 0.4);
-    background-color: rgba(20, 20, 20, 0.99);
-}
-
-.client {
-    border-radius: 15px;
-    border: 3px solid rgba(130, 130, 180, 0.4);
-    background-color: rgba(20, 20, 25, 0.85);
-    color: #E6E1CF;
-}
-
-.client:hover {
-    background-color: rgba(30, 30, 30, 0.99);
-}
-
-.client_active {
-    border: 3px solid rgba(239, 9, 9, 0.94);
-}
-
-.workspace {
-    font-size: 25px;
-    font-weight: bold;
-    border-radius: 15px;
-    border: 3px solid rgba(80, 80, 80, 0.4);
-    background-color: rgba(20, 20, 25, 0.85); 
-    color: #E6E1CF
-}
-
-.workspace_special {
-    border: 3px solid rgba(0, 255, 0, 0.4);
-}
-
-.workspaces {
-    margin: 10px;
+* {
+    border: unset;
+    border-radius: 30px;
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 600;
 }
 
 window {
-    border-radius: 15px;
-    opacity: 0.9;
-    border: 6px solid rgba(0, 0, 0, 0.4);
+    --border-color: rgba(90, 90, 110, 0.4);
+    --border-color-active: #FFCCEA;
+    --bg-color: rgba(30, 10, 40, 1);
+    --bg-color-hover: #EC9F9D;
+    --index-border-color: #B5838D;
+    --border-radius: 30px;
+}
+
+.client, .workspace, .monitor, .index {
+    border-radius: var(--border-radius);
+}
+
+.client, .workspace, .monitor {
+    border: 10px solid var(--border-color);
+}
+
+.client, .index {
+    font-size: 30px;
+}
+
+.workspace {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.client {
+    font-family: "Free Mono", bold;
+    background-color: var(--border-color);
+}
+
+.client:hover, .workspace:hover, .monitor:hover {
+    background-color: var(--bg-color-hover);
+}
+
+.client_active, .workspace_active {
+    border: 10px solid var(--border-color-active);
+}
+
+.window_active {
+    border: 3px solid var(--border-color-active);
+}
+
+.client-image {
+    margin: 10px;
+}
+
+.workspace_special {
+    border: 10px solid var(--index-border-color);
+}
+
+.monitor {
+    padding: 2px;
+    background-color: transparent;
+}
+
+.index {
+    margin: 3px;
+    padding: 2px 4px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: overpass bold;
+    background-color: var(--bg-color);
+    border: 3px solid var(--border-color);
 }
