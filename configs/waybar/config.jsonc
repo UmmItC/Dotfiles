@@ -16,12 +16,14 @@
     "cpu": {
         "interval": 1,
         "format": " {}%",
-        "max-length": 20
+        "max-length": 20,
+        "on-click": "kitty --execute btop"
     },
     "memory": {
         "interval": 1,
         "format": " {}%",
-        "max-length": 20
+        "max-length": 20,
+        "on-click": "kitty --execute htop"
     },
 
     "custom/notification": {
@@ -32,7 +34,7 @@
 
     "custom/power": {
         "format": "⏻",
-        "on-click": "wlogout"
+        "on-click": "bash ~/script/wlogout/blur-background.sh"
     },
 
     "hyprland/window": {
@@ -50,7 +52,7 @@
     },
 
     "clock": {
-      "format": " {:%Y/%m/%d }",
+      "format": " {:%Y/%m/%d}",
       "format-alt": " {:%H:%M:%S}",
       "interval": 1
     },
@@ -62,7 +64,7 @@
     },
 
     "network": {
-        "interface": "enp6s0",
+        "interface": "wlan0",
         "tooltip-format-ethernet": "{ifname} ",
         "interval": 1,
         "format": " {bandwidthDownBits}  {bandwidthUpBits}"

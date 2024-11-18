@@ -50,7 +50,7 @@ window#waybar.empty #window {
 
 #workspaces button:hover {
     border-radius: 15px;
-    color: #0F1419;
+    color: rgba(155, 127, 255, 0.8); 
     background: linear-gradient(45deg, rgba(155,127,255,.8), rgba(108,48,204,.8));
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
