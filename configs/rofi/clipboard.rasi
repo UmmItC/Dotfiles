@@ -8,7 +8,7 @@ configuration {
 
 /* Global Styles */
 * {
-    font: "JetBrains Mono Bold 13";
+    font: "Overpass Bold 16";
     bg0: rgba(33, 33, 33, 0.8);
     bg1: rgba(64, 64, 64, 0.8);
     fg0: rgba(238, 255, 255, 1);

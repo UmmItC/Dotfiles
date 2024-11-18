@@ -3,7 +3,7 @@ configuration {
     modi:                        "dmenu";
     show-icons:                  true;
     drun-display-format:         "{name}";
-    font:                        "JetBrainsMono Extra Bold Italic 12";
+    font:                        "Overpass Extra Bold Italic 16";
     click-to-exit:               true;
 }
 
