@@ -11,7 +11,7 @@ repo_url=https://codeberg.org/UmmIt/Dotfiles.git
 repo=Dotfiles
 
 # Function to prompt for yes/no input with default value 'y'
-prompt_yes_no() {
+prompt_yna() {
     local choice
     while true; do
         read -p "$1 [Y/n]: " choice
@@ -33,7 +33,7 @@ command_exists() {
 check_git() {
     if ! command_exists git; then
         echo -e "${COLOR_YELLOW}:: git is not installed.${COLOR_RESET}"
-        if prompt_yes_no ":: Would you like to install git?"; then
+        if prompt_yna ":: Would you like to install git?"; then
             echo -e "${COLOR_GREEN}:: Installing git...${COLOR_RESET}"
             if ! (sudo pacman -S git --noconfirm); then
                 echo -e "${COLOR_DARKRED}:: Failed to install git.${COLOR_RESET}"
@@ -64,7 +64,7 @@ check_yay() {
 }
 
 # Check if user wants to run the script
-if prompt_yes_no "Do you want to run the script?"; then
+if prompt_yna "Do you want to run the script?"; then
     # Run the setup script
     echo -e "${COLOR_GREEN}[+] Running setup script...${COLOR_RESET}"
 else
@@ -77,7 +77,7 @@ check_git
 check_yay
 
 # Check if user wants to clone the repository
-if prompt_yes_no "Do you want to clone the repository?"; then
+if prompt_yna "Do you want to clone the repository?"; then
     # Clone the repository
     echo -e "${COLOR_GREEN}[+] Cloning repository...${NC}"
     git clone $repo_url
@@ -85,7 +85,7 @@ if prompt_yes_no "Do you want to clone the repository?"; then
         echo -e "${COLOR_GREEN}[+] Repository cloned successfully.${COLOR_RESET}"
         cd $repo
         # Check if user wants to run the install script
-        if prompt_yes_no "Do you want to run the install script?"; then
+        if prompt_yna "Do you want to run the install script?"; then
             # Run the install script if it exists
             if [ -f "install.sh" ]; then
                 echo -e "${COLOR_GREEN}[+] Running install script...${COLOR_RESET}"
