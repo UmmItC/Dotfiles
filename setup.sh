@@ -7,7 +7,7 @@ COLOR_DARKRED='\033[0;31m'
 COLOR_YELLOW='\033[0;33m'
 COLOR_RESET='\033[0m' # No Color
 
-repo_url=https://codeberg.org/UmmIt/Dotfiles.git
+repo_url=https://github.com/UmmItC/Dotfiles.git
 repo=Dotfiles
 
 # Function to prompt for yes/no input with default value 'y'
@@ -52,7 +52,7 @@ check_yay() {
         echo "${COLOR_YELLOW}:: yay is not installed.${COLOR_RESET}"
         if prompt_yna ":: Would you like to install yay?"; then
             echo "${COLOR_GREEN}:: Installing yay...${COLOR_RESET}"
-            if ! (git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si); then
+            if ! (cd .. && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si); then
                 echo "${COLOR_DARK_RED}:: Failed to install yay.${COLOR_RESET}"
                 exit 1
             fi
