@@ -2,7 +2,7 @@
 
 This repository is dedicated to my Hyprland DWM Arch Linux configuration files.
 
-![](./screenshot/2024-08-15-203404_hyprshot.png)
+[Watch this video on YouTube](https://www.youtube.com/watch?v=sjeKlj8mTjE)
 
 # Installation Instructions
 
@@ -15,18 +15,13 @@ To run the script:
 3. Execute the script according to the provided instructions.
 
 ```shell
-chmod +x ./install.sh
-./install.sh
+chmod +x ./setup.sh
+./setup.sh
 ```
 
 ## Installation Script
 
 The `./setup.sh` script helps with the fresh installation process and handles the git cloning of the repository. Alternatively, you can clone the repository manually and run `install.sh` directly.
-
-The `install.sh` script performs the following actions:
-
-1. Installs the packages required for my dotfiles.
-2. Copies configuration files to `~/`, `~/.config`, for the `ly` display manager, to `/etc/ly` and wallpaper on `~/.wallpaper`
 
 ## For manual configuration:
 
@@ -49,6 +44,8 @@ You can set up your system quickly without needing to clone or download the scri
 ## Usage packages
 
 Here's a list of the packages I used.
+
+>Note: The list is not exhaustive, and I may have missed some packages. For a complete list, you can refer to the `./configs/hypr/hyprland/plugins.conf` file. and for the laptop configuration, you can refer to the `./configs/hypr/hyprland/laptop.conf` file.
 
 | Module Type              | Module Name     | Package Manager |
 |--------------------------|-----------------|-----------------|
@@ -84,13 +81,9 @@ Here's a list of the packages I used.
 | Cursor Theme             | Bibata          | AUR             |
 | File Manager (TUI)       | Yazi            | Pacman          |
     
-### Additional Configuration
-
-- **Steam**: To enhance download speeds, enable HTTP/2 and optimize download rates.
-
 ## Keybindings
 
-The hotkeys for managing your windows and launching tools are configured in the Hyprland configuration file located at `./configs/hypr/hyprland.conf`.
+The hotkeys for managing your windows and launching tools are configured in the Hyprland configuration file located at `./configs/hypr/hyprland/launcher.conf`. and for the laptop configuration, you can refer to the `./configs/hypr/hyprland/laptop.conf` file.
 
 | Key Combination   | Action                     |
 |-------------------|----------------------------|
