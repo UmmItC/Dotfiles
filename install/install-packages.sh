@@ -40,7 +40,7 @@ install_pacman_packages() {
 # Function to install GPU packages
 install_gpu_package() {
     local pacman_gpu_packages=(
-        "amdvlk" "lib32-amdvlk"
+        "vulkan-radeon" "lib32-vulkan-radeon"
         "lib32-mesa" "lib32-mesa-demos" "lib32-mesa-vdpau" "lib32-vulkan-radeon" 
         "libva-mesa-driver" "mesa" "mesa-vdpau" "vulkan-radeon" "xf86-video-amdgpu"
     )
