@@ -10,8 +10,9 @@ WALLPAPER_DIR="$HOME/.wallpaper"
 # its for hyprlock wallpaper
 same_wallpaper=1
 
-# Get list of all files (including those in subdirectories)
-filenames=$(find "$WALLPAPER_DIR" -type f -printf "%P\n")
+# Get list of all files (including those in subdirectories) in the wallpaper directory
+# and filter out only the files with jpg, png, jpeg, and webp extensions
+filenames=$(find "$WALLPAPER_DIR" -type f -regex '.*\.\(jpg\|png\|jpeg\|webp\)' -printf "%P\n")
 
 # Check if rofi is already running
 if pgrep -x "rofi" > /dev/null; then
