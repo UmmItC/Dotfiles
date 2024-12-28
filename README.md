@@ -98,3 +98,7 @@ The hotkeys for managing your windows and launching tools are configured in the 
 | `ALT_L + TAB`     | Switch Windows             |
 | `ALT_L + P`       | Launch Color Picker        |
 | `ALT_L + O`       | Launch Zoomer              |
+
+## Contributing
+
+See the [contributing guidelines](./CONTRIBUTING.md) for more information.
