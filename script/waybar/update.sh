@@ -10,8 +10,8 @@ readonly COLOR_RESET='\e[0m'
 print_status() {
     local status="$1"
     local message="$2"
-    if [ "${status}" == "OK" ]; then
-        echo -e "[ ${COLOR_GREEN}OK${COLOR_RESET} ] ${message}"
+    if [ "${status}" == "SUCESS" ]; then
+        echo -e "[ ${COLOR_GREEN}SUCESS${COLOR_RESET} ] ${message}"
     else
         echo -e "[ ${COLOR_DARK_RED}FAILED${COLOR_RESET} ] ${message}"
     fi
@@ -22,7 +22,7 @@ execute_command() {
     local cmd="$1"
     local description="$2"
     if eval "${cmd}"; then
-        print_status "OK" "${description}"
+        print_status "SUCESS" "${description}"
         return 0
     else
         print_status "FAILED" "${description}"
@@ -35,20 +35,35 @@ countdown() {
     local seconds=$1
     while [ $seconds -gt 0 ]; do
         echo -e "${COLOR_GREEN}Rebooting in $seconds seconds...${COLOR_RESET}"
+        hyprctl notify 5 1000 "rgb(433878)" """fontsize:35   Rebooting in $seconds seconds"
+        hyprctl notify 4 1000 "rgb(433878)" """fontsize:35   Rebooting in $seconds seconds"
+        hyprctl notify 3 1000 "rgb(433878)" """fontsize:35   Rebooting in $seconds seconds"
+        hyprctl notify 2 1000 "rgb(433878)" """fontsize:35   Rebooting in $seconds seconds"
         hyprctl notify 1 1000 "rgb(433878)" """fontsize:35   Rebooting in $seconds seconds"
         sleep 1
         : $((seconds--))
     done
 }
 
-# Execute history script first
-execute_command "bash ~/script/waybar/history.sh" "Executed history script"
+run_history() {
+  # Execute history script first
+  execute_command "bash ~/script/waybar/history.sh" "History script been executed :)"
+}
 
 # Banner for upgrade system
 echo -e "${COLOR_LIGHT_BLUE}"
-echo "╦ ╦┌─┐┌─┐┬─┐┌─┐┌┬┐┌─┐  ╔═╗┬ ┬┌─┐┌┬┐┌─┐┌┬┐"
-echo "║ ║├─┘│ ┬├┬┘├─┤ ││├┤   ╚═╗└┬┘└─┐ │ ├┤ │││"
-echo "╚═╝┴  └─┘┴└─┴ ┴─┴┘└─┘  ╚═╝ ┴ └─┘ ┴ └─┘┴ ┴"
+cat << "EOF"
+╦ ╦┌─┐┌─┐┬─┐┌─┐┌┬┐┌─┐  ╔═╗┬ ┬┌─┐┌┬┐┌─┐┌┬┐
+║ ║├─┘│ ┬├┬┘├─┤ ││├┤   ╚═╗└┬┘└─┐ │ ├┤ │││
+╚═╝┴  └─┘┴└─┴ ┴─┴┘└─┘  ╚═╝ ┴ └─┘ ┴ └─┘┴ ┴
+
+This script will upgrade your system with the following features, which automatically detect the following dose not exist:
+
+- Full system upgrade via yay
+- Upgrade oh-my-zsh
+- Upgrade Powerlevel10k
+- Upgrade Flatpak packages
+EOF
 echo -e "${COLOR_RESET}"
 
 # Prompt user to confirm system upgrade
@@ -63,49 +78,53 @@ while true; do
 
             # Using () for command blocks
             (
-                # Update Pacman and ignore dart package
-                execute_command "sudo pacman -Syuv" "Full system upgrade (Syuv)"
-
-                # Update AUR packages using yay
-                execute_command "yay -Syu" "Upgrading AUR Packages"
+                # Full system upgrade via yay
+                echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Full system upgrade via yay"
+                execute_command "yay" "Processed full system upgrade via yay"
 
                 # Check if oh-my-zsh upgrade script exists before running it
                 if [ -f "$HOME/.oh-my-zsh/tools/upgrade.sh" ]; then
-                    execute_command "~/.oh-my-zsh/tools/upgrade.sh" "Upgrading oh my zsh"
+                    echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Upgrading oh my zsh"
+                    execute_command "~/.oh-my-zsh/tools/upgrade.sh" "Processed oh-my-zsh upgrade script"
                 else
-                    print_status "FAILED" "oh-my-zsh upgrade script not found"
+                    print_status "SKIP" "oh-my-zsh upgrade script not found"
                 fi
 
                 # Check if Powerlevel10k repository exists before attempting to update
                 if [ -d "$HOME/powerlevel10k/.git" ]; then
-                    execute_command "git -C $HOME/powerlevel10k pull" "Upgrading Powerlevel10k"
+                    echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Upgrading Powerlevel10k"
+                    execute_command "git -C $HOME/powerlevel10k pull" "Processed Powerlevel10k upgrade"
                 else
-                    print_status "FAILED" "Powerlevel10k repository not found"
+                    print_status "SKIP" "Powerlevel10k repository not found"
                 fi
-
+ 
                 # Check if flatpak is installed before updating packages
                 if command -v flatpak &> /dev/null; then
-                    execute_command "flatpak update -v" "Upgrading Flatpak packages"
+                    echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Upgrading Flatpak packages"
+                    execute_command "flatpak update" "Processed Flatpak package upgrade"
                 else
-                    print_status "FAILED" "flatpak is not installed"
+                    print_status "SKIP" "flatpak is not installed"
                 fi
             )
 
             # Calculate total update duration
             end_time=$(date +%s)
             total_duration=$((end_time - start_time))
-
+            
             # Print total update time
-            echo -e "${COLOR_GREEN}Total update time: ${total_duration} seconds${COLOR_RESET}"
+            echo -e "[${COLOR_GREEN} SUCESS ${COLOR_RESET}] System upgrade completed successfully.\nTotal duration: ${COLOR_GREEN}${total_duration}${COLOR_RESET} seconds"
 
             hyprctl notify 5 5000 "rgb(00ff00)" """fontsize:35   Upgrade completed successfully. Total duration: ${total_duration} seconds"
             
             echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): System upgrade completed successfully. Total duration: ${total_duration} seconds" >> ~/script/waybar/update.log
 
+            # Run history script
+            run_history
+
             # Prompt user to reboot the system
             while true; do
                 echo -e "${COLOR_GREEN}"
-                read -p "Would you like to reboot your system now? (y/n): " reboot_choice
+                read -p "All operations have been completed. Would you like to reboot the system now? (y/n): " reboot_choice
                 echo -e "${COLOR_RESET}"
                 case $reboot_choice in
                     [Yy]* )
@@ -116,7 +135,6 @@ while true; do
                         systemctl reboot
                         break;;
                     [Nn]* )
-                        echo -e "${COLOR_GREEN}You can manually reboot your system later.${COLOR_RESET}"
                         break;;
                     * )
                         echo -e "${COLOR_DARK_RED}Please answer yes or no.${COLOR_RESET}";;
@@ -124,12 +142,11 @@ while true; do
             done
 
             # Prompt user to press Enter to exit
-            echo -e "${COLOR_GREEN}Press Enter to exit...${COLOR_RESET}"
+            echo -e "Press any key to exit..."
             read -r
             break;;
         [Nn]* )
-            echo -e "${COLOR_GREEN}System upgrade aborted.${COLOR_RESET}"
-            echo -e "${COLOR_GREEN}Press Enter to exit...${COLOR_RESET}"
+            echo -e "${COLOR_GREEN}System upgrade aborted. Press any key to exit...${COLOR_RESET}"
             read -r
             exit;;
         * )
