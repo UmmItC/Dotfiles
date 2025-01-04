@@ -37,7 +37,6 @@ You can set up your system quickly without needing to clone or download the scri
 
 | DevOps       | Installation Command                                                              |
 |--------------|---------------------------------------------------------------------------------- |
-| Gitlab       | `bash <(curl -s https://gitlab.com/UmmIt/dotfiles/-/raw/main/setup.sh)`           |
 | Codeberg     | `bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)`    |
 | Github       | `bash <(curl -s https://raw.githubusercontent.com/UmmItC/Dotfiles/main/setup.sh)` |
 
@@ -67,7 +66,7 @@ Here's a list of the packages I used.
 | Screenshot               | Hyprshot        | AUR             |
 | Display Manager          | Ly              | Pacman          |
 | Sound Server             | Pipewire        | Pacman          |
-| AUR Helper               | Yay             | Manually (Git)  |
+| AUR Helper               | Paru             | Manually (Git)  |
 | Icon Theme               | Papirus         | Pacman          |
 | IDLE Management          | Hypridle        | Pacman          |
 | Recorder                 | wf-recorder     | Pacman          |
