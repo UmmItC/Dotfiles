@@ -59,7 +59,7 @@ cat << "EOF"
 
 This script will upgrade your system with the following features, which automatically detect the following dose not exist:
 
-- Full system upgrade via yay
+- Full system upgrade via paru
 - Upgrade oh-my-zsh
 - Upgrade Powerlevel10k
 - Upgrade Flatpak packages
@@ -78,9 +78,9 @@ while true; do
 
             # Using () for command blocks
             (
-                # Full system upgrade via yay
-                echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Full system upgrade via yay"
-                execute_command "yay" "Processed full system upgrade via yay"
+                # Full system upgrade via paru
+                echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Full system upgrade via paru"
+                execute_command "paru" "Processed full system upgrade via paru"
 
                 # Check if oh-my-zsh upgrade script exists before running it
                 if [ -f "$HOME/.oh-my-zsh/tools/upgrade.sh" ]; then

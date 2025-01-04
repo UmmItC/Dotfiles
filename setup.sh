@@ -46,14 +46,14 @@ check_git() {
     fi
 }
 
-# Function to check if yay is installed
-check_yay() {
-    if ! command_exists yay; then
-        echo "${COLOR_YELLOW}:: yay is not installed.${COLOR_RESET}"
-        if prompt_yna ":: Would you like to install yay?"; then
-            echo "${COLOR_GREEN}:: Installing yay...${COLOR_RESET}"
-            if ! (cd .. && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si); then
-                echo "${COLOR_DARK_RED}:: Failed to install yay.${COLOR_RESET}"
+# Function to check if paru is installed
+check_paru() {
+    if ! command_exists paru; then
+        echo "${COLOR_YELLOW}:: paru is not installed.${COLOR_RESET}"
+        if prompt_yna ":: Would you like to install paru?"; then
+            echo "${COLOR_GREEN}:: Installing paru...${COLOR_RESET}"
+            if ! (cd .. && git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si); then
+                echo "${COLOR_DARK_RED}:: Failed to install paru.${COLOR_RESET}"
                 exit 1
             fi
         else
@@ -72,9 +72,9 @@ else
     exit 0
 fi
 
-# Check if git and yay are installed
+# Check if git and paru are installed
 check_git
-check_yay
+check_paru
 
 # Check if user wants to clone the repository
 if prompt_yna "Do you want to clone the repository?"; then
