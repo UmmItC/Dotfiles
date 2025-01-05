@@ -50,6 +50,10 @@ run_history() {
   execute_command "bash ~/script/waybar/history.sh" "History script been executed :)"
 }
 
+# Run history script
+run_history
+
+
 # Banner for upgrade system
 echo -e "${COLOR_LIGHT_BLUE}"
 cat << "EOF"
@@ -117,9 +121,6 @@ while true; do
             hyprctl notify 5 5000 "rgb(00ff00)" """fontsize:35   Upgrade completed successfully. Total duration: ${total_duration} seconds"
             
             echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): System upgrade completed successfully. Total duration: ${total_duration} seconds" >> ~/script/waybar/update.log
-
-            # Run history script
-            run_history
 
             # Prompt user to reboot the system
             while true; do
