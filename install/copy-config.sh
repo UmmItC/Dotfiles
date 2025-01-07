@@ -4,11 +4,31 @@ config_dir="$HOME/.config"
 
 # Function to display the banner
 display_banner() {
-    echo -e "${COLOR_GRAY}---------------------------------------------------------${COLOR_RESET}"
-    echo -e "${COLOR_BLUE} Part 3: Copy Configuration Files${COLOR_RESET}\n"
-    echo -e "${COLOR_BLUE} ${COLOR_RESET}This section will copy the necessary configuration files.${COLOR_RESET}"
-    echo -e "${COLOR_BLUE} ${COLOR_RESET}This includes CSS styles, JSON configuration, and scripts.${COLOR_RESET}"
-    echo -e "${COLOR_GRAY}---------------------------------------------------------${COLOR_RESET}"
+    cat <<EOF
+${COLOR_GREEN}--------------------------------------------------${COLOR_RESET}
+${COLOR_BLUE}Part 2: Copying Configuration Files
+
+This section will copy the configuration files to the appropriate directories.
+Those configuration are preconfigured for my setup.
+You should modify them according to your needs.
+Such as the monitor configuration of hyprland.
+This script is using cp -rv to copy the configuration files.
+Please make sure to backup your existing configuration files before copying.
+
+- hypr
+- kitty
+- fastfetch
+- waybar
+- rofi
+- swaync
+- wlogout
+- mpv
+- yazi
+- script
+- wallpaper${COLOR_RESET}
+
+${COLOR_GREEN}--------------------------------------------------${COLOR_RESET}
+EOF
 }
 
 # Function to copy and update configuration files
@@ -23,6 +43,7 @@ copy_config_files() {
         cp -rv ./configs/swaync "$config_dir/"
         cp -rv ./configs/wlogout "$config_dir/"
         cp -rv ./configs/mpv "$config_dir/"
+        cp -rv ./configs/yazi "$config_dir/"
         
         cp -rv ./script "$HOME/"
         

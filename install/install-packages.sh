@@ -65,14 +65,22 @@ install_gpu_package() {
 
 # Function to display the banner
 display_banner() {
-    echo -e "${COLOR_GRAY}---------------------------------------------------------${COLOR_RESET}"
-    echo -e "${COLOR_BLUE}Part 1: Installing Required Packages${COLOR_RESET}"
-    echo -e "${COLOR_BLUE}This part will install the necessary packages.${COLOR_RESET}"
-    echo -e "${COLOR_BLUE}Packages are categorized into tool packages and GPU packages.${COLOR_RESET}"
-    echo -e "${COLOR_BLUE}You will be prompted to choose whether to proceed with each installation.${COLOR_RESET}"
-    echo -e "${COLOR_BLUE}This will be look long time to complete, since for the AUR package installation was using source code to compile instead of binary.${COLOR_RESET}"
-    echo -e "${COLOR_BLUE}Type 'n' or 'no' if you wish to skip a package.${COLOR_RESET}"
-    echo -e "${COLOR_GRAY}---------------------------------------------------------${COLOR_RESET}"
+    cat <<EOF
+${COLOR_GRAY}---------------------------------------------------------${COLOR_RESET}
+${COLOR_BLUE}Part 1: Installing Main Packages
+
+This section will install the main packages listed in the packages_main file.
+These packages are essential for ensuring that my dotfiles function properly.
+The installation process will utilize paru to manage all package installations.
+Please note that the installation of AUR packages may take some time, as they will be compiled from source.
+
+The packages will be sourced from the official Arch Linux repositories, including:
+
+- Extra repository
+- Multilib repository
+- AUR repository${COLOR_RESET}
+${COLOR_GRAY}---------------------------------------------------------${COLOR_RESET}
+EOF
 }
 
 main() {
