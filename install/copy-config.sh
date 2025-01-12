@@ -61,40 +61,6 @@ copy_config_files() {
     fi
 }
 
-# Function to copy Steam configuration files
-copy_steam_config_files() {
-    if prompt_yna ":: Do you want to copy Steam configuration files?"; then
-        if command_exists steam; then
-            cp -v ./configs/steam/steam_dev.cfg ~/.steam/steam/
-            echo "Steam configuration files copied successfully."
-
-            sleep 1
-            clear
-        else
-            echo "Steam is not installed. Installing Steam..."
-            sudo pacman -S steam
-            if [ $? -eq 0 ]; then
-                echo "Steam installed successfully."
-                cp -v ./configs/steam/steam_dev.cfg ~/.steam/steam/
-                echo "Steam configuration files copied successfully."
-
-                sleep 1
-                clear
-            else
-                echo "Failed to install Steam."
-
-                sleep 1
-                clear
-            fi
-        fi
-    else
-        echo "${COLOR_YELLOW}:: Skipping copying of Steam configuration files.${COLOR_RESET}"
-
-        sleep 2
-        clear
-    fi
-}
-
 # Main function
 main() {
     # Display the banner
@@ -102,9 +68,6 @@ main() {
 
     # Copy configuration files
     copy_config_files
-
-    # Copy Steam configuration files
-    copy_steam_config_files
 }
 
 # Main script execution
