@@ -19,13 +19,13 @@ install_main_packages() {
 
     if prompt_yna ":: Install these packages? - Total Package (${total_main_packages})"; then
         paru -S "${main_packages[@]}"
-
-        sleep 1
+        
+        read -p ":: Main packages installed completed. Press any key to keep going :)"
         clear
     else
         echo "${COLOR_YELLOW}:: Skipping main package installation.${COLOR_RESET}"
-        
-        sleep 1
+ 
+        read -p ":: Main packages installed skipped. Press any key to keep going :)"
         clear
     fi
 }
@@ -52,12 +52,12 @@ install_gpu_package() {
         if prompt_yna ":: Install these GPU  packages? - Total Package (${total_packages})"; then
             paru -S "${gpu_packages[@]}"
 
-            sleep 1
+            read -p ":: GPU packages installed completed. Press any key to keep going :)"
             clear
         else
             echo "${COLOR_YELLOW}:: Skipping GPU package installation.${COLOR_RESET}"
 
-            sleep 1
+            read -p ":: GPU packages installed skipped. Press any key to keep going :)"
             clear
         fi
     fi

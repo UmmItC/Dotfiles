@@ -51,12 +51,12 @@ copy_config_files() {
         
         echo "${COLOR_GREEN}:: Configuration files copied successfully.${COLOR_RESET}"
 
-        sleep 1
+        read -p ":: Configuration files copied successfully. Press any key to keep going :)"
         clear
     else
         echo "${COLOR_YELLOW}:: Skipping configuration file copying and updates.${COLOR_RESET}"
 
-        sleep 1
+        read -p ":: Configuration files copied skipped. Press any key to keep going :)"
         clear
     fi
 }
