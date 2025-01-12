@@ -49,15 +49,15 @@ check_git() {
 # Function to check if paru is installed
 check_paru() {
     if ! command_exists paru; then
-        echo "${COLOR_YELLOW}:: paru is not installed.${COLOR_RESET}"
+        echo -e "${COLOR_YELLOW}:: paru is not installed.${COLOR_RESET}"
         if prompt_yna ":: Would you like to install paru?"; then
-            echo "${COLOR_GREEN}:: Installing paru...${COLOR_RESET}"
-            if ! (cd .. && git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si); then
-                echo "${COLOR_DARK_RED}:: Failed to install paru.${COLOR_RESET}"
+            echo -e "${COLOR_GREEN}:: Installing paru...${COLOR_RESET}"
+            if ! (git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si); then
+                echo -e "${COLOR_DARK_RED}:: Failed to install paru.${COLOR_RESET}"
                 exit 1
             fi
         else
-            echo "${COLOR_DARK_RED}:: Exiting...${COLOR_RESET}"
+            echo -e "${COLOR_DARK_RED}:: Exiting...${COLOR_RESET}"
             exit 0
         fi
     fi
