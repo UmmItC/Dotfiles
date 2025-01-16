@@ -30,21 +30,6 @@ execute_command() {
     fi
 }
 
-# Function for countdown
-countdown() {
-    local seconds=$1
-    while [ $seconds -gt 0 ]; do
-        echo -e "${COLOR_GREEN}Rebooting in $seconds seconds...${COLOR_RESET}"
-        hyprctl notify 5 1000 "rgb(433878)" """fontsize:35   Rebooting in $seconds seconds"
-        hyprctl notify 4 1000 "rgb(433878)" """fontsize:35   Rebooting in $seconds seconds"
-        hyprctl notify 3 1000 "rgb(433878)" """fontsize:35   Rebooting in $seconds seconds"
-        hyprctl notify 2 1000 "rgb(433878)" """fontsize:35   Rebooting in $seconds seconds"
-        hyprctl notify 1 1000 "rgb(433878)" """fontsize:35   Rebooting in $seconds seconds"
-        sleep 1
-        : $((seconds--))
-    done
-}
-
 run_history() {
   # Execute history script first
   execute_command "bash ~/script/waybar/history.sh" "History script been executed :)"
@@ -129,8 +114,9 @@ while true; do
                 echo -e "${COLOR_RESET}"
                 case $reboot_choice in
                     [Yy]* )
-                        # Initiate countdown
-                        countdown 5
+                        
+                        hyprctl notify 2 5000 "rgb(433878)" """fontsize:35   System will reboot in 5 seconds"
+                        sleep 5
 
                         # Reboot the system
                         systemctl reboot
