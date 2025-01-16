@@ -1,125 +1,114 @@
-/* General Configuration */
+// rofi configuration
 configuration {
-    show-icons: true;
+    modi:                        "dmenu";
+    show-icons:                  true;
+    drun-display-format:         "{icon} {name}";
+    font:                        "Overpass Extra Bold Italic 16";
+    click-to-exit:               true;
     display-drun: " | ";
-    drun-display-format: "{icon} {name}";
     disable-history: false;
-    click-to-exit: true;
     location: 0;
     icons: "Papirus-Light";
 }
 
-/* Global Styles */
+// Global Properties
 * {
-    font: "Overpass Bold 17";
-    bg0: rgba(33, 33, 33, 0.8); 
-    bg1: rgba(64, 64, 64, 0.8);
-    fg0: rgba(238, 255, 255, 1);
-    accent-color: rgba(198, 143, 230, 0.9);
-    urgent-color: rgba(255, 215, 196, 0.9);
-    background-color: rgba(0, 0, 0, 0.0);
-    text-color: @fg0;
-    margin: 0;
-    padding: 0;
-    spacing: 0;
+    main-bg:                     rgba(40, 40, 40, 0.9);
+    main-fg:                     #fbf1c7;
+    select-bg:                   rgba(109, 75, 189, 0.4);
+    select-fg:                   #C68FE6;
+    input-bg:                    rgba(30, 30, 30, 0.9);
+    input-fg:                    #C68FE6;
+    input-border:                #8E59C9;
+    no-color-transparent:        rgb(0, 0, 0, 0);
 }
 
-/* Window Styles */
+// Window Styles
 window {
-    location: center;
-    width: 600;
-    background-color: rgba(33, 33, 33, 0.5);
+    enabled:                     true;
+    fullscreen:                  true;
+    width:                       100%;
+    padding:                     70px;
+    border-color:                transparent;
+    background-color:            rgb(0, 0, 0, 0.4);
 }
 
-/* Input Bar Styles */
+// Main Box
+mainbox {
+    enabled:                     true;
+    children:                    ["inputbar", "listview"];
+    spacing:                     15px;
+    background-color:            @no-color-transparent;
+}
+
+// Input Bar
 inputbar {
-    spacing: 8px;
-    padding: 20px;
-    background-color: rgba(30, 10, 60, 0.4);
+    enabled:                     true;
+    spacing:                     10px;
+    padding:                     15px;
+    margin:                      0px 400px;
+    border:                      3px;
+    border-radius:               30px;
+    border-color:                @input-border;
+    background-color:            @input-bg;
+    text-color:                  @input-fg;
+    children:                    [ "prompt", "entry" ];
 }
-
-/* Element Styles */
-prompt,
-entry,
-element-icon,
-element-text {
-    vertical-align: 0.5;
-}
-
-/* Prompt Styles */
 prompt {
-    text-color: @accent-color;
+    enabled:                     true;
+    background-color:            transparent;
+    text-color:                  @input-fg;
 }
 
-/* Entry Styles */
 entry {
-    text-font: inherit;
-    horizontal-align: center;
-    text-color: inherit;
-    padding: 8px;
-    background-color: rgba(128, 0, 128, 0.0);
-    border-radius: 4px;
-    text-align: center;
-    placeholder: "Search here :)";
+    enabled:                     true;
+    background-color:            transparent;
+    text-color:                  @input-fg;
+    cursor:                      text;
+    placeholder:                 "Search program...   i use arch btw";
+    placeholder-color:           rgba(198, 143, 230, 0.5);
 }
 
-
-/* Textbox Styles */
-textbox {
-    padding: 8px;
-    background-color: rgba(55, 22, 22, 0.5);
-}
-
-/* Listview Styles */
+// Listview
 listview {
-    padding: 4px 0;
-    lines: 8;
-    columns: 1;
-    fixed-height: true;
+    enabled:                     true;
+    columns:                     4;
+    lines:                       1;
+    spacing:                     50px;
+    padding:                     20px 30px;
+    background-color:            @no-color-transparent;
+    text-color:                  @select-fg;
 }
 
-/* Element Styles */
+// Elements
 element {
-    padding: 8px;
-    spacing: 8px;
+    enabled:                     true;
+    border-radius:               70px;
+    background-color:            @no-color-transparent;
+    text-color:                  @select-fg;
 }
 
-/* Element Text Colors */
-element normal normal {
-    text-color: @fg0;
+@media(max-aspect-ratio: 1.8) {
+    element {
+        orientation:             vertical;
+    }
 }
 
-element normal urgent {
-    text-color: @urgent-color;
+element selected.normal {
+    background-color:            @select-bg;
+    text-color:                  @select-fg;
 }
 
-element normal active {
-    text-color: @accent-color;
-}
-
-element alternate active {
-    text-color: @accent-color;
-}
-
-element selected {
-    text-color: @bg0;
-}
-
-/* Element Background Colors */
-element selected normal,
-element selected active {
-    background-color: @accent-color;
-}
-
-element selected urgent {
-    background-color: @urgent-color;
-}
-
-/* Icon and Text Styles */
 element-icon {
-    size: 1.7em;
+    size:                        15%; 
+    border-radius:               13%;
+    background-color:            transparent;
 }
 
 element-text {
-    text-color: inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    padding:                     10 10 10 10px;
+    background-color:            transparent;
+    text-color:                  @main-fg;
 }
