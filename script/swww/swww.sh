@@ -21,12 +21,15 @@ if pgrep -x "rofi" > /dev/null; then
     exit 1
 fi
 
+# Build entries differently
 entries=""
 while IFS= read -r filename; do
-    entries+="$filename\x00icon\x1f$WALLPAPER_DIR/$filename\n"
+    [ -n "$filename" ] && entries+="${filename}\x00icon\x1f${WALLPAPER_DIR}/${filename}\n"
 done <<< "$filenames"
 
-selected=$(echo -e "$entries" | rofi -dmenu -p "Wallpaper Picker" -theme ~/.config/rofi/wallpaper-picker.rasi)
+# Remove the last newline character before passing to rofi
+entries=${entries%\\n}
+selected=$(printf "%b" "$entries" | rofi -dmenu -p "Wallpaper Picker" -theme ~/.config/rofi/wallpaper-picker.rasi)
 
 # Check if user selected a wallpaper
 if [ -n "$selected" ]; then
