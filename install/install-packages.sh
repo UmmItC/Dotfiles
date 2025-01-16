@@ -63,6 +63,34 @@ install_gpu_package() {
     fi
 }
 
+install_laptop_packages (){
+    local laptop_packages=()
+
+    while IFS= read -r package; do
+        if [[ -n "$package" ]]; then
+            laptop_packages+=("$package")
+        fi
+    done < "./install/packages_laptop"
+
+    echo "${COLOR_GREEN}:: Laptop packages to be installed${COLOR_RESET}"
+
+    local total_packages=${#laptop_packages[@]}
+
+    printf "${COLOR_GREY}%s${COLOR_RESET}\n" "${laptop_packages[@]}" | column
+
+    if prompt_yna ":: Install these laptop packages? - Total Package (${total_packages})"; then
+        paru -S "${laptop_packages[@]}"
+
+        read -p ":: Laptop packages installed completed. Press any key to keep going :)"
+        clear
+    else
+        echo "${COLOR_YELLOW}:: Skipping laptop package installation.${COLOR_RESET}"
+
+        read -p ":: Laptop packages installed skipped. Press any key to keep going :)"
+        clear
+    fi
+}
+
 # Function to display the banner
 display_banner() {
     cat <<EOF
@@ -83,6 +111,17 @@ ${COLOR_GRAY}---------------------------------------------------------${COLOR_RE
 EOF
 }
 
+display_banner_laptop() {
+    cat <<EOF
+${COLOR_GRAY}---------------------------------------------------------${COLOR_RESET}
+${COLOR_BLUE}You saw this banner because you were detected as a laptop user.
+This script will install brightnessctl and playerctl packages.
+Which is useful for controlling screen brightness and media players.
+and my dotfiles also use these tools.${COLOR_RESET}
+${COLOR_GRAY}---------------------------------------------------------${COLOR_RESET}
+EOF
+}
+
 main() {
     clear
     # Display the banner
@@ -93,6 +132,12 @@ main() {
 
     # Install GPU packages
     install_gpu_package
+
+    # Install laptop packages
+    if [[ -f /sys/class/power_supply/BAT0/capacity ]]; then
+        display_banner_laptop
+        install_laptop_packages
+    fi
 }
 
 # Run the main function
