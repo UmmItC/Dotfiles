@@ -101,3 +101,9 @@ The hotkeys for managing your windows and launching tools are configured in the 
 ## Contributing
 
 See the [contributing guidelines](./CONTRIBUTING.md) for more information.
+
+## More information
+
+For more information of my dotfiles, please refer to my blog post here:
+
+>https://blog.ummit.dev/posts/linux/dynamic-window-manager/hyprland/mydots-hyprland/
