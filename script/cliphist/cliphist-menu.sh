@@ -12,7 +12,7 @@ clipboard_text=$(cliphist list)
 
 # Check if cliphist returned any text
 if [[ -n "$clipboard_text" ]]; then
-    # Use fuzzel and dmenu to select an item from clipboard history
+    # Use rofi and dmenu to select an item from clipboard history
     selected_text=$(echo "$clipboard_text" | rofi -dmenu -p "Select history:" -theme ~/.config/rofi/clipboard.rasi)
 
     if [[ -n "$selected_text" ]]; then
@@ -20,10 +20,8 @@ if [[ -n "$clipboard_text" ]]; then
         decoded_text=$(echo "$selected_text" | cliphist decode)
 
         # Copy the decoded text to the clipboard using wl-copy
-        echo "$decoded_text" | wl-copy
+        printf '%s' "$decoded_text" | wl-copy
 
-        # Notify the user
-        hyprctl notify 5 2500 "rgb(86D293)" "fontsize:35   Copied to clipboard"
         echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Copied to clipboard - Cliphist" >> ~/script/cliphist/cliphist.log
 
     else
