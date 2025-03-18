@@ -4,6 +4,21 @@ This repository is dedicated to my Hyprland DWM Arch Linux configuration files.
 
 [Watch this video on YouTube](https://www.youtube.com/watch?v=sjeKlj8mTjE)
 
+## Screenshots
+
+![App Launcher](https://dl.ummit.dev/dotfiles-20250217/app-launcher.png)
+![Clipboard](https://dl.ummit.dev/dotfiles-20250217/clipboard.png)
+![Color Picker](https://dl.ummit.dev/dotfiles-20250217/color-picker.png)
+![Neovim 2](https://dl.ummit.dev/dotfiles-20250217/neovim-2.png)
+![Neovim](https://dl.ummit.dev/dotfiles-20250217/neovim.png)
+![Panel](https://dl.ummit.dev/dotfiles-20250217/panel.png)
+![Power Management 2](https://dl.ummit.dev/dotfiles-20250217/power-management-2.png)
+![Power Management](https://dl.ummit.dev/dotfiles-20250217/power-management.png)
+![Upgrade](https://dl.ummit.dev/dotfiles-20250217/upgrade.png)
+![Wallpaper Picker](https://dl.ummit.dev/dotfiles-20250217/wallpaper-picker.png)
+![Windows 2](https://dl.ummit.dev/dotfiles-20250217/windows-2.png)
+![Windows](https://dl.ummit.dev/dotfiles-20250217/windows.png)
+
 # Installation Instructions
 
 For users on Arch Linux, I’ve created a script to streamline the setup process. You can run the script to automatically configure your system. Alternatively, you can manually copy the configuration files to your system using the `cp` command.
