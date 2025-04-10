@@ -61,18 +61,22 @@ echo -e "0 = Update ALL"
 echo -e "1 = Paru only"
 echo -e "2 = Flatpak only"
 echo -e "3 = Oh my zsh only"
+echo -e "n/N/NO = Exit program"
 
 # Get user's choice
 while true; do
     echo -e "${COLOR_GREEN}"
-    read -p "Enter your choice (0-3): " update_choice
+    read -p "Enter your choice (0-3 or n/N/NO to exit): " update_choice
     echo -e "${COLOR_RESET}"
     
     case $update_choice in
         0|1|2|3)
             break;;
+        n|N|NO|no|No)
+            echo -e "${COLOR_GREEN}Exiting program...${COLOR_RESET}"
+            exit 0;;
         *)
-            echo -e "${COLOR_DARK_RED}Invalid choice. Please enter a number between 0 and 3.${COLOR_RESET}";;
+            echo -e "${COLOR_DARK_RED}Invalid choice. Please enter a number between 0 and 3, or n/N/NO to exit.${COLOR_RESET}";;
     esac
 done
 
