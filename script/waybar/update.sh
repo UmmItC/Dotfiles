@@ -55,6 +55,27 @@ This script will upgrade your system with the following features, which automati
 EOF
 echo -e "${COLOR_RESET}"
 
+# Display menu options
+echo -e "${COLOR_GREEN}Please select an update option:${COLOR_RESET}"
+echo -e "0 = Update ALL"
+echo -e "1 = Paru only"
+echo -e "2 = Flatpak only"
+echo -e "3 = Oh my zsh only"
+
+# Get user's choice
+while true; do
+    echo -e "${COLOR_GREEN}"
+    read -p "Enter your choice (0-3): " update_choice
+    echo -e "${COLOR_RESET}"
+    
+    case $update_choice in
+        0|1|2|3)
+            break;;
+        *)
+            echo -e "${COLOR_DARK_RED}Invalid choice. Please enter a number between 0 and 3.${COLOR_RESET}";;
+    esac
+done
+
 # Prompt user to confirm system upgrade
 while true; do
     echo -e "${COLOR_GREEN}"
@@ -67,33 +88,54 @@ while true; do
 
             # Using () for command blocks
             (
-                # Full system upgrade via paru
-                echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Full system upgrade via paru"
-                execute_command "paru" "Processed full system upgrade via paru"
+                # Execute selected update options
+                case $update_choice in
+                    0)  # Update ALL
+                        echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Full system upgrade via paru"
+                        execute_command "paru" "Processed full system upgrade via paru"
 
-                # Check if oh-my-zsh upgrade script exists before running it
-                if [ -f "$HOME/.oh-my-zsh/tools/upgrade.sh" ]; then
-                    echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Upgrading oh my zsh"
-                    execute_command "~/.oh-my-zsh/tools/upgrade.sh" "Processed oh-my-zsh upgrade script"
-                else
-                    print_status "SKIP" "oh-my-zsh upgrade script not found"
-                fi
+                        if [ -f "$HOME/.oh-my-zsh/tools/upgrade.sh" ]; then
+                            echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Upgrading oh my zsh"
+                            execute_command "~/.oh-my-zsh/tools/upgrade.sh" "Processed oh-my-zsh upgrade script"
+                        else
+                            print_status "SKIP" "oh-my-zsh upgrade script not found"
+                        fi
 
-                # Check if Powerlevel10k repository exists before attempting to update
-                if [ -d "$HOME/powerlevel10k/.git" ]; then
-                    echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Upgrading Powerlevel10k"
-                    execute_command "git -C $HOME/powerlevel10k pull" "Processed Powerlevel10k upgrade"
-                else
-                    print_status "SKIP" "Powerlevel10k repository not found"
-                fi
- 
-                # Check if flatpak is installed before updating packages
-                if command -v flatpak &> /dev/null; then
-                    echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Upgrading Flatpak packages"
-                    execute_command "flatpak update" "Processed Flatpak package upgrade"
-                else
-                    print_status "SKIP" "flatpak is not installed"
-                fi
+                        if [ -d "$HOME/powerlevel10k/.git" ]; then
+                            echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Upgrading Powerlevel10k"
+                            execute_command "git -C $HOME/powerlevel10k pull" "Processed Powerlevel10k upgrade"
+                        else
+                            print_status "SKIP" "Powerlevel10k repository not found"
+                        fi
+
+                        if command -v flatpak &> /dev/null; then
+                            echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Upgrading Flatpak packages"
+                            execute_command "flatpak update" "Processed Flatpak package upgrade"
+                        else
+                            print_status "SKIP" "flatpak is not installed"
+                        fi
+                        ;;
+                    1)  # Paru only
+                        echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Full system upgrade via paru"
+                        execute_command "paru" "Processed full system upgrade via paru"
+                        ;;
+                    2)  # Flatpak only
+                        if command -v flatpak &> /dev/null; then
+                            echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Upgrading Flatpak packages"
+                            execute_command "flatpak update" "Processed Flatpak package upgrade"
+                        else
+                            print_status "SKIP" "flatpak is not installed"
+                        fi
+                        ;;
+                    3)  # Oh my zsh only
+                        if [ -f "$HOME/.oh-my-zsh/tools/upgrade.sh" ]; then
+                            echo -e "[${COLOR_GREEN} RUNNING ${COLOR_RESET}] Upgrading oh my zsh"
+                            execute_command "~/.oh-my-zsh/tools/upgrade.sh" "Processed oh-my-zsh upgrade script"
+                        else
+                            print_status "SKIP" "oh-my-zsh upgrade script not found"
+                        fi
+                        ;;
+                esac
             )
 
             # Calculate total update duration
