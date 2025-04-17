@@ -6,6 +6,9 @@ This repository is dedicated to my Hyprland DWM Arch Linux configuration files.
 
 ## Screenshots
 
+<details>
+<summary>Click to expand/collapse screenshots</summary>
+
 ![App Launcher](https://dl.ummit.dev/dotfiles-20250217/app-launcher.png)
 ![Clipboard](https://dl.ummit.dev/dotfiles-20250217/clipboard.png)
 ![Color Picker](https://dl.ummit.dev/dotfiles-20250217/color-picker.png)
@@ -18,6 +21,8 @@ This repository is dedicated to my Hyprland DWM Arch Linux configuration files.
 ![Wallpaper Picker](https://dl.ummit.dev/dotfiles-20250217/wallpaper-picker.png)
 ![Windows 2](https://dl.ummit.dev/dotfiles-20250217/windows-2.png)
 ![Windows](https://dl.ummit.dev/dotfiles-20250217/windows.png)
+
+</details>
 
 # Installation Instructions
 
