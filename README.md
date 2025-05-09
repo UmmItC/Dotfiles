@@ -1,5 +1,9 @@
 # Dotfiles
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/UmmItC/Dotfiles)
+[![Arch Linux](https://img.shields.io/badge/Arch_Linux-1793D1?logo=arch-linux&logoColor=fff)](https://archlinux.org)
+[![Hyprland](https://img.shields.io/badge/Hyprland-1A1B26?logo=hyprland&logoColor=fff)](https://hyprland.org)
+
 This repository is dedicated to my Hyprland DWM Arch Linux configuration files.
 
 [Watch this video on YouTube](https://www.youtube.com/watch?v=sjeKlj8mTjE)
@@ -26,7 +30,7 @@ This repository is dedicated to my Hyprland DWM Arch Linux configuration files.
 
 # Installation Instructions
 
-For users on Arch Linux, I’ve created a script to streamline the setup process. You can run the script to automatically configure your system. Alternatively, you can manually copy the configuration files to your system using the `cp` command.
+For users on Arch Linux, I've created a script to streamline the setup process. You can run the script to automatically configure your system. Alternatively, you can manually copy the configuration files to your system using the `cp` command.
 
 To run the script:
 
@@ -124,6 +128,4 @@ See the [contributing guidelines](./CONTRIBUTING.md) for more information.
 
 ## More information
 
-For more information of my dotfiles, please refer to my blog post here:
-
->https://blog.ummit.dev/posts/linux/dynamic-window-manager/hyprland/mydots-hyprland/
+For more information of my dotfiles, please refer to my blog post [here](https://short.ummit.dev/blog-old-dotsfile-guide)
