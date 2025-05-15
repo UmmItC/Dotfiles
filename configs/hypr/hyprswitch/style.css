@@ -1,11 +1,11 @@
 :root {
-    --pink-bg: rgba(253, 242, 248, 0.95);      
-    --pink-border: rgba(244, 114, 182, 0.3);    
-    --pink-accent: #EC4899;                     
-    --pink-hover: rgba(251, 207, 232, 0.4);     
-    --pink-active: rgba(236, 72, 153, 0.3);     
-    --pink-radius: 16px;                        
-    --pink-shadow: 0 8px 32px rgba(236, 72, 153, 0.15);
+    --purple-bg: rgba(245, 243, 255, 0.95);      
+    --purple-border: rgba(147, 112, 219, 0.3);    
+    --purple-accent: #8A2BE2;                     
+    --purple-hover: rgba(221, 214, 254, 0.4);     
+    --purple-active: rgba(138, 43, 226, 0.3);     
+    --purple-radius: 16px;                        
+    --purple-shadow: 0 8px 32px rgba(138, 43, 226, 0.15);
 }
 
 * {
@@ -16,10 +16,10 @@
 }
 
 .window-manager {
-    --bg-color: var(--pink-bg);
-    --border-color: var(--pink-border);
-    --border-color-active: var(--pink-accent);
-    --border-radius: var(--pink-radius);
+    --bg-color: var(--purple-bg);
+    --border-color: var(--purple-border);
+    --border-color-active: var(--purple-accent);
+    --border-radius: var(--purple-radius);
 }
 
 .client,
@@ -28,23 +28,23 @@
     background-color: var(--bg-color);
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius);
-    box-shadow: var(--pink-shadow);
+    box-shadow: var(--purple-shadow);
     backdrop-filter: blur(10px);
 }
 
 .window_active {
-    border-color: var(--pink-accent);
+    border-color: var(--purple-accent);
 }
 
 
 .client, .workspace, .monitor, .index {
-    font-family: "Segoe UI", "Ubuntu", "Noto Sans", sans-serif;
+    font-family: "Poppins", "SF Pro Display", "Segoe UI", sans-serif;
     padding: 8px;
 }
 
 .client {
     font-size: 14px;
-    font-weight: normal;
+    font-weight: 300;
 }
 
 .workspace {
@@ -54,11 +54,12 @@
 
 .monitor {
     padding: 12px;
+    font-weight: 500;
 }
 
 .index {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     padding: 4px 8px;
     margin: 4px;
     border-radius: 4px;
@@ -70,20 +71,20 @@
 .client:hover,
 .workspace:hover,
 .monitor:hover {
-    background-color: rgba(244, 114, 182, 0.5);
-    border-color: rgba(236, 72, 153, 0.6);
+    background-color: rgba(147, 112, 219, 0.5);
+    border-color: rgba(138, 43, 226, 0.6);
 }
 
 
 .client_active,
 .workspace_active {
-    border-color: var(--pink-accent);
-    background-color: var(--pink-active);
+    border-color: var(--purple-accent);
+    background-color: var(--purple-active);
 }
 
 
 .workspace_special {
-    border-color: var(--pink-accent);
+    border-color: var(--purple-accent);
     opacity: 0.9;
 }
 
