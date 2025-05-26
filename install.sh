@@ -52,13 +52,19 @@ main() {
 
     echo "${COLOR_GREEN}:: Installation completed successfully.${COLOR_RESET}"
     echo "${COLOR_GREEN}:: Please reboot your system to apply all changes!${COLOR_RESET}"
+    echo "${COLOR_GREEN}:: After reboot, run our settings script to finalize the setup of your system by executing: ${COLOR_RESET}"
+    echo ""
+    echo "${COLOR_GREEN}:: ./post-install.sh --start-config${COLOR_RESET}"
 }
 
 # Main script execution
-if [ -f /etc/arch-release ]; then
-    prompt_installation
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    # This code only runs if the script is executed directly, not sourced
+    if [ -f /etc/arch-release ]; then
+        prompt_installation
 
-    main
-else
-    echo "${COLOR_YELLOW}:: Sorry, Script only allows Arch Linux to run.${COLOR_RESET}"
+        main
+    else
+        echo "${COLOR_YELLOW}:: Sorry, Script only allows Arch Linux to run.${COLOR_RESET}"
+    fi
 fi
