@@ -65,7 +65,8 @@ window#waybar.empty #window {
 #tray,
 #pulseaudio,
 #custom-power,
-#custom-notification {
+#custom-notification,
+#custom-terminal {
     color: #E4B1F0;
     background: rgba(26, 27, 38, 0.8);
     border-radius: 14px;
@@ -156,7 +157,7 @@ window#waybar.empty #window {
     100% { background-position: 2px 2px, 0% 50%; }
 }
 
-#tray, #cpu, #memory, #pulseaudio, #custom-notification, #custom-power {
+#tray, #cpu, #memory, #pulseaudio, #custom-notification, #custom-power, #custom-terminal {
     margin-left: 2px;
 }
 
@@ -168,7 +169,8 @@ window#waybar.empty #window {
 #custom-power,
 #custom-notification,
 #custom-upgrade,
-#window {
+#window,
+#custom-terminal {
     background: rgba(20, 20, 35, 0.9);
     border: 2px solid transparent;
     background-image: 
@@ -202,10 +204,12 @@ window#waybar.empty #window {
 #custom-power:hover,
 #custom-notification:hover,
 #custom-upgrade:hover,
-#window:hover {
+#window:hover,
+#custom-terminal:hover {
     background-image: 
         linear-gradient(rgba(30, 25, 45, 0.95), rgba(30, 25, 45, 0.95)),
         linear-gradient(270deg, #f0c1f5, #a587ff, #7c40dc, #f0c1f5);
     animation-duration: 4s;
     box-shadow: 0 4px 12px rgba(155, 127, 255, 0.3);
 }
+

@@ -4,6 +4,7 @@
   "height": 0,
   "modules-left": [
     "hyprland/workspaces",
+    "custom/terminal",
     "network",
     "custom/upgrade"
   ],
@@ -23,6 +24,12 @@
     "sort-by-name": true,
     "on-click": "activate",
     "margin-right": 48
+  },
+
+  "custom/terminal": {
+    "format": " ",
+    "on-click": "kitty",
+    "tooltip": false
   },
 
   "network": {
@@ -94,6 +101,6 @@
     "format": "",
     "on-click": "bash ~/script/wlogout/blur-background.sh",
     "tooltip": false
-  }
+  },
 
 }
