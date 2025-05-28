@@ -6,15 +6,11 @@
 }
 
 window#waybar {
-    background: rgba(26, 27, 38, 0.9);
+    background: rgba(26, 27, 38, 0.5);
     border-bottom: 2px solid rgba(155, 127, 255, 0.4);
     border-radius: 0px;
     color: #E4B1F0;
     transition: all 0.3s ease;
-}
-
-window#waybar.empty #window {
-    background: rgba(12, 12, 12, 0);
 }
 
 #workspaces {
@@ -33,12 +29,13 @@ window#waybar.empty #window {
     margin: 4px 6px;
     border-radius: 50%;
     border: none;
-    background: #6c30cc;
+    background: linear-gradient(45deg, rgba(210,166,255,0.5), rgba(155,127,255,0.5), rgba(108,48,204,0.5));
     opacity: 0.7;
     min-width: 14px;
     min-height: 14px;
     font-size: 0;
     box-shadow: 0 1px 4px rgba(108, 48, 204, 0.15);
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
     transition: 
         background 0.65s cubic-bezier(.4,2,.6,1),
         box-shadow 0.65s cubic-bezier(.4,2,.6,1),
@@ -46,15 +43,17 @@ window#waybar.empty #window {
 }
 
 #workspaces button.active {
-    background: #9b7fff;
+    background: #7753f8;
     opacity: 1;
     box-shadow: 0 2px 8px rgba(140, 108, 255, 0.7), 0 0 12px rgba(108, 67, 255, 0.3);
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
     background: #573f7d;
     opacity: 1;
     box-shadow: 0 4px 12px rgba(151, 128, 235, 0.4);
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #window,
@@ -212,4 +211,3 @@ window#waybar.empty #window {
     animation-duration: 4s;
     box-shadow: 0 4px 12px rgba(155, 127, 255, 0.3);
 }
-
