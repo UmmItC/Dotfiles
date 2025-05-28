@@ -1,58 +1,60 @@
 * {
-    font-size: 97%;
-    font-family: "JetBrainsMono Nerd Font";
-    font-weight: bold;
+    font-size: 100%;
+    font-family: "FiraCode Nerd Font", "Inter", "Noto Sans CJK", monospace;
+    font-weight: 900;
+    min-height: 0;
 }
 
 window#waybar {
-    background-color: rgba(26, 27, 38, 0.85);
-    border-bottom: 1px solid rgba(26, 27, 38, 0);
+    background: rgba(26, 27, 38, 0.9);
+    border-bottom: 2px solid rgba(155, 127, 255, 0.4);
     border-radius: 0px;
-    color: #E6B673;
+    color: #E4B1F0;
+    transition: all 0.3s ease;
 }
 
 window#waybar.empty #window {
-	  background: rgba(12, 12, 12, 0);
+    background: rgba(12, 12, 12, 0);
 }
 
 #workspaces {
-    background: #0F1419;
-    margin: 5px;
-    padding: 0px 1px;
-    border-radius: 15px;
-    border: 0px;
+    background: rgba(24, 24, 37, 0.7);
+    margin: 8px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(155, 127, 255, 0.5);
     font-style: normal;
-    color: #0F1419;
+    color: #E4B1F0;
+    box-shadow: 0 2px 8px rgba(108, 48, 204, 0.15);
 }
 
 #workspaces button {
-    padding: 0px 5px;
-    margin: 4px 3px;
-    border-radius: 15px;
-    border: 0px;
-    color: #0F1419;
-    background: linear-gradient(45deg, rgba(210,166,255,0.5), rgba(155,127,255,0.5), rgba(108,48,204,0.5));
-    opacity: .5;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    padding: 0;
+    margin: 4px 6px;
+    border-radius: 50%;
+    border: none;
+    background: #6c30cc;
+    opacity: 0.7;
+    min-width: 14px;
+    min-height: 14px;
+    font-size: 0;
+    box-shadow: 0 1px 4px rgba(108, 48, 204, 0.15);
+    transition: 
+        background 0.65s cubic-bezier(.4,2,.6,1),
+        box-shadow 0.65s cubic-bezier(.4,2,.6,1),
+        opacity 0.4s cubic-bezier(.4,2,.6,1);
 }
 
 #workspaces button.active {
-    padding: 0px 5px;
-    margin: 4px 3px;
-    border-radius: 15px;
-    border: 0px;
-    color: #0F1419;
-    background: linear-gradient(45deg, rgba(155,127,255,1), rgba(108,48,204,1));
-    opacity: .8;
-    min-width: 40px;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    background: #9b7fff;
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(140, 108, 255, 0.7), 0 0 12px rgba(108, 67, 255, 0.3);
 }
 
 #workspaces button:hover {
-    border-radius: 15px;
-    color: rgba(155, 127, 255, 0.8); 
-    background: linear-gradient(45deg, rgba(155,127,255,.8), rgba(108,48,204,.8));
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    background: #573f7d;
+    opacity: 1;
+    box-shadow: 0 4px 12px rgba(151, 128, 235, 0.4);
 }
 
 #window,
@@ -64,35 +66,146 @@ window#waybar.empty #window {
 #pulseaudio,
 #custom-power,
 #custom-notification {
-	  color: #E4B1F0;
-	  background: transparent;
-	  border-radius: 50px;
-	  margin: 5px;
-	  padding: 2px 15px;
+    color: #E4B1F0;
+    background: rgba(26, 27, 38, 0.8);
+    border-radius: 14px;
+    margin: 6px 3px;
+    padding: 6px 14px;
+    border: 1px solid rgba(155, 127, 255, 0.15);
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 4px rgba(108, 48, 204, 0.1);
 }
 
 #network {
-  min-width: 180px;
+    min-width: 160px;
 }
 
 #custom-upgrade {
-	  color: #E2BBE9;
-	  background: transparent;
-	  border-radius: 50px;
-	  margin: 5px;
-	  padding: 2px 15px;
-	  font-size: 20px;
+    color: #E2BBE9;
+    background: rgba(26, 27, 38, 0.8);
+    border-radius: 14px;
+    margin: 6px 3px;
+    padding: 6px 14px;
+    font-size: 16px;
+    border: 1px solid rgba(226, 187, 233, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 4px rgba(108, 48, 204, 0.1);
 }
 
-#window:hover,
-#memory:hover,
-#clock:hover,
+#cpu.warning {
+    color: #fab387;
+    background: rgba(250, 179, 135, 0.1);
+    border-color: rgba(250, 179, 135, 0.3);
+}
+
+#cpu.critical {
+    color: #f38ba8;
+    background: rgba(243, 139, 168, 0.15);
+    border-color: rgba(243, 139, 168, 0.4);
+}
+
+#memory.warning {
+    color: #fab387;
+    background: rgba(250, 179, 135, 0.1);
+    border-color: rgba(250, 179, 135, 0.3);
+}
+
+#memory.critical {
+    color: #f38ba8;
+    background: rgba(243, 139, 168, 0.15);
+    border-color: rgba(243, 139, 168, 0.4);
+}
+
+#clock {
+    background: rgba(20, 20, 35, 0.9);
+    border: 2px solid transparent;
+    background-image: 
+        linear-gradient(rgba(20, 20, 35, 0.9), rgba(20, 20, 35, 0.9)),
+        linear-gradient(270deg, #e4b1f0, #9b7fff, #6c30cc, #e4b1f0);
+    background-size: 
+        calc(100% - 4px) calc(100% - 4px),
+        400% 400%;
+    background-position: 
+        2px 2px,
+        0% 50%;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    animation: clockBorderGradient 8s ease-in-out infinite;
+    font-family: "Inter", "SF Pro Display", "Helvetica Neue", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #E4B1F0;
+    padding: 10px 18px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    margin-left: 0px;
+    margin-right: 12px;
+}
+
+#clock:hover {
+    background-image: 
+        linear-gradient(rgba(30, 25, 45, 0.95), rgba(30, 25, 45, 0.95)),
+        linear-gradient(270deg, #f0c1f5, #a587ff, #7c40dc, #f0c1f5);
+    animation-duration: 4s;
+    box-shadow: 0 4px 12px rgba(155, 127, 255, 0.3);
+}
+
+@keyframes clockBorderGradient {
+    0% { background-position: 2px 2px, 0% 50%; }
+    50% { background-position: 2px 2px, 100% 50%; }
+    100% { background-position: 2px 2px, 0% 50%; }
+}
+
+#tray, #cpu, #memory, #pulseaudio, #custom-notification, #custom-power {
+    margin-left: 2px;
+}
+
+#cpu,
+#memory,
+#network,
+#tray,
+#pulseaudio,
+#custom-power,
+#custom-notification,
+#custom-upgrade,
+#window {
+    background: rgba(20, 20, 35, 0.9);
+    border: 2px solid transparent;
+    background-image: 
+        linear-gradient(rgba(20, 20, 35, 0.9), rgba(20, 20, 35, 0.9)),
+        linear-gradient(270deg, #e4b1f0, #9b7fff, #6c30cc, #e4b1f0);
+    background-size: 
+        calc(100% - 4px) calc(100% - 4px),
+        400% 400%;
+    background-position: 
+        2px 2px,
+        0% 50%;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    animation: clockBorderGradient 8s ease-in-out infinite;
+    font-family: "Inter", "SF Pro Display", "Helvetica Neue", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #E4B1F0;
+    padding: 10px 18px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    margin-left: 0px;
+    margin-right: 12px;
+}
+
 #cpu:hover,
+#memory:hover,
 #network:hover,
+#tray:hover,
 #pulseaudio:hover,
 #custom-power:hover,
 #custom-notification:hover,
-#custom-upgrade:hover {
-    border-color: rgba(155,127,255,1);
-    background: rgba(255, 255, 255, 0.1);
+#custom-upgrade:hover,
+#window:hover {
+    background-image: 
+        linear-gradient(rgba(30, 25, 45, 0.95), rgba(30, 25, 45, 0.95)),
+        linear-gradient(270deg, #f0c1f5, #a587ff, #7c40dc, #f0c1f5);
+    animation-duration: 4s;
+    box-shadow: 0 4px 12px rgba(155, 127, 255, 0.3);
 }

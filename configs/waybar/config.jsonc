@@ -1,89 +1,99 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 0,
-    "modules-left": ["hyprland/workspaces", "network", "clock", "custom/upgrade"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": [
-        "tray",
-        "cpu",
-        "memory",
-        "pulseaudio",
-        "custom/notification",
-        "custom/power"
-    ],
+  "layer": "top",
+  "position": "top",
+  "height": 0,
+  "modules-left": [
+    "hyprland/workspaces",
+    "network",
+    "custom/upgrade"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "tray",
+    "cpu",
+    "memory",
+    "pulseaudio",
+    "custom/notification",
+    "custom/power"
+  ],
 
-    "cpu": {
-        "interval": 1,
-        "format": " {}%",
-        "max-length": 20,
-        "on-click": "kitty --execute btop"
-    },
-    "memory": {
-        "interval": 1,
-        "format": " {}%",
-        "max-length": 20,
-        "on-click": "kitty --execute htop"
-    },
+  "hyprland/workspaces": {
+    "sort-by-name": true,
+    "on-click": "activate",
+    "margin-right": 48
+  },
 
-    "custom/notification": {
-        "format": "",
-        "on-click": "swaync-client -t -sw",
-        "tooltip-format": "Notification Widgets"
-    },
+  "network": {
+    "interface": "enp6s0",
+    "tooltip-format-ethernet": "{ifname}: {ipaddr}",
+    "interval": 1,
+    "format": " {bandwidthDownBits}   {bandwidthUpBits}",
+    "format-disconnected": "⚠ Disconnected"
+  },
 
-    "custom/power": {
-        "format": "⏻",
-        "on-click": "bash ~/script/wlogout/blur-background.sh"
-    },
+  "custom/upgrade": {
+    "format": "",
+    "on-click": "kitty --execute ~/script/waybar/update.sh",
+    "tooltip-format": "System upgrade Button"
+  },
 
-    "hyprland/window": {
-        "format": "{}"
-    },
+  "clock": {
+    "format": "  {:%Y-%m-%d %H:%M:%S}",
+    "format-alt": "  {:%A, %B %d}",
+    "interval": 1,
+    "tooltip": false
+  },
 
-    "hyprland/workspaces": {
-        "sort-by-name": true,
-        "on-click": "activate"
-    },
+  "tray": {
+    "icon-size": 13,
+    "spacing": 10,
+    "tooltip": false
+  },
 
-    "tray": {
-        "icon-size": 13,
-        "spacing": 10
-    },
+  "cpu": {
+    "interval": 2,
+    "format": "  {usage} %",
+    "max-length": 10,
+    "tooltip": false
+  },
 
-    "clock": {
-      "format": " {:%Y/%m/%d}",
-      "format-alt": " {:%H:%M:%S}",
-      "interval": 1
-    },
+  "memory": {
+    "interval": 2,
+    "format": "  {percentage} %",
+    "max-length": 10,
+    "tooltip": false
+  },
 
-    "custom/upgrade": {
-      "format": "⚙",
-      "on-click": "kitty --execute ~/script/waybar/update.sh",
-      "tooltip-format": "Fully System upgrade"
-    },
+  "pulseaudio": {
+      "format": "{icon}  {volume} %",
+      "format-muted": "",
+      "format-icons": {
+          "alsa_output.pci-0000_00_1f.3.analog-stereo": " ",
+          "headphones": "",
+          "handsfree": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", ""]
+      },
+      "scroll-step": 1,
+      "on-click": "pavucontrol",
+      "tooltip": false
+  },
 
-    "network": {
-        "interface": "wlan0",
-        "tooltip-format-ethernet": "{ifname} ",
-        "interval": 1,
-        "format": " {bandwidthDownBits}  {bandwidthUpBits}"
-    },
+  "custom/notification": {
+    "format": " ",
+    "on-click": "swaync-client -t -sw",
+    "tooltip": false
+  },
 
-    "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "alsa_output.pci-0000_00_1f.3.analog-stereo": " ",
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", ""]
-        },
-        "scroll-step": 1,
-        "on-click": "pavucontrol"
-    }
+  "custom/power": {
+    "format": "",
+    "on-click": "bash ~/script/wlogout/blur-background.sh",
+    "tooltip": false
+  }
+
 }
