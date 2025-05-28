@@ -1,94 +1,78 @@
 :root {
-    --purple-bg: rgba(245, 243, 255, 0.95);      
-    --purple-border: rgba(147, 112, 219, 0.3);    
-    --purple-accent: #8A2BE2;                     
-    --purple-hover: rgba(221, 214, 254, 0.4);     
-    --purple-active: rgba(138, 43, 226, 0.3);     
-    --purple-radius: 16px;                        
-    --purple-shadow: 0 8px 32px rgba(138, 43, 226, 0.15);
+    --border-size: 2px;
+    
+    --bg-primary: #1A1D26;       
+    --bg-secondary: #22252E;     
+    --bg-accent: #2A2D36;        
+    --bg-special: #553C9A;       
+    
+    --border-active: #6366F1;    
+    --border-special: #A855F7;   
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transition: all 0.2s ease-in-out;
-}
-
-.window-manager {
-    --bg-color: var(--purple-bg);
-    --border-color: var(--purple-border);
-    --border-color-active: var(--purple-accent);
-    --border-radius: var(--purple-radius);
-}
-
-.client,
-.workspace,
-.monitor {
-    background-color: var(--bg-color);
-    border: 2px solid var(--border-color);
-    border-radius: var(--border-radius);
-    box-shadow: var(--purple-shadow);
-    backdrop-filter: blur(10px);
-}
-
-.window_active {
-    border-color: var(--purple-accent);
-}
-
-
-.client, .workspace, .monitor, .index {
-    font-family: "Poppins", "SF Pro Display", "Segoe UI", sans-serif;
-    padding: 8px;
-}
-
-.client {
-    font-size: 14px;
-    font-weight: 300;
-}
-
-.workspace {
-    font-size: 16px;
-    font-weight: 600;
+    color: #E2E8F0;
 }
 
 .monitor {
-    padding: 12px;
-    font-weight: 500;
+    background: var(--bg-secondary);
+}
+
+.monitor_active {
+    border: var(--border-size) solid var(--border-active);
 }
 
 .index {
-    font-size: 14px;
-    font-weight: 700;
-    padding: 4px 8px;
-    margin: 4px;
-    border-radius: 4px;
-    background-color: var(--bg-color);
-    border: 2px solid var(--border-color);
+    margin: 3px;
+    padding: 2px 4px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: monospace;
+    border-radius: 6px;
+    background-color: var(--bg-accent);
+    border: 3px solid var(--border-active);
 }
 
-
-.client:hover,
-.workspace:hover,
-.monitor:hover {
-    background-color: rgba(147, 112, 219, 0.5);
-    border-color: rgba(138, 43, 226, 0.6);
+.workspace {
+    background: var(--bg-secondary);
 }
-
-
-.client_active,
-.workspace_active {
-    border-color: var(--purple-accent);
-    background-color: var(--purple-active);
-}
-
 
 .workspace_special {
-    border-color: var(--purple-accent);
-    opacity: 0.9;
+    border: var(--border-size) solid var(--border-special);
+}
+
+.workspace_active {
+    border: var(--border-size) solid var(--border-active);
 }
 
 .client-image {
-    margin: 8px;
-    border-radius: 4px;
+    background: var(--bg-primary);
+}
+
+.client {
+    background: var(--bg-secondary);
+}
+
+.client_active {
+    border: var(--border-size) solid var(--border-active);
+}
+
+.launcher {
+    background: var(--bg-secondary);
+}
+
+.launcher-entry {
+    background: var(--bg-accent);
+}
+
+.launcher-list {
+    background: var(--bg-primary);
+}
+
+.launcher-item {
+    background: var(--bg-secondary);
+}
+
+.launcher-item-selected {
+    background-color: var(--bg-special);
 }
