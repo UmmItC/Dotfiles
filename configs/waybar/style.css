@@ -1,8 +1,5 @@
 * {
-    font-size: 100%;
-    font-family: "FiraCode Nerd Font", "Inter", "Noto Sans CJK", monospace;
-    font-weight: 900;
-    min-height: 0;
+    font-weight: 600;
 }
 
 window#waybar {
@@ -10,7 +7,11 @@ window#waybar {
     border-bottom: 2px solid rgba(155, 127, 255, 0.4);
     border-radius: 0px;
     color: #E4B1F0;
-    transition: all 0.3s ease;
+    transition: all 0.6s ease;
+}
+
+#workspaces, #tray, #cpu, #memory, #pulseaudio, #custom-notification, #custom-power, #custom-terminal {
+    margin-left: 3px;
 }
 
 #workspaces {
@@ -46,14 +47,14 @@ window#waybar {
     background: #7753f8;
     opacity: 1;
     box-shadow: 0 2px 8px rgba(140, 108, 255, 0.7), 0 0 12px rgba(108, 67, 255, 0.3);
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    transition: all 0.4s cubic-bezier(0.79, 2.6, 0.64, 1);
 }
 
 #workspaces button:hover {
     background: #573f7d;
     opacity: 1;
     box-shadow: 0 4px 12px rgba(151, 128, 235, 0.4);
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #window,
@@ -93,74 +94,14 @@ window#waybar {
     box-shadow: 0 1px 4px rgba(108, 48, 204, 0.1);
 }
 
-#cpu.warning {
-    color: #fab387;
-    background: rgba(250, 179, 135, 0.1);
-    border-color: rgba(250, 179, 135, 0.3);
-}
-
-#cpu.critical {
-    color: #f38ba8;
-    background: rgba(243, 139, 168, 0.15);
-    border-color: rgba(243, 139, 168, 0.4);
-}
-
-#memory.warning {
-    color: #fab387;
-    background: rgba(250, 179, 135, 0.1);
-    border-color: rgba(250, 179, 135, 0.3);
-}
-
-#memory.critical {
-    color: #f38ba8;
-    background: rgba(243, 139, 168, 0.15);
-    border-color: rgba(243, 139, 168, 0.4);
-}
-
-#clock {
-    background: rgba(20, 20, 35, 0.9);
-    border: 2px solid transparent;
-    background-image: 
-        linear-gradient(rgba(20, 20, 35, 0.9), rgba(20, 20, 35, 0.9)),
-        linear-gradient(270deg, #e4b1f0, #9b7fff, #6c30cc, #e4b1f0);
-    background-size: 
-        calc(100% - 4px) calc(100% - 4px),
-        400% 400%;
-    background-position: 
-        2px 2px,
-        0% 50%;
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-    animation: clockBorderGradient 8s ease-in-out infinite;
-    font-family: "Inter", "SF Pro Display", "Helvetica Neue", sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    color: #E4B1F0;
-    padding: 10px 18px;
-    border-radius: 16px;
-    transition: all 0.3s ease;
-    margin-left: 0px;
-    margin-right: 12px;
-}
-
-#clock:hover {
-    background-image: 
-        linear-gradient(rgba(30, 25, 45, 0.95), rgba(30, 25, 45, 0.95)),
-        linear-gradient(270deg, #f0c1f5, #a587ff, #7c40dc, #f0c1f5);
-    animation-duration: 4s;
-    box-shadow: 0 4px 12px rgba(155, 127, 255, 0.3);
-}
-
 @keyframes clockBorderGradient {
     0% { background-position: 2px 2px, 0% 50%; }
     50% { background-position: 2px 2px, 100% 50%; }
     100% { background-position: 2px 2px, 0% 50%; }
 }
 
-#tray, #cpu, #memory, #pulseaudio, #custom-notification, #custom-power, #custom-terminal {
-    margin-left: 2px;
-}
-
+#workspaces,
+#clock,
 #cpu,
 #memory,
 #network,
@@ -185,8 +126,7 @@ window#waybar {
         0% 50%;
     background-origin: border-box;
     background-clip: padding-box, border-box;
-    animation: clockBorderGradient 8s ease-in-out infinite;
-    font-family: "Inter", "SF Pro Display", "Helvetica Neue", sans-serif;
+    animation: clockBorderGradient 10s ease-in-out infinite;
     font-weight: 600;
     font-size: 15px;
     color: #E4B1F0;
@@ -197,6 +137,8 @@ window#waybar {
     margin-right: 12px;
 }
 
+#workspaces:hover,
+#clock:hover,
 #cpu:hover,
 #memory:hover,
 #network:hover,
@@ -212,5 +154,4 @@ window#waybar {
         linear-gradient(rgba(30, 25, 45, 0.95), rgba(30, 25, 45, 0.95)),
         linear-gradient(270deg, #f0c1f5, #a587ff, #7c40dc, #f0c1f5);
     animation-duration: 4s;
-    box-shadow: 0 4px 12px rgba(155, 127, 255, 0.3);
 }

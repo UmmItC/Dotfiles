@@ -23,8 +23,7 @@
 
   "hyprland/workspaces": {
     "sort-by-name": true,
-    "on-click": "activate",
-    "margin-right": 48
+    "tooltip": false
   },
 
   "custom/terminal": {
@@ -108,6 +107,6 @@
     "format": "",
     "on-click": "bash ~/script/wlogout/blur-background.sh",
     "tooltip": false
-  },
+  }
 
 }
