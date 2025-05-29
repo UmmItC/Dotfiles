@@ -41,6 +41,14 @@ selected_path="$WALLPAPER_DIR/$selected"
 # Get the filename from the selected path
 selected_filename=$(basename "$selected")
 
+# Get the directory name from the selected path
+selected_dir=$(dirname "$selected")
+if [ "$selected_dir" = "." ]; then
+    directory_name="root directory"
+else
+    directory_name=$(basename "$selected_dir")
+fi
+
 # Randomly choose a transition type and its arguments
 transition_options=(
     "--transition-type random --transition-pos 0.977,0.969 --transition-step 90 --transition-duration 2.5"
@@ -62,5 +70,5 @@ if [ $same_wallpaper -eq 1 ]; then
     fi
 fi
 
-hyprctl notify 5 2500 "rgb(86D293)" "fontsize:35   🖼️ Random wallpaper: $selected_filename 🚀"
+hyprctl notify 5 2500 "rgb(86D293)" "fontsize:35   🖼️ Random wallpaper inside the <$directory_name> directory 🚀"
 echo "<NOTICE> $(date +"%Y-%m-%d %H:%M:%S"): Random wallpaper changed to $selected_filename - Random Wallpaper" >> ~/script/swww/swww.log 
