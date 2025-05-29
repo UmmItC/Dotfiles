@@ -6,7 +6,8 @@
     "hyprland/workspaces",
     "custom/terminal",
     "network",
-    "custom/upgrade"
+    "custom/upgrade",
+    "custom/random-wallpaper"
   ],
   "modules-center": [
     "clock"
@@ -44,6 +45,12 @@
     "format": "",
     "on-click": "kitty --execute ~/script/waybar/update.sh",
     "tooltip-format": "System upgrade Button"
+  },
+
+  "custom/random-wallpaper": {
+    "format": "",
+    "on-click": "bash ~/script/swww/random-wallpaper.sh",
+    "tooltip": false
   },
 
   "clock": {
