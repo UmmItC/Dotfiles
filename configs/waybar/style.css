@@ -10,7 +10,7 @@ window#waybar {
     transition: all 0.6s ease;
 }
 
-#workspaces, #tray, #cpu, #memory, #pulseaudio, #custom-notification, #custom-power, #custom-terminal {
+#workspaces, #tray, #cpu, #memory, #pulseaudio, #custom-notification, #custom-power, #custom-terminal, #custom-random-wallpaper, #custom-hotkeys {
     margin-left: 3px;
 }
 
@@ -67,7 +67,8 @@ window#waybar {
 #custom-power,
 #custom-notification,
 #custom-terminal,
-#custom-random-wallpaper {
+#custom-random-wallpaper,
+#custom-hotkeys {
     color: #E4B1F0;
     background: rgba(26, 27, 38, 0.8);
     border-radius: 14px;
@@ -112,7 +113,8 @@ window#waybar {
 #custom-upgrade,
 #window,
 #custom-terminal,
-#custom-random-wallpaper {
+#custom-random-wallpaper,
+#custom-hotkeys {
     background: rgba(20, 20, 35, 0.9);
     border: 2px solid transparent;
     background-image: 
@@ -149,7 +151,8 @@ window#waybar {
 #custom-upgrade:hover,
 #window:hover,
 #custom-terminal:hover,
-#custom-random-wallpaper:hover {
+#custom-random-wallpaper:hover,
+#custom-hotkeys:hover {
     background-image: 
         linear-gradient(rgba(30, 25, 45, 0.95), rgba(30, 25, 45, 0.95)),
         linear-gradient(270deg, #f0c1f5, #a587ff, #7c40dc, #f0c1f5);
