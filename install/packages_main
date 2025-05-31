@@ -32,6 +32,7 @@ extra/wireplumber
 extra/mpv
 extra/imagemagick
 extra/grim
+extra/jq
 
 aur/hyprshot
 aur/hyprswitch
