@@ -47,6 +47,15 @@ chmod +x ./setup.sh
 
 The `./setup.sh` script helps with the fresh installation process and handles the git cloning of the repository. Alternatively, you can clone the repository manually and run `install.sh` directly.
 
+### Experiment TUI Script
+
+We're now rolling out a new TUI Script installation for our UmmItOS, but the copying function is still being tested. If you want to try it out, feel free to use it by running:
+
+```shell
+cd install
+./install-menu.sh
+```
+
 ## For manual configuration:
 
 Just Copy the necessary files you want to your configuration directory:
@@ -61,7 +70,6 @@ You can set up your system quickly without needing to clone or download the scri
 
 | DevOps       | Installation Command                                                              |
 |--------------|---------------------------------------------------------------------------------- |
-| Codeberg     | `bash <(curl -s https://codeberg.org/UmmIt/Dotfiles/raw/branch/main/setup.sh)`    |
 | Github       | `bash <(curl -s https://raw.githubusercontent.com/UmmItC/Dotfiles/main/setup.sh)` |
 
 ## Usage packages
@@ -73,36 +81,51 @@ Here's a list of the packages I used.
 | Module Type              | Module Name     | Package Manager |
 |--------------------------|-----------------|-----------------|
 | System Information       | Fastfetch       | Pacman          |
-| Prompt Theme             | Powerlevel10k   | Manually (Git)  |
+| Prompt Theme             | Starship        | Pacman          |
 | Terminal Emulator        | Kitty           | Pacman          |
-| Shell                    | Zsh             | Pacman          |
-| Shell Framework          | Oh My Zsh       | Manually (Git)  |
+| Shell                    | Nushell         | Pacman          |
+| Text Editor              | Neovim          | Pacman          |
+| Text Editor              | Vim             | Pacman          |
 | Window Manager           | Hyprland        | Pacman          |
+| XDG Portal               | xdg-desktop-portal-hyprland | Pacman |
 | Power Management         | Wlogout         | AUR             |
 | Status Bar               | Waybar          | Pacman          |
 | Application Launcher     | Rofi            | Pacman          |
-| Wallpaper Engine         | Swwww           | AUR             |
-| Text Editor              | Neovim          | Pacman          |
-| Notification Deamon      | Swaync          | Pacman          |
+| Wallpaper Engine         | Swww            | Pacman          |
+| Notification Daemon      | Swaync          | Pacman          |
 | Clipboard Utility        | Cliphist        | Pacman          |
 | Clipboard Manager        | Clipmenu        | Pacman          |
 | Screenlock Management    | Hyprlock        | Pacman          |
-| Screenshot               | Hyprshot        | AUR             |
+| Screenshot Tool          | Hyprshot        | AUR             |
+| Screenshot Tool          | Grim            | Pacman          |
 | Display Manager          | Ly              | Pacman          |
 | Sound Server             | Pipewire        | Pacman          |
-| AUR Helper               | Paru             | Manually (Git)  |
+| Audio Control            | Pavucontrol     | Pacman          |
+| Audio Control            | Qjackctl        | Pacman          |
+| Audio Session Manager   | Wireplumber     | Pacman          |
+| Graphics Drivers         | Mesa            | Pacman          |
+| Vulkan Drivers           | Vulkan-radeon   | Pacman          |
+| Image Processing         | ImageMagick     | Pacman          |
+| JSON Processor           | JQ              | Pacman          |
+| File Manager             | Yazi            | Pacman          |
+| AUR Helper               | Paru            | Manually (Git)  |
 | Icon Theme               | Papirus         | Pacman          |
+| GTK Theme                | Orchis          | Pacman          |
+| Cursor Theme             | Bibata          | AUR             |
 | IDLE Management          | Hypridle        | Pacman          |
-| Recorder                 | wf-recorder     | Pacman          |
-| Fonts                    | Jetbrains       | Pacman          |
+| Screen Recorder          | wf-recorder     | Pacman          |
+| Font                     | JetBrains Mono  | Pacman          |
+| Font                     | JetBrains Nerd  | Pacman          |
+| Font                     | Overpass        | Pacman          |
+| Font                     | GNU Free Fonts  | Pacman          |
+| Font                     | DS Digital      | AUR             |
 | Windows Management       | Hyprswitch      | AUR             |
 | Video Player             | MPV             | Pacman          |
-| Audio Visualizer         | Cava            | AUR             |
-| Emoji Picker             | Emote           | AUR             |
-| Color Picker             | Hyprpicker      | AUR             |
+| Emoji Picker             | Smile           | AUR             |
+| Color Picker             | Hyprpicker      | Pacman          |
 | Zoomer                   | Woomer          | AUR             |
-| Cursor Theme             | Bibata          | AUR             |
-| File Manager (TUI)       | Yazi            | Pacman          |
+| Brightness Control       | Brightnessctl   | Pacman (Laptop) |
+| Media Control            | Playerctl       | Pacman (Laptop) |
     
 ## Keybindings
 
