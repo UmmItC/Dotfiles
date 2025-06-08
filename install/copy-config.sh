@@ -96,7 +96,7 @@ copy_config_files() {
         fi
         
         safe_copy "./configs/nushell" "$config_dir/nushell" "Nushell" "12" "13"
-        safe_copy "./configs/starship.toml" "$config_dir/starship.toml" "Starship" "13" "13"
+        safe_copy "./configs/starship.toml" "$config_dir/" "Starship" "13" "13"
 
         echo "${COLOR_GREEN}:: All the files copied successfully.${COLOR_RESET}"
         read -p ":: Press any key to keep going :)"
