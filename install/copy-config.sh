@@ -66,29 +66,24 @@ copy_config_files() {
     # Copy configuration files
     if prompt_yna ":: Copy configuration files?"; then
 
-        safe_copy "./configs/hypr" "$config_dir/hypr" "Hyprland" "1" "11"
-        safe_copy "./configs/kitty" "$config_dir/kitty" "Kitty" "2" "11"
-        safe_copy "./configs/fastfetch" "$config_dir/fastfetch" "Fastfetch" "3" "11"
-        safe_copy "./configs/waybar" "$config_dir/waybar" "Waybar" "4" "11"
-        safe_copy "./configs/rofi" "$config_dir/rofi" "Rofi" "5" "11"
-        safe_copy "./configs/swaync" "$config_dir/swaync" "SwayNC" "6" "11"
-        safe_copy "./configs/wlogout" "$config_dir/wlogout" "Wlogout" "7" "11"
-        safe_copy "./configs/mpv" "$config_dir/mpv" "MPV" "8" "11"
-        safe_copy "./configs/yazi" "$config_dir/yazi" "Yazi" "9" "11"
+        safe_copy "./configs/hypr" "$config_dir/hypr" "Hyprland" "1" "12"
+        safe_copy "./configs/kitty" "$config_dir/kitty" "Kitty" "2" "12"
+        safe_copy "./configs/fastfetch" "$config_dir/fastfetch" "Fastfetch" "3" "12"
+        safe_copy "./configs/waybar" "$config_dir/waybar" "Waybar" "4" "12"
+        safe_copy "./configs/rofi" "$config_dir/rofi" "Rofi" "5" "12"
+        safe_copy "./configs/swaync" "$config_dir/swaync" "SwayNC" "6" "12"
+        safe_copy "./configs/wlogout" "$config_dir/wlogout" "Wlogout" "7" "12"
+        safe_copy "./configs/mpv" "$config_dir/mpv" "MPV" "8" "12"
+        safe_copy "./configs/yazi" "$config_dir/yazi" "Yazi" "9" "12"
 
-        safe_copy "./script" "$HOME/script" "Scripts" "10" "11"
-        safe_copy "./.wallpaper" "$HOME/.wallpaper" "Wallpapers" "11" "11"
+        safe_copy "./script" "$HOME/script" "Scripts" "10" "12"
+        safe_copy "./.wallpaper" "$HOME/.wallpaper" "Wallpapers" "11" "12"
         
         echo "${COLOR_GREEN}:: basc Configuration files copied successfully.${COLOR_RESET}"
         echo "${COLOR_GREEN}:: Now setting nushell as default shell...${COLOR_RESET}"
 
         if [ "$SHELL" = "/usr/bin/nu" ]; then
             echo "${COLOR_GREEN}:: We're detected that Nushell is already set as default shell!${COLOR_RESET}"
-            if prompt_yna ":: Copy Nushell configuration?"; then
-                safe_copy "./configs/nushell" "$config_dir/nushell" "Nushell" "+" "+"
-            else
-                echo "${COLOR_YELLOW}:: Skipping Nushell configuration copy.${COLOR_RESET}"
-            fi
         else
             echo "${COLOR_YELLOW}:: Setting nushell as default shell...${COLOR_RESET}"
             chsh -s /usr/bin/nu
@@ -96,9 +91,11 @@ copy_config_files() {
                 echo "${COLOR_GREEN}:: Nushell set as default shell.${COLOR_RESET}"
             else
                 echo "${COLOR_RED}:: Failed to set nushell as default shell.${COLOR_RESET}"
+                echo "${COLOR_YELLOW}:: You can manually set nushell as default shell later with: chsh -s /usr/bin/nu${COLOR_RESET}"
             fi
         fi
         
+        safe_copy "./configs/nushell" "$config_dir/nushell" "Nushell" "12" "12"
 
         echo "${COLOR_GREEN}:: All the files copied successfully.${COLOR_RESET}"
         read -p ":: Press any key to keep going :)"
