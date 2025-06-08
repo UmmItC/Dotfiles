@@ -64,7 +64,7 @@ Just Copy the necessary files you want to your configuration directory:
 cp -rv path/to/source/file /path/to/destination/
 ```
 
-## Mirror Select
+## Oneline Installation script
 
 You can set up your system quickly without needing to clone or download the script separately. Simply use bash and curl to fetch and execute `setup.sh`, and then follow the prompts to complete the process.
 
