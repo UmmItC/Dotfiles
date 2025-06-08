@@ -66,18 +66,18 @@ copy_config_files() {
     # Copy configuration files
     if prompt_yna ":: Copy configuration files?"; then
 
-        safe_copy "./configs/hypr" "$config_dir/hypr" "Hyprland" "1" "12"
-        safe_copy "./configs/kitty" "$config_dir/kitty" "Kitty" "2" "12"
-        safe_copy "./configs/fastfetch" "$config_dir/fastfetch" "Fastfetch" "3" "12"
-        safe_copy "./configs/waybar" "$config_dir/waybar" "Waybar" "4" "12"
-        safe_copy "./configs/rofi" "$config_dir/rofi" "Rofi" "5" "12"
-        safe_copy "./configs/swaync" "$config_dir/swaync" "SwayNC" "6" "12"
-        safe_copy "./configs/wlogout" "$config_dir/wlogout" "Wlogout" "7" "12"
-        safe_copy "./configs/mpv" "$config_dir/mpv" "MPV" "8" "12"
-        safe_copy "./configs/yazi" "$config_dir/yazi" "Yazi" "9" "12"
+        safe_copy "./configs/hypr" "$config_dir/hypr" "Hyprland" "1" "13"
+        safe_copy "./configs/kitty" "$config_dir/kitty" "Kitty" "2" "13"
+        safe_copy "./configs/fastfetch" "$config_dir/fastfetch" "Fastfetch" "3" "13"
+        safe_copy "./configs/waybar" "$config_dir/waybar" "Waybar" "4" "13"
+        safe_copy "./configs/rofi" "$config_dir/rofi" "Rofi" "5" "13"
+        safe_copy "./configs/swaync" "$config_dir/swaync" "SwayNC" "6" "13"
+        safe_copy "./configs/wlogout" "$config_dir/wlogout" "Wlogout" "7" "13"
+        safe_copy "./configs/mpv" "$config_dir/mpv" "MPV" "8" "13"
+        safe_copy "./configs/yazi" "$config_dir/yazi" "Yazi" "9" "13"
 
-        safe_copy "./script" "$HOME/script" "Scripts" "10" "12"
-        safe_copy "./.wallpaper" "$HOME/.wallpaper" "Wallpapers" "11" "12"
+        safe_copy "./script" "$HOME/script" "Scripts" "10" "13"
+        safe_copy "./.wallpaper" "$HOME/.wallpaper" "Wallpapers" "11" "13"
         
         echo "${COLOR_GREEN}:: basc Configuration files copied successfully.${COLOR_RESET}"
         echo "${COLOR_GREEN}:: Now setting nushell as default shell...${COLOR_RESET}"
@@ -95,7 +95,8 @@ copy_config_files() {
             fi
         fi
         
-        safe_copy "./configs/nushell" "$config_dir/nushell" "Nushell" "12" "12"
+        safe_copy "./configs/nushell" "$config_dir/nushell" "Nushell" "12" "13"
+        safe_copy "./configs/starship.toml" "$config_dir/starship.toml" "Starship" "13" "13"
 
         echo "${COLOR_GREEN}:: All the files copied successfully.${COLOR_RESET}"
         read -p ":: Press any key to keep going :)"

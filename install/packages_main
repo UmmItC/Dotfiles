@@ -1,4 +1,5 @@
 extra/nushell
+extra/starship
 extra/kitty
 extra/neovim
 extra/vim
