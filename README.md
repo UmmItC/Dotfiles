@@ -118,7 +118,7 @@ Here's a list of the packages I used.
 | Font                     | JetBrains Nerd  | Pacman          |
 | Font                     | Overpass        | Pacman          |
 | Font                     | GNU Free Fonts  | Pacman          |
-| Font                     | DS Digital      | AUR             |
+| Font                     | Apple font (SF Pro)          | AUR             |
 | Windows Management       | Hyprswitch      | AUR             |
 | Video Player             | MPV             | Pacman          |
 | Emoji Picker             | Smile           | AUR             |
@@ -138,6 +138,7 @@ The hotkeys for managing your windows and launching tools are configured in the 
 | `Superkey + V`    | Toggle Floating Windows    |
 | `Superkey + J`    | Swap Windows               |
 | `Superkey + X`    | Launch Wlogout             |
+| `Superkey + L`    | Lock Screen (Hyprlock)     |
 | `ALT_L + V`       | Launch Clipboard Manager   |
 | `ALT_L + W`       | Launch Wallpaper Picker    |
 | `ALT_L + E`       | Launch Emoji Picker        |
