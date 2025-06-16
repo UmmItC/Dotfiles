@@ -1,8 +1,20 @@
 #!/bin/bash
 
-# This is the old command to get battery status, but it requires the acpi package :)
-# for those who perfer acpi command, install it by 'sudo pacman -S acpi'
-# acpi -b | sed -n '2p' | awk -F': ' '{split($2, a, ","); print "Battery - " a[1] ", " a[2]}'
+# You can see so much comment
+# in the code, so you can understand the code better :)
+# Testing this environment is not easy, so I write so much comment here lol
+
+# -----------------------------------------------------------------------------
+
+# TEST MODE - Set to true to show fake battery status on desktop
+# This test mode is for developer testing the battery display only.
+# Since not every state have the laptop to test the battery display.
+# So I set it to true when I'm testing, and you can set it to false if you want to
+# see the real battery status.
+
+# -----------------------------------------------------------------------------
+
+TEST_MODE=true
 
 # Function to check if the system is a laptop (by checking battery directory)
 is_laptop() {
@@ -14,15 +26,68 @@ is_laptop() {
     fi
 }
 
+# Function to display fake battery status for testing
+display_fake_battery_status() {
+    battery_capacity=$((RANDOM % 101))
+    
+    current_minute=$(date +%M)
+    minute_mod=$((current_minute % 3))
+    
+    case $minute_mod in
+        0)
+            battery_status="Charging"
+            echo "⚡ $battery_capacity% charging"
+            ;;
+        1)
+            battery_status="Discharging"
+            if [ $battery_capacity -gt 75 ]; then
+                echo "🔋 $battery_capacity%"
+            elif [ $battery_capacity -gt 50 ]; then
+                echo "🔋 $battery_capacity%"
+            elif [ $battery_capacity -gt 25 ]; then
+                echo "🪫 $battery_capacity%"
+            else
+                echo "🪫 $battery_capacity%"
+            fi
+            ;;
+        2)
+            battery_status="Full"
+            echo "🔋 100% full"
+            ;;
+    esac
+}
+
 # Function to display battery status for all batteries
 display_battery_status() {
-    # Loop through all battery directories and display status for each
     for battery_dir in /sys/class/power_supply/BAT*; do
         if [ -d "$battery_dir" ]; then
             battery_status=$(cat "$battery_dir/status")
             battery_capacity=$(cat "$battery_dir/capacity")
-            battery_name="Battery"
-            echo "$battery_name: $battery_status, $battery_capacity% remaining"
+            
+            case $battery_status in
+                "Charging")
+                    echo "⚡ $battery_capacity% charging"
+                    ;;
+                "Discharging")
+                    if [ $battery_capacity -gt 75 ]; then
+                        echo "🔋 $battery_capacity%"
+                    elif [ $battery_capacity -gt 50 ]; then
+                        echo "🔋 $battery_capacity%"
+                    elif [ $battery_capacity -gt 25 ]; then
+                        echo "🪫 $battery_capacity%"
+                    elif [ $battery_capacity -gt 15 ]; then
+                        echo "🪫 $battery_capacity% low"
+                    else
+                        echo "🚨 $battery_capacity% critical"
+                    fi
+                    ;;
+                "Full")
+                    echo "🔋 $battery_capacity% full"
+                    ;;
+                *)
+                    echo "🔋 $battery_capacity%"
+                    ;;
+            esac
         fi
     done
 }
@@ -31,10 +96,11 @@ display_battery_status() {
 if is_laptop; then
     display_battery_status
 else
-    # echo "This system is not a laptop or has no battery."
-    # I dont think this is necessary, so I commented it out, for those guys
-    # want to know what is going on :)
-    # for the lock screen, you probably dont want to see this message, so you can
-    # comment out the this line lol
-    :
+    if [ "$TEST_MODE" = true ]; then
+        # Show fake battery status for testing on desktop
+        display_fake_battery_status
+    else
+        # Show nothing on desktop
+        :
+    fi
 fi
