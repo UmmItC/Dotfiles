@@ -1,144 +1,135 @@
 #!/bin/bash
 
-# Function to install main packages
-install_main_packages() {
-    local main_packages=()
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PARENT_DIR="$(dirname "$SCRIPT_DIR")"
 
-    # Read packages from the packages_main file, skipping empty lines
+# Source library functions
+source "$PARENT_DIR/lib/common.sh"
+source "$PARENT_DIR/lib/display-utils.sh"
+
+# Function to read packages from a file into an array
+read_packages_from_file() {
+    local file_path="$1"
+    local -n packages_array=$2
+    
+    packages_array=()
+    
+    if [ ! -f "$file_path" ]; then
+        echo "${COLOR_DARK_RED}:: Package file not found: $file_path${COLOR_RESET}"
+        return 1
+    fi
+    
+    # Read packages from the file, skipping empty lines
     while IFS= read -r package; do
         # Check if the line is not empty
         if [[ -n "$package" ]]; then
-            main_packages+=("$package")
+            packages_array+=("$package")
         fi
-    done < "./install/packages_main"
+    done < "$file_path"
+    
+    return 0
+}
 
-    echo "${COLOR_GREEN}:: Main packages to be installed${COLOR_RESET}"
-
-    local total_main_packages=${#main_packages[@]}
-    printf "${COLOR_GREY}%s${COLOR_RESET}\n" "${main_packages[@]}" | column
-
-    if prompt_yna ":: Install these packages? - Total Package (${total_main_packages})"; then
-        paru -S "${main_packages[@]}"
+# Function to install packages with paru
+install_packages_with_paru() {
+    local -n packages=$1
+    local package_type="$2"
+    
+    local total_packages=${#packages[@]}
+    
+    if [ $total_packages -eq 0 ]; then
+        echo "${COLOR_YELLOW}:: No ${package_type} packages to install.${COLOR_RESET}"
+        return 0
+    fi
+    
+    if prompt_yna ":: Install these ${package_type} packages? - Total Package (${total_packages})"; then
+        paru -S "${packages[@]}"
         
-        read -p ":: Main packages installed completed. Press any key to keep going :)"
+        pause_and_continue "${package_type} packages installed completed. Press any key to keep going :)"
         clear
     else
-        echo "${COLOR_YELLOW}:: Skipping main package installation.${COLOR_RESET}"
- 
-        read -p ":: Main packages installed skipped. Press any key to keep going :)"
+        echo "${COLOR_YELLOW}:: Skipping ${package_type} package installation.${COLOR_RESET}"
+        
+        pause_and_continue "${package_type} packages installation skipped. Press any key to keep going :)"
         clear
+    fi
+}
+
+# Function to display packages in columns
+display_packages() {
+    local -n packages=$1
+    local package_type="$2"
+    
+    echo "${COLOR_GREEN}:: ${package_type} packages to be installed${COLOR_RESET}"
+    
+    local total_packages=${#packages[@]}
+    
+    if [ $total_packages -eq 0 ]; then
+        echo "${COLOR_YELLOW}   No packages found.${COLOR_RESET}"
+        return 1
+    fi
+    
+    printf "${COLOR_GREY}%s${COLOR_RESET}\n" "${packages[@]}" | column
+    
+    return 0
+}
+
+# Function to install main packages
+install_main_packages() {
+    local main_packages=()
+    
+    if read_packages_from_file "./install/packages_main" main_packages; then
+        display_packages main_packages "Main"
+        install_packages_with_paru main_packages "main"
     fi
 }
 
 # Function to install GPU packages
-install_gpu_package() {
+install_gpu_packages() {
+    if ! has_amdgpu; then
+        echo "${COLOR_YELLOW}:: No AMD GPU detected. Skipping GPU package installation.${COLOR_RESET}"
+        return 0
+    fi
+    
     local gpu_packages=()
-
-    # Read packages from the packages_gpu file, skipping empty lines
-    while IFS= read -r package; do
-        # Check if the line is not empty
-        if [[ -n "$package" ]]; then
-            gpu_packages+=("$package")
-        fi
-    done < "./install/packages_gpu"
-
-    if lsmod | grep -q '^amdgpu\s'; then
-        local total_packages=${#gpu_packages[@]}
-
-        echo "${COLOR_GREEN}:: GPU packages to be installed${COLOR_RESET}"
-
-        printf "${COLOR_GREY}%s${COLOR_RESET}\n" "${gpu_packages[@]}" | column
-
-        if prompt_yna ":: Install these GPU  packages? - Total Package (${total_packages})"; then
-            paru -S "${gpu_packages[@]}"
-
-            read -p ":: GPU packages installed completed. Press any key to keep going :)"
-            clear
-        else
-            echo "${COLOR_YELLOW}:: Skipping GPU package installation.${COLOR_RESET}"
-
-            read -p ":: GPU packages installed skipped. Press any key to keep going :)"
-            clear
-        fi
+    
+    if read_packages_from_file "./install/packages_gpu" gpu_packages; then
+        display_packages gpu_packages "GPU"
+        install_packages_with_paru gpu_packages "GPU"
     fi
 }
 
-install_laptop_packages (){
+# Function to install laptop packages
+install_laptop_packages() {
+    if ! is_laptop; then
+        echo "${COLOR_YELLOW}:: Not a laptop. Skipping laptop package installation.${COLOR_RESET}"
+        return 0
+    fi
+    
     local laptop_packages=()
-
-    while IFS= read -r package; do
-        if [[ -n "$package" ]]; then
-            laptop_packages+=("$package")
-        fi
-    done < "./install/packages_laptop"
-
-    echo "${COLOR_GREEN}:: Laptop packages to be installed${COLOR_RESET}"
-
-    local total_packages=${#laptop_packages[@]}
-
-    printf "${COLOR_GREY}%s${COLOR_RESET}\n" "${laptop_packages[@]}" | column
-
-    if prompt_yna ":: Install these laptop packages? - Total Package (${total_packages})"; then
-        paru -S "${laptop_packages[@]}"
-
-        read -p ":: Laptop packages installed completed. Press any key to keep going :)"
-        clear
-    else
-        echo "${COLOR_YELLOW}:: Skipping laptop package installation.${COLOR_RESET}"
-
-        read -p ":: Laptop packages installed skipped. Press any key to keep going :)"
-        clear
+    
+    if read_packages_from_file "./install/packages_laptop" laptop_packages; then
+        display_packages laptop_packages "Laptop"
+        install_packages_with_paru laptop_packages "laptop"
     fi
-}
-
-# Function to display the banner
-display_banner() {
-    cat <<EOF
-${COLOR_GRAY}---------------------------------------------------------${COLOR_RESET}
-${COLOR_BLUE}Part 1: Installing Main Packages
-
-This section will install the main packages listed in the packages_main file.
-These packages are essential for ensuring that my dotfiles function properly.
-The installation process will utilize paru to manage all package installations.
-Please note that the installation of AUR packages may take some time, as they will be compiled from source.
-
-The packages will be sourced from the official Arch Linux repositories, including:
-
-- Extra repository
-- Multilib repository
-- AUR repository${COLOR_RESET}
-${COLOR_GRAY}---------------------------------------------------------${COLOR_RESET}
-EOF
-}
-
-display_banner_laptop() {
-    cat <<EOF
-${COLOR_GRAY}---------------------------------------------------------${COLOR_RESET}
-${COLOR_BLUE}You saw this banner because you were detected as a laptop user.
-This script will install brightnessctl and playerctl packages.
-Which is useful for controlling screen brightness and media players.
-and my dotfiles also use these tools.${COLOR_RESET}
-${COLOR_GRAY}---------------------------------------------------------${COLOR_RESET}
-EOF
 }
 
 main() {
-    clear
     # Display the banner
-    display_banner
+    display_banner_start
 
     # Install main packages
     install_main_packages
 
     # Install GPU packages
-    install_gpu_package
+    install_gpu_packages
 
     # Install laptop packages
-    if [[ -f /sys/class/power_supply/BAT0/capacity ]]; then
-        display_banner_laptop
+    if is_laptop; then
+        display_laptop_banner
         install_laptop_packages
     fi
 }
 
-# Run the main function
 main

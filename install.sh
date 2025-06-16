@@ -1,70 +1,48 @@
 #!/bin/bash
 
-# Define colors
-readonly COLOR_YELLOW=$(tput setaf 3)
-readonly COLOR_GREEN=$(tput setaf 2)
-readonly COLOR_GREY=$(tput setaf 8)
-readonly COLOR_DARK_RED=$(tput setaf 1)
-readonly COLOR_BLUE=$(tput setaf 4)
-readonly COLOR_RESET=$(tput sgr0)
+# Main installation script for UmmIt OS
 
-# Function to prompt for Yes/No
-prompt_yna() {
-    local prompt_message="$1"
-    local choice
-    while true; do
-        read -rp "${COLOR_GREEN}${prompt_message} (Y/N): ${COLOR_RESET}" choice
-        case $choice in
-            [Yy]*) return 0 ;;
-            [Nn]*) return 1 ;;
-            *) echo "${COLOR_DARK_RED}:: Please answer Y or N.${COLOR_RESET}" ;;
-        esac
-    done
-}
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Function to check if a package is installed
-is_package_installed() {
-    pacman -Qs "$1" &>/dev/null
-}
-
-# Function to check if a command is available
-command_exists() {
-    command -v "$1" &>/dev/null
-}
-
-# Function to prompt for installation confirmation
-prompt_installation() {
-    if prompt_yna ":: Do you want to continue with the installation?"; then
-        return 0
-    else
-        echo "${COLOR_YELLOW}:: Installation aborted.${COLOR_RESET}"
-        exit 0
-    fi
-}
+# Source all library functions
+source "$SCRIPT_DIR/lib/common.sh"
+source "$SCRIPT_DIR/lib/display-utils.sh"
 
 # Main function
 main() {
-    # install packages from install-packages.sh
+
+    if ! check_git && check_paru; then
+        echo "${COLOR_BLUE}:: Checking dependencies...${COLOR_RESET}"
+        echo "${COLOR_RED}:: Dependencies not verified!${COLOR_RESET}"
+        echo "${COLOR_RED}:: That seems like you dont have git or paru installed.${COLOR_RESET}"
+        echo "${COLOR_RED}:: you will need to install them to continue.${COLOR_RESET}"
+        exit 1
+    fi
+    
+    # Install packages from install-packages.sh
     source ./install/install-packages.sh
 
     # Copy configuration files
     source ./install/copy-config.sh
 
-    echo "${COLOR_GREEN}:: Installation completed successfully.${COLOR_RESET}"
-    echo "${COLOR_GREEN}:: Please reboot your system to apply all changes!${COLOR_RESET}"
-    echo "${COLOR_GREEN}:: After reboot, run our settings script to finalize the setup of your system by executing: ${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_GREEN}:: ./post-install.sh --start-config${COLOR_RESET}"
+    # Setup display manager
+    source ./install/setup-dm.sh
+
+    # Display completion message
+    display_completion_message
 }
 
-# Main script execution
+# Main script execution, only run if the script is executed directly, not sourced
+# Only allow Arch Linux to run the script
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    # This code only runs if the script is executed directly, not sourced
     if [ -f /etc/arch-release ]; then
+        clear_screen
+        draw_header_cli
         prompt_installation
-
         main
     else
         echo "${COLOR_YELLOW}:: Sorry, Script only allows Arch Linux to run.${COLOR_RESET}"
+        exit 1
     fi
 fi
