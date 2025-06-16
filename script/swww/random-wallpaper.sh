@@ -12,7 +12,7 @@ same_wallpaper=1
 
 # Get list of all files (including those in subdirectories) in the wallpaper directory
 # and filter out only the files with jpg, png, jpeg, and webp extensions
-filenames=$(find "$WALLPAPER_DIR" -type f -regex '.*\.\(jpg\|png\|jpeg\|webp\)' -printf "%P\n")
+filenames=$(find "$WALLPAPER_DIR" -type f -regex '.*\.\(jpg\|png\|jpeg\)' -printf "%P\n")
 
 # Check if wallpaper directory exists and contains files
 if [ ! -d "$WALLPAPER_DIR" ]; then
