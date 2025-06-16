@@ -1,22 +1,104 @@
 #!/bin/bash
 
-# Import configuration and utility functions
-source "$(dirname "$0")/install-config.sh"
+# Import library functions directly
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Clear screen
-clear_screen() {
-    printf '\033[2J\033[H'
+source "$SCRIPT_DIR/lib/common.sh"
+source "$SCRIPT_DIR/lib/display-utils.sh"
+
+
+
+
+
+# Function to show wallpaper directory info
+show_wallpaper_info() {
+    local wallpaper_dir="$HOME/.wallpaper"
+    echo "${COLOR_BLUE}Wallpaper directory status:${COLOR_RESET}"
+    if [ -d "$wallpaper_dir" ]; then
+        echo "${COLOR_GREEN}   ✅ Wallpaper directory exists${COLOR_RESET}"
+        local count=$(find "$wallpaper_dir" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" \) | wc -l)
+        echo "   📁 Current wallpapers: $count files"
+    else
+        echo "${COLOR_YELLOW}   📁 Wallpaper directory will be created: $wallpaper_dir${COLOR_RESET}"
+    fi
+    echo ""
 }
 
-pause() {
-    read -p "Press Enter to continue..."
+# Function to display usage information
+display_usage() {
+    local script_name="$1"
+    echo "Usage: $script_name [command]"
+    echo ""
+    echo "A script to guide through post-installation configuration for UmmIt OS and Dotfiles,"
+    echo "and to display current setting :)"
+    echo ""
+    echo "Commands:"
+    echo "  ${COLOR_GREEN}--start-config${COLOR_RESET}   Run the interactive post-installation configuration setup."
+    echo "  ${COLOR_GREEN}--settings${COLOR_RESET}       Show current detected settings without making changes."
+    echo "  ${COLOR_GREEN}--help${COLOR_RESET}           Show this help message."
+    echo ""
+    echo "If no command is provided, this help message will be shown."
 }
 
-# Draw header
-draw_header() {
-    echo -e "${COLOR_BLUE}╔══════════════════════════════════════════════════════════════╗"
-    echo -e "║                    UmmIt OS INSTALLATION MENU :D             ║"
-    echo -e "╚══════════════════════════════════════════════════════════════╝${COLOR_RESET}\n"
+# Function to read packages from a file into an array
+read_packages_from_file() {
+    local file_path="$1"
+    local -n packages_array=$2
+    
+    packages_array=()
+    
+    if [ ! -f "$file_path" ]; then
+        echo "${COLOR_DARK_RED}:: Package file not found: $file_path${COLOR_RESET}"
+        return 1
+    fi
+    
+    # Read packages from the file, skipping empty lines
+    while IFS= read -r package; do
+        # Check if the line is not empty
+        if [[ -n "$package" ]]; then
+            packages_array+=("$package")
+        fi
+    done < "$file_path"
+    
+    return 0
+}
+
+# Function to install packages with paru
+install_packages_with_paru() {
+    local -n packages=$1
+    local package_type="$2"
+    
+    local total_packages=${#packages[@]}
+    
+    if [ $total_packages -eq 0 ]; then
+        echo "${COLOR_YELLOW}:: No ${package_type} packages to install.${COLOR_RESET}"
+        return 0
+    fi
+    
+    if prompt_yna ":: Install these ${package_type} packages? - Total Package (${total_packages})"; then
+        paru -S "${packages[@]}"
+        
+        pause_and_continue "${package_type} packages installed completed. Press any key to keep going :)"
+        clear
+    else
+        echo "${COLOR_YELLOW}:: Skipping ${package_type} package installation.${COLOR_RESET}"
+        
+        pause_and_continue "${package_type} packages installation skipped. Press any key to keep going :)"
+        clear
+    fi
+}
+
+# Package file paths
+PACKAGES_MAIN="$SCRIPT_DIR/install/packages_main"
+PACKAGES_GPU="$SCRIPT_DIR/install/packages_gpu"
+PACKAGES_LAPTOP="$SCRIPT_DIR/install/packages_laptop"
+
+# Simple banner function for menu system compatibility
+display_banner() {
+    local message="$1"
+    echo -e "${COLOR_GREY}---------------------------------------------------------${COLOR_RESET}"
+    echo -e "${COLOR_BLUE}${message}${COLOR_RESET}"
+    echo -e "${COLOR_GREY}---------------------------------------------------------${COLOR_RESET}"
 }
 
 # Simple menu function
@@ -75,15 +157,13 @@ simple_menu() {
 # Real installation functions
 install_main_package() {
     clear_screen
-    display_banner "$MSG_MAIN_BANNER"
+    display_banner_start
     
-    if ! packages_string=$(read_packages_from_file "$PACKAGES_MAIN"); then
+    local packages=()
+    if ! read_packages_from_file "$PACKAGES_MAIN" packages; then
         read -p "Press Enter to continue..."
         return 1
     fi
-    
-    # Convert string to array
-    local packages=($packages_string)
     
     if [[ ${#packages[@]} -eq 0 ]]; then
         echo -e "${COLOR_RED}:: No packages found in $PACKAGES_MAIN${COLOR_RESET}"
@@ -96,13 +176,7 @@ install_main_package() {
     printf "%s\n" "${packages[@]}" | column
     
     if prompt_yna ":: Install these packages? - Total Package (${total_packages})"; then
-        install_packages_with_paru "${packages[@]}"
-        if [[ $? -eq 0 ]]; then
-            echo -e "${COLOR_GREEN}✓ Main packages installed successfully!${COLOR_RESET}"
-            echo -e "${COLOR_GREEN}:: [1/5] Main packages installed successfully!${COLOR_RESET}"
-        else
-            echo -e "${COLOR_RED}✗ Error installing main packages${COLOR_RESET}"
-        fi
+        install_packages_with_paru packages "main"
         read -p ":: Main packages installation completed. Press any key to keep going :)"
         clear
     else
@@ -125,7 +199,7 @@ install_gpu_package() {
     fi
 
     # Check if Nvidia GPU is detected
-    if has_nvidia; then
+    if has_nvidiagpu; then
         echo -e "${COLOR_YELLOW}:: Nvidia GPU detected, but unfortunatly, this script is not support Nvidia GPU.${COLOR_RESET}"
         echo -e "${COLOR_YELLOW}:: Since UmmItOS owner (UmmIt) is using AMD GPU, I dont even have Nvidia GPU to test for this script.${COLOR_RESET}"
         echo -e "${COLOR_YELLOW}:: So, feel free to contribute to this script to support Nvidia GPU XD${COLOR_RESET}"
@@ -135,17 +209,13 @@ install_gpu_package() {
         :
     fi
     
-    if packages_string=$(read_packages_from_file "$PACKAGES_GPU"); then
-        :
-    else
+    local packages=()
+    if ! read_packages_from_file "$PACKAGES_GPU" packages; then
         echo -e "${COLOR_RED}:: There's no packages can be read from $PACKAGES_GPU ????${COLOR_RESET}"
         echo -e "${COLOR_RED}:: Are you clone the repo correctly? Check the repo please!${COLOR_RESET}"
         read -p "Press Enter to continue..."
         return 1
     fi
-    
-    # Convert string to array
-    local packages=($packages_string)
     
     if [[ ${#packages[@]} -eq 0 ]]; then
         echo -e "${COLOR_RED}:: No packages found in $PACKAGES_GPU${COLOR_RESET}"
@@ -158,13 +228,7 @@ install_gpu_package() {
     printf "%s\n" "${packages[@]}" | column
     
     if prompt_yna ":: Install these GPU packages? - Total Package (${total_packages})"; then
-        install_packages_with_paru "${packages[@]}"
-        if [[ $? -eq 0 ]]; then
-            echo -e "${COLOR_GREEN}✓ GPU packages installed successfully!${COLOR_RESET}"
-            echo -e "${COLOR_GREEN}:: [2/5] GPU packages installed successfully!${COLOR_RESET}"
-        else
-            echo -e "${COLOR_RED}✗ Error installing GPU packages${COLOR_RESET}"
-        fi
+        install_packages_with_paru packages "GPU"
         read -p ":: GPU packages installation completed. Press any key to keep going :)"
         clear_screen
     else
@@ -186,15 +250,13 @@ install_laptop_package() {
         return 0
     fi
     
-    display_banner "$MSG_LAPTOP_BANNER"
+    display_laptop_banner
     
-    if ! packages_string=$(read_packages_from_file "$PACKAGES_LAPTOP"); then
+    local packages=()
+    if ! read_packages_from_file "$PACKAGES_LAPTOP" packages; then
         read -p "Press Enter to continue..."
         return 1
     fi
-    
-    # Convert string to array
-    local packages=($packages_string)
     
     if [[ ${#packages[@]} -eq 0 ]]; then
         echo -e "${COLOR_RED}:: No packages found in $PACKAGES_LAPTOP${COLOR_RESET}"
@@ -207,13 +269,7 @@ install_laptop_package() {
     printf "%s\n" "${packages[@]}" | column
     
     if prompt_yna ":: Install these laptop packages? - Total Package (${total_packages})"; then
-        install_packages_with_paru "${packages[@]}"
-        if [[ $? -eq 0 ]]; then
-            echo -e "${COLOR_GREEN}✓ Laptop packages installed successfully!${COLOR_RESET}"
-            echo -e "${COLOR_GREEN}:: [3/5] Laptop packages installed successfully!${COLOR_RESET}"
-        else
-            echo -e "${COLOR_RED}✗ Error installing laptop packages${COLOR_RESET}"
-        fi
+        install_packages_with_paru packages "laptop"
         read -p ":: Laptop packages installation completed. Press any key to keep going :)"
         clear
     else
@@ -228,7 +284,7 @@ copy_dotfiles() {
     echo -e "${COLOR_BLUE}:: Copying dotfiles...${COLOR_RESET}"
     
     # Check if the script exists
-    if [[ -f "./copy-config.sh" ]]; then
+    if [[ -f "./install/copy-config.sh" ]]; then
         echo -e "${COLOR_GREEN}:: Running copy-config.sh script...${COLOR_RESET}"
         echo -e "${COLOR_YELLOW}:: tesing now, not running anything now.${COLOR_RESET}"
         pause
@@ -253,9 +309,10 @@ copy_dotfiles() {
 
 enable_ly_service() {
     clear_screen
+    display_manager_banner
 
     # Check if ly is installed
-    if ! command -v ly-dm &> /dev/null; then
+    if ! command_exists ly; then
         echo -e "${COLOR_RED}:: ly is not installed. turn back to main menu and install our main packages first.${COLOR_RESET}"
         read -p "Press Enter to continue..."
         return 1
@@ -264,22 +321,25 @@ enable_ly_service() {
     if systemctl is-enabled ly.service &> /dev/null; then
         echo -e "${COLOR_GREEN}:: ly service is already enabled.${COLOR_RESET}"
         echo -e "${COLOR_YELLOW}:: There's nothing to do here.${COLOR_RESET}"
-    else
-        echo -e "${COLOR_RED}:: ly-dm service is not enabled, now will enable it.${COLOR_RESET}"
-        if prompt_yna ":: Enable ly-dm service?"; then
-            sudo systemctl enable ly-dm
-        else
-            echo -e "${COLOR_YELLOW}:: You can enable it later by running 'sudo systemctl enable ly-dm'${COLOR_RESET}"
-        fi
-    fi
-    
-    if [[ $? -eq 0 ]]; then
         read -p "Press Enter to continue..."
         return 0
     else
-        echo -e "${COLOR_RED}:: Command run failed. try run again?${COLOR_RESET}"
-        read -p "Press Enter to continue..."
-        return 1
+        echo -e "${COLOR_RED}:: ly service is not enabled, now will enable it.${COLOR_RESET}"
+        if prompt_yna ":: Enable ly service?"; then
+            if sudo systemctl enable ly.service; then
+                echo -e "${COLOR_GREEN}:: ly service enabled successfully.${COLOR_RESET}"
+                read -p "Press Enter to continue..."
+                return 0
+            else
+                echo -e "${COLOR_RED}:: Failed to enable ly service.${COLOR_RESET}"
+                read -p "Press Enter to continue..."
+                return 1
+            fi
+        else
+            echo -e "${COLOR_YELLOW}:: You can enable it later by running 'sudo systemctl enable ly.service'${COLOR_RESET}"
+            read -p "Press Enter to continue..."
+            return 1
+        fi
     fi
 }
 
