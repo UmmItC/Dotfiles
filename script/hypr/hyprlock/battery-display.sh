@@ -14,7 +14,7 @@
 
 # -----------------------------------------------------------------------------
 
-TEST_MODE=true
+TEST_MODE=false
 
 # Function to check if the system is a laptop (by checking battery directory)
 is_laptop() {
