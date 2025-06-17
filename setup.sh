@@ -78,7 +78,7 @@ check_paru
 # Check if user wants to clone the repository
 if prompt_yna "Do you want to clone the repository?"; then
     echo -e "${COLOR_GREEN}[+] Cloning repository...${COLOR_RESET}"
-    git clone --recursive $repo_url
+    git clone --depth 1 --recursive $repo_url
     if [ $? -eq 0 ]; then
         echo -e "${COLOR_GREEN}[+] Repository cloned successfully.${COLOR_RESET}"
         cd $repo
