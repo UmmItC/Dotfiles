@@ -1,7 +1,64 @@
 #!/bin/bash
 
-# Source library functions
-source ./lib/common.sh
+# Define colors
+readonly COLOR_YELLOW=$(tput setaf 3)
+readonly COLOR_GREEN=$(tput setaf 2)
+readonly COLOR_GREY=$(tput setaf 8)
+readonly COLOR_DARK_RED=$(tput setaf 1)
+readonly COLOR_RESET=$(tput sgr0)
+
+# Function to check if a command is available
+command_exists() {
+    command -v "$1" &>/dev/null
+}
+
+# Function to prompt for Yes/No
+prompt_yna() {
+    local prompt_message="$1"
+    local choice
+    while true; do
+        read -rp "${COLOR_GREEN}${prompt_message} (Y/N): ${COLOR_RESET}" choice
+        case $choice in
+            [Yy]*) return 0 ;;
+            [Nn]*) return 1 ;;
+            *) echo "${COLOR_DARK_RED}:: Please answer Y or N.${COLOR_RESET}" ;;
+        esac
+    done
+}
+
+# Function to check if git is installed and offer to install it
+check_git() {
+    if ! command_exists git; then
+        echo -e "${COLOR_YELLOW}:: git is not installed.${COLOR_RESET}"
+        if prompt_yna ":: Would you like to install git?"; then
+            echo -e "${COLOR_GREEN}:: Installing git...${COLOR_RESET}"
+            if ! (sudo pacman -S git --noconfirm); then
+                echo -e "${COLOR_DARK_RED}:: Failed to install git.${COLOR_RESET}"
+                exit 1
+            fi
+        else
+            echo -e "${COLOR_GREY}:: Exiting...${COLOR_RESET}"
+            exit 0
+        fi
+    fi
+}
+
+# Function to check if paru is installed and offer to install it
+check_paru() {
+    if ! command_exists paru; then
+        echo -e "${COLOR_YELLOW}:: paru is not installed.${COLOR_RESET}"
+        if prompt_yna ":: Would you like to install paru?"; then
+            echo -e "${COLOR_GREEN}:: Installing paru...${COLOR_RESET}"
+            if ! (git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si); then
+                echo -e "${COLOR_DARK_RED}:: Failed to install paru.${COLOR_RESET}"
+                exit 1
+            fi
+        else
+            echo -e "${COLOR_DARK_RED}:: Exiting...${COLOR_RESET}"
+            exit 0
+        fi
+    fi
+}
 
 # Repository configuration
 repo_url=https://github.com/UmmItC/Dotfiles.git
