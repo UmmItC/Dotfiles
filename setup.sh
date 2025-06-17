@@ -1,10 +1,7 @@
 #!/bin/bash
 
-# Get the directory where this script is located
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
 # Source library functions
-source "$SCRIPT_DIR/lib/common.sh"
+source ./lib/common.sh
 
 # Repository configuration
 repo_url=https://github.com/UmmItC/Dotfiles.git
