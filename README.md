@@ -30,47 +30,35 @@ This repository is dedicated to my Hyprland DWM Arch Linux configuration files.
 
 # Installation Instructions
 
-For users on Arch Linux, I've created a script to streamline the setup process. You can run the script to automatically configure your system. Alternatively, you can manually copy the configuration files to your system using the `cp` command.
+We offer multiple installation methods for UmmItOS. Choose the one that best fits your needs:
 
-To run the script:
+## Quick Remote Installation (Recommended)
 
-1. Download or clone the repository.
-2. Navigate to the directory containing the script.
-3. Execute the script according to the provided instructions.
+The fastest way to get started! This method automatically downloads and runs the setup script without requiring manual cloning. The script uses shallow cloning for optimal performance.
 
-```shell
-chmod +x ./setup.sh
-./setup.sh
+```bash
+bash <(curl -s https://raw.githubusercontent.com/UmmItC/Dotfiles/main/setup.sh)
 ```
 
-## Installation Script
+## CLI Installation
 
-The `./setup.sh` script helps with the fresh installation process and handles the git cloning of the repository. Alternatively, you can clone the repository manually and run `install.sh` directly.
+If you prefer to have CLI installation:
 
-### Experiment TUI Script
+```bash
+git clone --depth 1 --shallow-submodules --recursive https://github.com/UmmItC/Dotfiles.git
+cd Dotfiles
+./install.sh
+```
 
-We're now rolling out a new TUI Script installation for our UmmItOS, but the copying function is still being tested. If you want to try it out, feel free to use it by running:
+## Experimental TUI Installation (Not finish.)
 
-```shell
-cd install
+Try our new Terminal User Interface for a more interactive experience:
+
+```bash
 ./install-menu.sh
 ```
 
-## For manual configuration:
-
-Just Copy the necessary files you want to your configuration directory:
-   
-```sh
-cp -rv path/to/source/file /path/to/destination/
-```
-
-## Oneline Installation script
-
-You can set up your system quickly without needing to clone or download the script separately. Simply use bash and curl to fetch and execute `setup.sh`, and then follow the prompts to complete the process.
-
-| DevOps       | Installation Command                                                              |
-|--------------|---------------------------------------------------------------------------------- |
-| Github       | `bash <(curl -s https://raw.githubusercontent.com/UmmItC/Dotfiles/main/setup.sh)` |
+> **Note:** The TUI installation is currently in experimental phase. Copying file still be under development.
 
 ## Usage packages
 
