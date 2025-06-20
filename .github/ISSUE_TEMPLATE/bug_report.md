@@ -4,7 +4,6 @@ about: Something broken? Report it here
 ---
 
 ## What's broken?
-<!-- Tell us what's not working -->
 
 ## How to make it happen again?
 1. 
@@ -14,12 +13,11 @@ about: Something broken? Report it here
 ## What should happen instead?
 <!-- What did you expect? -->
 
-## Your system:
-- **Arch version:** 
+## Your system: 
 - **Graphics card:** AMD / NVIDIA / Intel
 - **Device:** Desktop / Laptop
 
 ## Any error messages?
-```
+```shell
 Paste errors here
 ``` 
