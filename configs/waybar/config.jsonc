@@ -37,7 +37,7 @@
     "interface": "enp6s0",
     "tooltip-format-ethernet": "{ifname}: {ipaddr}",
     "interval": 1,
-    "format": " {bandwidthDownBits}   {bandwidthUpBits}",
+    "format": " {bandwidthDownBytes}   {bandwidthUpBytes}",
     "format-disconnected": "⚠ Disconnected"
   },
 
