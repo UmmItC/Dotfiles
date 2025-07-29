@@ -61,7 +61,7 @@ check_paru() {
 }
 
 # Repository configuration
-repo_url=https://github.com/UmmItC/Dotfiles.git
+repo_url=https://github.com/UmmItKin/Dotfiles.git
 repo=Dotfiles
 
 # Check if user wants to run the script

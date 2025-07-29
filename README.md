@@ -1,6 +1,6 @@
 # Dotfiles
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/UmmItC/Dotfiles)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/UmmItKin/Dotfiles)
 [![Arch Linux](https://img.shields.io/badge/Arch_Linux-1793D1?logo=arch-linux&logoColor=fff)](https://archlinux.org)
 [![Hyprland](https://img.shields.io/badge/Hyprland-1A1B26?logo=hyprland&logoColor=fff)](https://hyprland.org)
 
@@ -37,7 +37,7 @@ We offer multiple installation methods for UmmItOS. Choose the one that best fit
 The fastest way to get started! This method automatically downloads and runs the setup script without requiring manual cloning. The script uses shallow cloning for optimal performance.
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/UmmItC/Dotfiles/main/setup.sh)
+bash <(curl -s https://raw.githubusercontent.com/UmmItKin/Dotfiles/main/setup.sh)
 ```
 
 ## CLI Installation
@@ -45,7 +45,7 @@ bash <(curl -s https://raw.githubusercontent.com/UmmItC/Dotfiles/main/setup.sh)
 If you prefer to have CLI installation:
 
 ```bash
-git clone --depth 1 --shallow-submodules --recursive https://github.com/UmmItC/Dotfiles.git
+git clone --depth 1 --shallow-submodules --recursive https://github.com/UmmItKin/Dotfiles.git
 cd Dotfiles
 ./install.sh
 ```
