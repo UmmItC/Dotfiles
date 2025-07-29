@@ -6,12 +6,14 @@
 
 This repository is dedicated to my Hyprland DWM Arch Linux configuration files.
 
+## What that look like?
+
+Keeping screenshots perfectly up-to-date with every change is challenging. For the most current look at UmmItOS in action, please watch the video on my Youtube Channel.
+
 [Watch this video on YouTube](https://www.youtube.com/watch?v=sjeKlj8mTjE)
 
-## Screenshots
-
 <details>
-<summary>Click to expand/collapse screenshots</summary>
+<summary>Click to expand/collapse screenshots (old image)</summary>
 
 ![App Launcher](https://dl.ummit.dev/dotfiles-20250217/app-launcher.png)
 ![Clipboard](https://dl.ummit.dev/dotfiles-20250217/clipboard.png)
