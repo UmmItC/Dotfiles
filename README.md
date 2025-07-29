@@ -10,7 +10,7 @@ This repository is dedicated to my Hyprland DWM Arch Linux configuration files.
 
 Keeping screenshots perfectly up-to-date with every change is challenging. For the most current look at UmmItOS in action, please watch the video on my Youtube Channel.
 
-[Watch this video on YouTube](https://www.youtube.com/watch?v=sjeKlj8mTjE)
+[Watch this video on YouTube](https://www.youtube.com/watch?v=kd0elrqV0O0)
 
 <details>
 <summary>Click to expand/collapse screenshots (old image)</summary>
