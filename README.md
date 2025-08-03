@@ -30,6 +30,14 @@ Keeping screenshots perfectly up-to-date with every change is challenging. For t
 
 </details>
 
+## Star me!
+
+If you like my dotfiles, please leave a star!
+
+It motivates me to keep maintaining the repo. i need to maintain it since I use it every day xd, but I would be really happy if you leave a star for me. Thank you!
+
+[![Star History Chart](https://app.repohistory.com/api/svg?repo=UmmItKin/Dotfiles&type=Date&background=0D1117&color=b562f8)](https://app.repohistory.com/star-history)
+
 # Installation Instructions
 
 We offer multiple installation methods for UmmItOS. Choose the one that best fits your needs:
