@@ -19,3 +19,7 @@ It motivates me to keep maintaining the repo. i need to maintain it since I use 
 ## Contributing
 
 See the [contributing guidelines](./CONTRIBUTING.md) for more information.
+
+## LICENSE
+
+GPLv3. See [LICENSE](./LICENSE) for more.
